@@ -20,21 +20,6 @@ $(window).load(function () {
             break;
     }
 
-    function updateSubwareAccessTime(swTypeId) {
-        $.ajax({
-            type: "post",
-            url: base_url + 'middle/coursewares/update_SW_Access',
-            dataType: 'json',
-            data: {subware_type_id: swTypeId},
-            success: function (res) {
-                if (res.status == 'success') {
-
-                } else {
-                }
-            }
-        });
-    }
-
 
     function receiveMessage(event) {
 
@@ -58,6 +43,20 @@ $(window).load(function () {
 
 });
 
+function updateSubwareAccessTime(swTypeId) {
+    $.ajax({
+        type: "post",
+        url: base_url + 'middle/coursewares/update_SW_Access',
+        dataType: 'json',
+        data: {subware_type_id: swTypeId},
+        success: function (res) {
+            if (res.status == 'success') {
+
+            } else {
+            }
+        }
+    });
+}
 $('#script').on('click', function () {
     if (curr_sw == 'flash_sw') {
         var courseware_id = $(this).attr('data-courseware_id');
