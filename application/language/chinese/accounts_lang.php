@@ -81,6 +81,7 @@ $lang['School'] = '学校';
 $lang['UserType'] = '用户类型';
 $lang['Teacher'] = '老师';
 $lang['Student'] = '学生';
+$lang['APP'] = 'APP';
 $lang['GenerationTime'] = '生成时间';
 $lang['Generation'] = '生成';
 $lang['Password'] = '密码';
@@ -135,6 +136,7 @@ $lang['Time'] = '时间';
 $lang['ChooseCourse'] = '选择课程';
 $lang['BuyCourse'] = '购买课程';
 
+$lang['BuyTime'] = '购买时间';
 
 
 ?>

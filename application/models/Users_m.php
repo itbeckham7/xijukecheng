@@ -300,7 +300,7 @@ class Users_m extends MY_Model
     }
 
     public function addWeixinAccount($param){
-        if(count($this->getUserInfoByNickName($param['nickname']))>0) {
+        if(!is_null($this->getUserInfoByNickName($param['nickname']))) {
             $this->db->where('nickname', $param['nickname']);
             $this->db->update('users', $param);
         }else {

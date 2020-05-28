@@ -3,6 +3,9 @@
 $lang['China'] = '中国';
 $lang['Western'] = '西方';
 
+$lang['weixin'] = '微信';
+$lang['zhifubao'] = '支付宝';
+
 $lang['EnglishCourse'] = '英文课本剧';
 $lang['HighSchoolGrade'] = '小学高年级';
 $lang['ChineseAndWesternCultureFace'] = '中西文化面对面';
