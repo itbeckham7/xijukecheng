@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.2.4',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'xiju_db',
+	'hostname' => '127.0.0.1',
+	'username' => 'xjkc0511',
+	'password' => 'xjkc_0511',
+	'database' => 'xijvkecheng',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
