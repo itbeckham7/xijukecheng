@@ -57,7 +57,10 @@ function updateSubwareAccessTime(swTypeId) {
         }
     });
 }
+
 $('#script').on('click', function () {
+    curr_sw = 'script_sw';
+    setSubwareNavId(curr_sw);
     if (curr_sw == 'flash_sw') {
         var courseware_id = $(this).attr('data-courseware_id');
         location.replace(baseURL + 'middle/coursewares/view/' + courseware_id);
@@ -77,7 +80,6 @@ $('#script').on('click', function () {
     $('.subware-nav').removeAttr('data-sel');
     $(this).parent().attr('data-sel', 1);
 
-    curr_sw = 'script_sw';
 });
 
 $('#flash_contents').on('click', function () {
@@ -106,6 +108,8 @@ $('#flash_contents').on('click', function () {
 });
 
 $('#dubbing').on('click', function () {
+    curr_sw = 'dubbing_sw';
+    setSubwareNavId(curr_sw);
     if (curr_sw == 'flash_sw') {
         var courseware_id = $(this).attr('data-courseware_id');
         location.replace(baseURL + 'middle/coursewares/view/' + courseware_id);
@@ -125,11 +129,11 @@ $('#dubbing').on('click', function () {
     $('.subware-nav').removeAttr('data-sel');
     $(this).parent().attr('data-sel', 1);
 
-    curr_sw = 'dubbing_sw';
-
 });
 
 $('#shooting').on('click', function () {
+    curr_sw = 'shooting_sw';
+    setSubwareNavId(curr_sw);
     if (curr_sw == 'flash_sw') {
         var courseware_id = $(this).attr('data-courseware_id');
         location.replace(baseURL + 'middle/coursewares/view/' + courseware_id);
@@ -149,9 +153,6 @@ $('#shooting').on('click', function () {
 
     $('.subware-nav').removeAttr('data-sel');
     $(this).parent().attr('data-sel', 1);
-
-    curr_sw = 'shooting_sw';
-    setSubwareNavId(curr_sw);
 });
 
 // flash page part
