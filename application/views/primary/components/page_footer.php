@@ -40,7 +40,7 @@
 
 <script  src="<?= base_url('assets/js/chinesepdf/plugins/standard_fonts_metrics.js')?>"></script>
 <script  src="<?= base_url('assets/js/chinesepdf/customfonts.js')?>"></script>
-<script  src="<?= base_url('assets/js/chinesepdf/vfs_fonts.js')?>"></script>
+<!--<script  src="--><?//= base_url('assets/js/chinesepdf/vfs_fonts.js')?><!--"></script>-->
 <script  src="<?= base_url('assets/js/chinesepdf/plugins/autoprint.js"')?>"></script>
 
 

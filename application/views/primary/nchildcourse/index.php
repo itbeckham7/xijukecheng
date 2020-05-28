@@ -215,7 +215,7 @@ if (isset($nccsSet[2])) {
         var csID = $(this).data('cs-id').toString();
         if(free_course==='1'){
             return 0;
-        } else {
+        }else{
             if(userRole==='1'){
                 if(cwPermissions.indexOf(csID) > -1){
                     return 0;
@@ -223,7 +223,7 @@ if (isset($nccsSet[2])) {
                     $(this).attr('href', '#');
                     alert('你没有开通本课程，不能查看哦！');
                 }
-            } else {
+            }else{
                 showMsgModal();
                 $(this).attr('href', '#');
             }

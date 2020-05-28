@@ -5,10 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>中西文化面对面</title>
-	
-    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<meta name="description" content="呼啦啦教育出版社">
-	<meta name="keywords" content="课本剧,呼啦啦,教育,小学,中学,高中,宫菲,ExIdeaTech"/>
+
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="description" content="呼啦啦教育出版社">
+    <meta name="keywords" content="课本剧,呼啦啦,教育,小学,中学,高中,宫菲,ExIdeaTech"/>
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -21,11 +22,11 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/ionicons.min.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/socicon-styles.css') ?>">
     <!-- Font Icons -->
-    <link rel="stylesheet" href="<?= base_url('assets/css/hover-min.css') ?>" />
-    <link rel="stylesheet" href="<?= base_url('assets/css/animate.css') ?>" />
-    <link rel="stylesheet" href="<?= base_url('assets/css/css-menu.css') ?>" />
-    <link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.css') ?>" />
-    <link rel="stylesheet" href="<?= base_url('assets/css/loader.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/css/hover-min.css') ?>"/>
+    <link rel="stylesheet" href="<?= base_url('assets/css/animate.css') ?>"/>
+    <link rel="stylesheet" href="<?= base_url('assets/css/css-menu.css') ?>"/>
+    <link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.css') ?>"/>
+    <link rel="stylesheet" href="<?= base_url('assets/css/loader.css') ?>"/>
 
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/middle/styles.css') ?>">
 
@@ -49,42 +50,31 @@
 <body>
 <div>
 
-<?php
-
-$user_type = $this->session->userdata("user_type");
-if($user_type=='1'&&$this->session->userdata("loggedin")){ ?>
-    <a data-url="<?= base_url('assets/pdf/teacher_reference.pdf');?>" target="_blank" class="teacher-reference-btn"></a>
     <?php
 
-}
-?>
-<div class="teacher_reference_pdf">
-    <object data="../../../assets/pdf/teacher_reference.pdf"></object>
-</div>
+    $user_type = $this->session->userdata("user_type");
+    if ($user_type == '1' && $this->session->userdata("loggedin")) { ?>
+        <a data-url="<?= base_url('assets/pdf/teacher_reference.pdf'); ?>" target="_blank"
+           class="teacher-reference-btn"></a>
+        <?php
 
-<script>
-    var isShowingPDF = true;
-    var initailHeight = $(window).height();
-    $(window).resize(function()
-    {
-        $(window).height(initailHeight);
+    }
+    ?>
+    <div class="teacher_reference_pdf">
+        <object data="../../../assets/pdf/teacher_reference.pdf"></object>
+    </div>
 
-    });
+    <script>
+        var isShowingPDF = true;
+        var initailHeight = $(window).height();
+        $(window).resize(function () {
+            $(window).height(initailHeight);
+        });
 
+        $('.teacher-reference-btn').click(function () {
+            var pdfURL = $(this).attr('data-url');
+            if (!executeCMD('show_reference_pdf', pdfURL))
+                window.open(pdfURL);
+        });
 
-    $('.teacher-reference-btn').click(function () {
-
-        var pdfURL = $(this).attr('data-url');
-        if(osStatus==='Android'){
-            Android.showReferencePDF(pdfURL);
-            return;
-        }
-        if(osStatus==='iOS'){
-            window.location = 'showReferencePDF://assets/pdf/teacher_reference.pdf';
-            return;
-        }
-        window.open(pdfURL);
-
-    });
-
-</script>
+    </script>

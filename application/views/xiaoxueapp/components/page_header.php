@@ -84,8 +84,8 @@ if($user_type=='1'&&$this->session->userdata("loggedin")){ ?>
 
     $('.teacher-reference-btn').click(function () {
         var pdfURL = $(this).attr('data-url');
-        executeCMD('show_reference_pdf', pdfURL);
-        window.open(pdfURL);
+        if (!executeCMD('show_reference_pdf', pdfURL))
+            window.open(pdfURL);
     });
 
 </script>

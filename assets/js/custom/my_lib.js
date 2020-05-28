@@ -246,5 +246,7 @@ function executeCMD(command, data) {
             case '':
                 break;
         }
+        return true;
     }
+    return false;
 }

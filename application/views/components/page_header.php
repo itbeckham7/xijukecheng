@@ -75,16 +75,8 @@ if($user_type=='1'&&$this->session->userdata("loggedin")){ ?>
     $('.teacher-reference-btn').click(function () {
 
         var pdfURL = $(this).attr('data-url');
-        if(osStatus==='Android'){
-            Android.showReferencePDF(pdfURL);
-            return;
-        }
-        if(osStatus==='iOS'){
-
-            window.location = 'showReferencePDF://assets/pdf/teacher_reference.pdf';
-            return;
-        }
-        window.open(pdfURL);
+        if (!executeCMD('show_reference_pdf', pdfURL))
+            window.open(pdfURL);
 
     });
 

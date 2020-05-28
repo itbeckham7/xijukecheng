@@ -121,7 +121,6 @@ if ($this->session->userdata('loggedin')) {
     </div>
 <?php endif; ?>
 
-
 <div class="script-content">
     <iframe src="" id="courseware_iframe" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"
             style="border:none"></iframe>
