@@ -245,7 +245,7 @@ if($this->session->userdata("loggedin") != FALSE)
             curLang = 'cnCHEN';
             $('#'+curLang+'_btn').css({"background":"url("+imageDir+"sidepad/"+curLang+"_r.png) no-repeat",'background-size' :'100% 100%'});
             $('#new_courseware_iframe').attr('src',curDataUrl+'/video/package/index.html');
-        }else{
+        } else {
             showMsgModal();
         }
     }

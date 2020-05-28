@@ -7,12 +7,21 @@
     <title>中西文化面对面</title>
 	
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<meta name="description" content="呼啦啦教育出版社">
-	<meta name="keywords" content="课本剧,呼啦啦,教育,小学,中学,高中,宫菲,ExIdeaTech"/>
+    <meta name="description" content="呼啦啦教育出版社">
+    <meta name="keywords" content="课本剧,呼啦啦,教育,小学,中学,高中,宫菲,ExIdeaTech"/>
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
+
+    <style>
+	body, html{
+        height: 100%;
+        margin: 0;
+	position:fixed;
+	width:100%
+    }
+    </style>
 
     <!-- Style Sheets -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
@@ -35,7 +44,9 @@
     <script type="text/javascript">
         var base_url = "<?= base_url() ?>";
         var baseURL = "<?= base_url() ?>";
-
+	document.ontouchmove = function(event){
+		event.preventDefault();
+	}
     </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -48,11 +59,6 @@
 </head>
 <body>
 
-<style>
-    html, body{
-        height: 100%;
-    }
-</style>
 
 <?php
 
@@ -78,19 +84,17 @@ if($user_type=='1'&&$this->session->userdata("loggedin")){ ?>
 
 
     $('.teacher-reference-btn').click(function () {
-
         var pdfURL = $(this).attr('data-url');
-        if(osStatus==='Android'){
-            Android.showReferencePDF(pdfURL);
-            return;
+        if(osStatus==='Android' || osStatus==='iOS'){
+            window.ReactNativeWebView.postMessage(JSON.stringify({
+                cmd: 'show_reference_pdf',
+                data: {
+                    pdfURL: pdfURL
+                }
+            }))
+        } else {
+            window.open(pdfURL);    
         }
-        if(osStatus==='iOS'){
-
-            window.location = 'showReferencePDF://assets/pdf/teacher_reference.pdf';
-            return;
-        }
-        window.open(pdfURL);
-
     });
 
 </script>

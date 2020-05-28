@@ -1,11 +1,15 @@
-# Use PHP7 Single php.ini as default
-#AddHandler application/x-httpd-php70s .php
+#DirectoryIndex index.php
 #RewriteEngine on
-#RewriteCond $1 !^(index\.php|assets|ads|uploads|chrome|opera|apollo|h5ar|guoxue|robots\.txt)
-#RewriteRule ^(.*)$ index.php$1 [L,QSA]
+#RewriteCond $1 !^(index\.php|(.*)\.swf|forums|images|css|downloads|jquery|js|robots\.txt|favicon\.ico)
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ ./index.php?$1 [L,QSA]
 
 RewriteEngine on
-RewriteBase /xiju
+#RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
+
+
+
