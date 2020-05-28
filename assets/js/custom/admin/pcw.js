@@ -36,6 +36,8 @@ jQuery("#cw_addNew_submit_form").submit(function (e) {
         success: function(res){
             var ret = JSON.parse(res);
             if(ret.status=='success') {
+                location.reload();
+                return;
                 var table = document.getElementById("cwInfo_tbl");
                 var tbody = table.getElementsByTagName("tbody")[0];
                 tbody.innerHTML = ret.data;

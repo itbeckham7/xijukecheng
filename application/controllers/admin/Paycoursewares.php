@@ -81,7 +81,7 @@ class Paycoursewares extends Admin_Controller
             );
             log_message('info', '-- $param : ' . var_export($param, true));
             $this->data['cwsets'] = $this->coursewares_m->add($param);
-            $ret['data'] = $this->output_content($this->data['cwsets']);;
+            $ret['data'] = '操作成功';//$this->output_content($this->data['cwsets']);;
             $ret['status'] = 'success';
         }
         echo json_encode($ret);
