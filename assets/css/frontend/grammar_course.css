@@ -1,0 +1,294 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.background_image
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;height:100%;
+    background-size: contain
+}
+
+.left_menu_container{
+
+}
+
+.video_list_container{
+    width:15.3%;
+    height:71.6%;
+    position: absolute;
+    left: 1.2%;
+    top: 18.85%;
+    overflow-y: auto;
+}
+
+.scroll_up_btn{
+    width:4.2%;
+    height:7.5%;
+    position: absolute;
+    left: 6.9%;
+    top: 11.0%;
+    cursor: pointer;
+    background-size: 100% 100% !important;
+    background: url("../../images/frontend/grammar_course/home/arrow_up.png") no-repeat;
+}
+
+.video_item{
+    width: 100%;
+    height: 25%;
+    cursor: pointer;
+    background-size: 100% 100% !important;
+    background: url("../../images/frontend/grammar_course/home/1.png") no-repeat;
+}
+
+.scroll_up_btn:hover
+{
+    background: url("../../images/frontend/grammar_course/home/arrow_up_clicked.png") no-repeat;
+}
+
+.scroll_down_btn
+{
+    width:4.2%;
+    height:7.5%;
+    position: absolute;
+    left: 6.9%;
+    top: 90.9%;
+    cursor: pointer;
+    background-size: 100% 100% !important;
+    background: url("../../images/frontend/grammar_course/home/arrow_down.png") no-repeat;
+}
+
+.scroll_down_btn:hover
+{
+    background: url("../../images/frontend/grammar_course/home/arrow_down_clicked.png") no-repeat;
+}
+
+.logout_btn,
+.back_btn{
+    width:4.9%;
+    height:4.7%;
+    position: absolute;
+    left: 94.2%;
+    top: 2.7%;
+    cursor: pointer;
+    background-size: 100% 100% !important;
+    background: url("../../images/frontend/grammar_course/home/logout_btn.png") no-repeat;
+}
+
+.logout_btn:hover{
+    background: url("../../images/frontend/grammar_course/home/logout_btn_clicked.png") no-repeat;
+}
+.back_btn{
+    left: 1.5%;
+    background: url("../../images/frontend/grammar_course/home/back_btn.png") no-repeat;
+}
+
+.back_btn:hover{
+    background: url("../../images/frontend/grammar_course/home/back_btn_clicked.png") no-repeat;
+}
+
+.video_pause_btn{
+    width:1.3%;
+    height:3.0%;
+    position: absolute;
+    left: 24.1%;
+    top: 89.6%;
+    cursor: pointer;
+    background-size: 100% 100% !important;
+    background: url("../../images/frontend/grammar_course/home/pause_btn.png") no-repeat;
+}
+
+.video_pause_btn:hover{
+    background: url("../../images/frontend/grammar_course/home/pause_btn_clicked.png") no-repeat;
+}
+
+.video_pause_btn.play{
+    background: url("../../images/frontend/grammar_course/home/play_btn.png") no-repeat;
+}
+
+.video_pause_btn.play:hover{
+    background: url("../../images/frontend/grammar_course/home/play_btn_clicked.png") no-repeat;
+}
+
+.video_next_btn{
+    width:1.5%;
+    height:3.1%;
+    position: absolute;
+    left: 27.3%;
+    top: 89.7%;
+    cursor: pointer;
+    background-size: 100% 100% !important;
+    background: url("../../images/frontend/grammar_course/home/next.png") no-repeat;
+}
+
+.video_next_btn:hover{
+    background: url("../../images/frontend/grammar_course/home/next_clicked.png") no-repeat;
+}
+
+.video_volume_btn{
+    width:2.0%;
+    height:3.3%;
+    position: absolute;
+    left: 78.0%;
+    top: 89.6%;
+    cursor: pointer;
+    background-size: 100% 100% !important;
+    background: url("../../images/frontend/grammar_course/home/volume_btn.png") no-repeat;
+}
+
+.video_volume_btn:hover{
+    background: url("../../images/frontend/grammar_course/home/volume_btn_clicked.png") no-repeat;
+}
+
+.video_volume_btn.mute{
+    background: url("../../images/frontend/grammar_course/home/mute_btn.png") no-repeat;
+}
+
+.video_volume_btn.mute:hover{
+    background: url("../../images/frontend/grammar_course/home/mute_btn_clicked.png") no-repeat;
+}
+
+.video_iframe{
+    width:72.4%;
+    height:72.6%;
+    left: 22.0%;
+    top:15.2%;
+    position:absolute;
+    outline: none;
+    border:none;
+    box-shadow:none;
+	background: black;
+}
+
+
+
+/* ************* custom scroll bar ********** */
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Track bar Background */
+::-webkit-scrollbar-track {
+    /*box-shadow:inset 2px 2px 1px rgba(52,150,182,1);*/
+    background: rgba(52, 150, 182, 0);
+    border-radius: calc(2vw);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: calc(2vw);
+    background: rgba(241, 182, 56, 0);
+    /*background:url(../images/main/scoll_icon.png) no-repeat;*/
+    background-size: 100% 100% !important;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(241, 182, 56, 0);
+    /*background:url(../images/main/scoll_icon.png) no-repeat;*/
+    background-size: 100% 100% !important;
+}
+
+
+/***************Slider Bar***************/
+.video_volume_bar,
+.video_seek_bar{
+    left: 32%;
+    top: 91%;
+    width: 44%;
+    height: 1.3%;
+    position: absolute;
+    justify-content: center;
+}
+
+.video_volume_bar {
+    left: 80.9%;
+    width: 10.4%;
+}
+
+input[type=range] {
+    margin: auto;
+    outline: none;
+    padding: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #09556f;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eb4d4a), color-stop(100%, #eb4d4a));
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+.video_seek_bar input{
+	background-size: 0% 100%;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    -webkit-appearance: none;
+}
+
+
+input[type=range]::-webkit-slider-thumb {
+    height: 9px;
+    width: 9px;
+    border: 0;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 1px 0px rgba(0,0,0,0.1);
+    -webkit-appearance: none;
+}
+/*
+input::-moz-range-track {
+    width: 240px;
+    height: 2px;
+}
+input::-moz-range-thumb {
+    height: 18px;
+    width: 28px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #777;
+    position: relative;
+}
+input::-moz-range-progress {
+    height: 2px;
+    background: #e33d44;
+    border: 0;
+    margin-top: 0;
+}
+input::-ms-track {
+    background: transparent;
+    border: 0;
+    border-color: transparent;
+    border-radius: 0;
+    border-width: 0;
+    color: transparent;
+    height: 2px;
+    margin-top: 10px;
+    width: 240px;
+}
+input::-ms-thumb {
+    height: 18px;
+    width: 28px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #777;
+}
+input::-ms-fill-lower {
+    background: #e33d44;
+    border-radius: 0;
+}
+input::-ms-fill-upper {
+    background: #c7c7c7;
+    border-radius: 0;
+}
+input::-ms-tooltip {
+    display: none;
+}
+*/

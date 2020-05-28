@@ -1,0 +1,126 @@
+a {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    transform-origin: center;
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.background_image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.login_button_image {
+    position: absolute;
+    width: 37%;
+    top: 61%;
+    right: 4%;
+    height: 18%;
+}
+
+#username,
+#password,
+#cpassword {
+    font-size: 36px;
+    position: absolute;
+    line-height: normal;
+    left: 775px;
+    top: 427px;
+    width: 475px;
+    height: 95px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+#password,
+#cpassword {
+    top: 557px;
+}
+
+.btn-back {
+    position: absolute;
+    left: 537px;
+    top: 777px;
+    width: 74px;
+    height: 68px;
+    border-radius: 20px;
+    background-color: #4db1ff;
+    background-image: url(../../images/frontend/login/back2home.png);
+}
+
+.btn-login,
+.btn-register {
+    position: absolute;
+    left: 1065px;
+    top: 681px;
+    width: 155px;
+    height: 65px;
+    line-height: 65px;
+    background-color: #4db1ff;
+    color: white;
+    font-size: 34px;
+    font-weight: bold;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+    /*background-image: url(../../images/frontend/login/login.png);*/
+}
+
+.btn-register {
+    left: 699px;
+    /*background-image: url(../../images/frontend/login/register.png);*/
+}
+
+.btn-weixin {
+    position: absolute;
+    left: 1199px;
+    top: 787px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    /*background-color: #fff;*/
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+.info-modal {
+    position: absolute;
+    left: 1110px;
+    top: 734px;
+    width: 40%;
+    height: 10%;
+    font-size: 30px;
+    color: red;
+    display: none;
+}
+
+.weixin_login{
+    position: absolute;
+    left:34.8%;
+    top: 50%;
+    /*top: 36.8%;*/
+    width:calc(65.1% - 34.8%);
+    height:calc(45.8% - 36.8%);
+    transition: all .1s ease-in-out;
+    background-size: 100% 100%!important;
+    background:url(../../images/frontend/login/weixin.png);
+    cursor: pointer;
+}
+.weixin_login:hover{
+    opacity: .8;
+}

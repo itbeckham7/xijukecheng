@@ -1,0 +1,126 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+#sh_register_btn {
+    width: 6%;
+    height: 5%;
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    background-size: 100% 100%;
+}
+
+#sh_exit_btn {
+    width: 6%;
+    height: 5%;
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    background-size: 100% 100%;
+}
+
+#sh_non_register_btn {
+    width: 10%;
+    height: 6%;
+    position: absolute;
+    right: 2%;
+    bottom: 2%;
+    background-size: 100% 100%;
+}
+
+.background_image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain
+}
+
+/***********Sandapian code***************/
+#sh_kebenju_btn {
+    width: 29.02%;
+    height: 69.44%;
+    position: absolute;
+    left: 11.7%;
+    top: 20.78%;
+    background-size: 100% 100%;
+}
+
+#sh_sandapian_btn {
+    width: 29.2%;
+    height: 69.51%;
+    position: absolute;
+    left: 57.88%;
+    top: 20.87%;
+    background-size: 100% 100%;
+}
+
+.btn {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.btn.home-nav {
+    left: 330px;
+    top: 361px;
+    width: 522px;
+    height: 491px;
+    position: absolute;
+    background-size: 100% 100%;
+    background-image: url(../../images/middle/primary.png);
+}
+
+.btn.home-nav[data-type="middle"] {
+    left: 1035px;
+    top: 379px;
+    width: 506px;
+    height: 473px;
+    background-image: url(../../images/middle/middle.png);
+}
+
+.btn.home-nav:hover {
+    transform: scale(1.05);
+}
+
+.btn.home-profile {
+    position: absolute;
+    top: 1.9%;
+    right: 12.2%;
+    width: 4%;
+    height: 7.3%;
+    border-radius: 100%;
+    background-color: #40b6fe;
+    background-image: url(../../images/user.png);
+    background-size: 47%;
+}
+
+.btn.home-login {
+    position: absolute;
+    top: 3.5%;
+    right: 8.4%;
+    width: 4.9%;
+    height: 4.5%;
+    background-color: #40b6fe;
+    padding: 0 10px;
+    margin: 0;
+    text-align: right;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    border: 1px solid transparent;
+    border-radius: 5px 0px 0px 5px;
+}
+.btn.home-login[data-type="register"] {
+    right: 3.3%;
+    width: 4.9%;
+    border-radius: 0 5px 5px 0;
+    text-align: center;
+    padding: 0;
+}
+.btn.home-login:hover{
+    border-color: white;
+}

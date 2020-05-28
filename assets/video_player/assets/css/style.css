@@ -1,0 +1,144 @@
+body {
+	
+    position: absolute;
+
+}
+
+a {
+    cursor: pointer;
+}
+
+.start-video-page {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.sf-video-wrapper, .vertical-content-page {
+    position: relative;
+    height: calc(100vh);
+    width: calc(100vw);
+}
+
+.video-player-dimensions {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.main-content-wrapper {
+    display: none;
+}
+
+video {
+
+    position: absolute;
+    height: 100% !important;
+    width: 100% !important; 
+    object-fit: fill !important;
+}
+
+a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(100vw);
+    height: calc(90vh);
+}
+
+.custom-video-contain {
+
+    object-fit: contain !important;
+
+}
+
+.page-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.loading-img-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    text-align: center;
+}
+
+.loading-img-wrapper img {;
+    vertical-align: middle;
+
+}
+
+#loading-gif-file {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.timecount-txt {
+    position: absolute;
+    top: 1.5%;
+    right: 2%;
+    font-size: calc(2vw);
+    font-weight: 500;
+    width: 25%;
+    height: 5%;
+    text-align: right;
+    color: white;
+    background: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.timecount-txt span {
+    color: red;
+}
+
+.btn-skip {
+    position: absolute;
+    left: 93%;
+    top: 92.5%;
+    width: 12%;
+    height: 5.5%;
+    transform: translate(-50%, -50%);
+    background: url(../images/btn_skip.png);
+    background-size: 100% 100% !important;
+    cursor: pointer;
+}
+.video-js{
+	object-fit:fill!important;
+}
+.vjs-control-bar{
+    display: none;
+}
+
+.video_loading{
+    position:absolute;width:968px;height: 661px;margin:0 ;overflow: hidden;background-size: 100% 100%;
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+
+.video_loading{
+    width:873px;
+    height: 494px;
+}

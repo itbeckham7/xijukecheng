@@ -1,0 +1,9 @@
+
+    Alias /xiju "h:/Tasks/00_SelfLearning/35_xijukecheng/developed/xijukecheng/"
+    <Directory "h:/Tasks/00_SelfLearning/35_xijukecheng/developed/xijukecheng">
+	   Options Indexes FollowSymLinks MultiViews
+       AllowOverride All
+       Order allow,deny
+       allow from all
+       Require all granted
+    </Directory>

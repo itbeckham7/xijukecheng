@@ -1,0 +1,447 @@
+/*
+  Project Name : Video
+  Author Company : Ewebcraft
+  Project Date: 5 May, 2016
+  Author Website : http://www.ewebcraft.com
+  Author Email : ewebcraft@gmail.com
+*/
+
+/* ((((((( fonts ))))))) */
+
+
+/*@font-face {*/
+/*    font-family: 'PT Sans';*/
+/*    src: url('../fonts/hinted-PTSans-Regular.eot');*/
+/*    src: local('PT Sans'), local('PTSans-Regular'),*/
+/*    url('../fonts/hinted-PTSans-Regular.eot?#iefix') format('embedded-opentype'),*/
+/*    url('../fonts/hinted-PTSans-Regular.woff2') format('woff2'),*/
+/*    url('../fonts/hinted-PTSans-Regular.woff') format('woff'),*/
+/*    url('../fonts/hinted-PTSans-Regular.ttf') format('truetype'),*/
+/*    url('../fonts/hinted-PTSans-Regular.svg#PTSans-Regular') format('svg');*/
+/*    font-weight: normal;*/
+/*    font-style: normal;*/
+/*}*/
+
+/* ((((((( fonts ))))))) */
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 20px;
+}
+
+a, .btn, .btn-default, button {
+    transition: all 0.1s;
+    outline: none;
+    user-select: none;
+}
+
+a:active, a:focus {
+    outline: none;
+}
+._scripts{
+    display: none!important;
+}
+/*
+:::::;;Teacher Reference Button
+ */
+.teacher-reference-btn {
+    position: absolute;
+    left: 63.7%;
+    top: 3.1%;
+    width: 6.3%;
+    height: 4.9%;
+    z-index: 999;
+    background: url(../../images/middle/studentwork/teacher_ref_btn.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: none;
+}
+
+.teacher-reference-btn:hover {
+    background: url(../../images/middle/studentwork/teacher_ref_btn_hover.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.teacher_reference_pdf {
+    position: absolute;
+    top: 11%;
+    left: 0;
+    width: 100%;
+    height: 87.9%;
+    z-index: 99990;
+    display: none;
+}
+
+.teacher_reference_pdf object {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+
+/*
+::Menu Area
+ */
+a.btn-main {
+    position: absolute;
+    display: block;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 5;
+}
+
+a.btn-main:hover {
+    margin: 5px 0 0;
+}
+
+a.btn-main span {
+    position: absolute;
+    top: 76px;
+    width: 120%;
+    left: -10%;
+    color: #30a4ff;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0;
+}
+
+.btn-main.community {
+    left: 120px;
+    top: 19px;
+    width: 89px;
+    height: 73px;
+    background-image: url(../../images/middle/coursewares/menu-community.png);
+}
+
+.btn-main.mywork {
+    left: 248px;
+    top: 19px;
+    width: 67px;
+    height: 73px;
+    background-image: url(../../images/middle/coursewares/menu-mywork.png);
+}
+
+.btn-main.profile {
+    left: 355px;
+    top: 19px;
+    width: 68px;
+    height: 73px;
+    background-image: url(../../images/middle/coursewares/menu-profile.png);
+}
+
+.exit-btn,
+.register-btn {
+    position: absolute;
+    left: 131px;
+    top: 21px;
+    width: 68px;
+    height: 72px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.exit-btn {
+    background-image: url(../../images/middle/coursewares/exit.png);
+}
+
+.register-btn {
+    background-image: url(../../images/middle/coursewares/register.png);
+
+}
+
+.back-btn {
+    left: 25px;
+    top: 21px;
+    width: 68px;
+    height: 72px;
+    background-image: url(../../images/middle/back.png);
+}
+
+body {
+    position: absolute;
+    overflow: hidden;
+    display: none;
+}
+
+body > div {
+    position: absolute;
+    width: 1920px;
+    height: 1080px;
+    left: 0;
+    top: 0;
+    transform-origin: top left;
+    position: absolute;
+    overflow: hidden;
+}
+
+html {
+    font-size: 30px;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .0;
+    filter: alpha(opacity=0);
+    z-index: 50;
+    display: none;
+}
+
+.left-tab {
+    position: absolute;
+    left: 0;
+    top: 143px;
+    width: 228px;
+    height: 937px;
+    border-radius: 0 50px 50px 0;
+    background-color: #7dc6ff;
+}
+
+.courseware-preview {
+    position: absolute;
+    left: 14px;
+    top: 164px;
+    width: 182px;
+    height: 175px;
+}
+
+.subware-nav {
+    position: absolute;
+    left: 0;
+    top: 351px;
+    width: 228px;
+    height: 144px;
+    z-index: 3;
+}
+
+.subware-nav {
+    background-color: transparent;
+    border-bottom: 1px solid white;
+}
+
+.subware-nav:hover {
+    background-color: #30a4ff;
+}
+
+.subware-nav[data-sel="1"] {
+    background-color: white;
+}
+
+.subware-nav[data-sel="1"] a {
+    color: #30a4ff;
+}
+
+.subware-nav img {
+    width: auto;
+    height: 50%;
+    margin-bottom: 10px;
+}
+
+.subware-nav a {
+    display: flex;
+    height: 100%;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.course_type_menu {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    left: 44px;
+    top: 222px;
+    width: 180px;
+    height: 745px;
+    border-radius: 30px;
+    background-color: #e6e6e6;
+}
+
+.course_type_menu img {
+    width: 100%;
+    height: 100%;
+}
+
+.course_type_menu a {
+    position: relative;
+    width: 113px;
+    height: 113px;
+    background-color: #4eb1ff;
+    border-radius: 25px;
+    margin-bottom: 82px;
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../../images/middle/mywork/btn-tab-script.png);
+}
+
+.course_type_menu a[data-type="dubbing"] {
+    background-image: url(../../images/middle/mywork/btn-tab-dubbing.png);
+}
+
+.course_type_menu a[data-type="shooting"] {
+    background-image: url(../../images/middle/mywork/btn-tab-shooting.png);
+}
+
+.course_type_menu a span {
+    position: absolute;
+    top: 125px;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 22px;
+}
+
+.modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.modal .modal-dialog {
+    /*margin-top: 380px;*/
+}
+
+.modal .modal-dialog .modal-content {
+    width: 413px;
+    height: 293px;
+    border-radius: 10px;
+    background-color: #30a4ff;
+    border: 5px solid #30a4ff;
+    margin-top: 380px;
+}
+
+.modal-content .modal-header {
+    height: 40px;
+}
+
+.modal-content .modal-body {
+    background-color: white;
+    height: 115px;
+    color: #30a4ff;
+    font-size: 20px;
+    top: 1px;
+}
+
+.modal-content .modal-body input {
+    height: 72px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    color: #30a4ff;
+    font-size: 27px;
+    outline: none;
+    border: none;
+    padding-left: 60px;
+}
+
+.modal-content .modal-body .form-group img {
+    position: absolute;
+    width: 40px;
+    height: 43px;
+    left: 25px;
+    top: 12px;
+}
+
+.modal-content .modal-footer {
+    border: none;
+    background-color: white;
+    height: 125px;
+}
+
+.modal-content .modal-footer button {
+    width: 80px;
+    height: 79px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.modal-content .modal-footer button:hover {
+    color: white;
+}
+
+.btn-red {
+    background-color: #ff8e85;
+    color: white;
+}
+
+.btn-blue {
+    background-color: #7dc6ff;
+    color: white;
+}
+
+.bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.vjs-control-bar {
+    display: flex!important;
+    top: 765px;
+    font-size: 25px;
+    left: 50px !important;
+    width: 1200px !important;
+    background-color: transparent !important;
+    opacity:1!important;
+}
+
+.video-js .vjs-play-control {
+    background-color: white;
+    color: #7ec6ff;
+    border-radius: 50%;
+    width: 70px !important;
+}
+.vjs-big-play-centered .vjs-big-play-button{
+    margin-left: -2em!important;
+    margin-top: -2em!important;
+    width: 4em!important;
+    height: 4em!important;
+    border-radius: 50%!important;
+}
+.vjs-icon-play:before,
+.video-js .vjs-big-play-button,
+.video-js .vjs-play-control{
+    background-image: url(../../images/middle/community/dubbing/player_play.png);
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.vjs-icon-play:before,
+.video-js .vjs-big-play-button:before,
+.video-js .vjs-play-control:before{
+    display: none;
+}
+.vjs-icon-pause,
+.video-js .vjs-play-control.vjs-playing{
+    background-image: url(../../images/middle/community/dubbing/player_pause.png);
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.vjs-icon-pause:before,
+.video-js .vjs-play-control.vjs-playing:before{
+    display: none;
+}

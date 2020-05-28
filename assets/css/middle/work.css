@@ -1,0 +1,72 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.btn {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.btn.home-nav {
+    left: 298px;
+    top: 338px;
+    width: 357px;
+    height: 434px;
+    position: absolute;
+    background-size: 100% 100%;
+    background-image: url(../../images/middle/mywork/btn-script.png);
+}
+
+.btn.home-nav[data-type="dubbing"] {
+    left: 790px;
+    background-image: url(../../images/middle/mywork/btn-dubbing.png);
+}
+.btn.home-nav[data-type="shooting"] {
+    left: 1283px;
+    background-image: url(../../images/middle/mywork/btn-shooting.png);
+}
+
+.btn.home-nav:hover {
+    transform: scale(1.05);
+}
+
+.btn.home-profile {
+    position: absolute;
+    top: 1.9%;
+    right: 12.2%;
+    width: 4%;
+    height: 7.3%;
+    border-radius: 100%;
+    background-color: #40b6fe;
+    background-image: url(../../images/user.png);
+    background-size: 60%;
+}
+
+.btn.home-login {
+    position: absolute;
+    top: 3.5%;
+    right: 8.4%;
+    width: 4.9%;
+    height: 4.5%;
+    background-color: #40b6fe;
+    padding: 0 10px;
+    margin: 0;
+    text-align: right;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    border: 1px solid transparent;
+    border-radius: 5px 0px 0px 5px;
+}
+.btn.home-login[data-type="register"] {
+    right: 3.3%;
+    width: 4.9%;
+    border-radius: 0 5px 5px 0;
+    text-align: center;
+    padding: 0;
+}
+.btn.home-login:hover{
+    border-color: white;
+}

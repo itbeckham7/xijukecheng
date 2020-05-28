@@ -1,0 +1,206 @@
+
+.teacher_assign_class {
+    position: absolute;
+    left: 298px;
+    top: 300px;
+    width: 231px;
+    height: 604px;
+    overflow: auto;
+    border-radius: 30px;
+    background-color: #2b90e0;
+}
+/* ************* custom scroll bar ********** */
+.teacher_assign_class::-webkit-scrollbar {
+    width: 15px;
+    color: #34c621;
+}
+
+/* Track bar Background */
+.teacher_assign_class::-webkit-scrollbar-track {
+    /*box-shadow:inset 2px 2px 1px rgba(52,150,182,1);*/
+    /*background: rgba(33, 135, 114, 0.3);*/
+    /*background-image: url(../images/lib/scroll-bg.png);*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 100%;
+    border-radius: 20px;
+    background-color: rgba(255,255,255,.1);
+}
+
+/* Handle */
+.teacher_assign_class::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    overflow: hidden;
+    /*background-image: url(../images/lib/scroll-thumb.png), url(../images/lib/scroll-thumb-bg.png);*/
+    /*background-color: rgba(0,0,0,.1);*/
+    background-repeat: no-repeat;
+    background-size: 100% auto, 50% 100% !important;
+    background-position: center;
+    cursor: pointer;
+    background-color: rgba(255,255,255,.4);
+}
+
+/*!* Handle on hover *!*/
+.teacher_assign_class::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
+    background-color: rgba(255,255,255,.7);
+}
+
+
+.class_name_btn_wrapper {
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 181px;
+    height: 57px;
+    margin-top: 16px;
+    margin-left: 20px;
+}
+
+.class_name_btn_wrapper:last-child {
+    margin-bottom: 20px;
+}
+
+.custom_classlist_btn {
+    display: block;
+    font-size: 34px;
+    background: rgba(255, 255, 255, 0);
+    border: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fdbf46;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.class_name_btn_wrapper:hover
+.custom_classlist_btn {
+    background-color: #d69945;
+}
+
+.class_name_btn_wrapper[data-sel="1"]
+.custom_classlist_btn {
+    background-color: #81e8fa;
+}
+
+.member_item {
+    text-decoration: none !important;
+    color: #000;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    /*position: absolute;*/
+    font-size: 22px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.member_item_wrapper {
+    padding-left: 15px;
+    margin-bottom: 26px;
+    text-align: left;
+    position: relative;
+    width: 556px;
+    height: 65px;
+    display: table;
+    background-color: #bce1fe;
+    border-radius: 30px;
+}
+.member_item_wrapper:hover {
+    background-color: #bce1fe;
+}
+.member_item_wrapper:hover .member_item {
+    color: #4db1ff;
+}
+
+.class_member_tbl_area {
+    position: relative;
+}
+
+#teacher_manage_class {
+    text-align: center;
+    min-height: 550px
+}
+
+.content_type_list {
+    display: inline-block;
+    margin-right: 30px;
+    background-color: #ff9;
+}
+
+.left-block-member,
+.right-block-member {
+    text-align: center;
+    display: inline-block;
+    margin-left: 3%;
+    width: 47%;
+}
+
+.left-block-member {
+    left: 0;
+}
+
+.right-block-member {
+    left: 50%;
+}
+
+#class_member_area {
+    width: 66%;
+    left: 30%;
+    top: 18%;
+    height: 70%;
+}
+
+
+.switch {
+    position: absolute;
+    left: 38.8%;
+    top: 0.9%;
+    width: 21.61%;
+    height: 7.87%;
+}
+
+.switch img {
+    width: 100%;
+    height: 100%
+}
+
+.return_btn {
+    width: 3.7%;
+    height: 7.6%;
+    position: absolute;
+    right: 1.7%;
+    top: 1.3%
+}
+
+
+.btn-work {
+    position: absolute;
+    left: 913px;
+    top: 940px;
+    width: 212px;
+    height: 65px;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: #4eb1ff;
+    text-decoration: none;
+    transition: none;
+    cursor: pointer;
+}
+
+.btn-work.next_Btn {
+    left: 1302px;
+}
+
+.btn-work:hover, .btn-work:focus {
+    opacity: .8;
+    text-decoration: none;
+    color: white;
+}

@@ -1,0 +1,147 @@
+
+.orderByCreateTime_Btn {
+    position: absolute;
+    left: 17.5%;
+    top: 17.1%;
+    width: 8.65%;
+    height: 5.74%;
+}
+
+.orderByMaxReviews_Btn {
+    position: absolute;
+    left: 17.5%;
+    top: 17.1%;
+    width: 8.65%;
+    height: 5.74%;
+}
+
+.latestlist {
+    position: absolute;
+    left: 17.5%;
+    top: 17.1%;
+    width: 8.65%;
+    height: 15.2%;
+}
+
+.latestlist img {
+    width: 100%;
+    height: 100%
+}
+
+.latestlist a {
+    display: block;
+    position: absolute;
+}
+
+.maxreviewslist {
+    position: absolute;
+    left: 17.5%;
+    top: 17.1%;
+    width: 8.65%;
+    height: 15.2%;
+}
+
+.maxreviewslist img {
+    width: 100%;
+    height: 100%
+}
+
+.maxreviewslist a {
+    display: block;
+    position: absolute;
+}
+
+.community_list_wrapper {
+    position: absolute;
+    top: 24.4%;
+    left: 17.4%;
+    width: 76.65%;
+    height: 60%;
+}
+
+.comm_item_wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 8.99%;
+    background-color: transparent;
+    background-size: 100% 100%;
+    display: table;
+}
+
+.comm_item_wrapper a{
+    position: absolute;
+    text-decoration: none !important;
+    display: table-cell;
+    vertical-align: middle;
+    top: 17%;
+    height: 100%;
+    font-size: 30px;
+    font-weight: bold;
+    color: #666666;
+    cursor: pointer;
+}
+.comm_item_wrapper:hover a{
+    color: #4db1ff;
+}
+
+.comm_title {
+    left: 0;
+    width: 36%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.comm_author {
+    left: 35%;
+    width: 10.5%;
+    text-align: center;
+}
+
+.comm_school {
+    left: 45.5%;
+    width: 22%;
+    text-align: center;
+}
+
+.comm_viewNum {
+    right: 20%;
+    width: 13%;
+    text-align: center;
+}
+
+.comm_shareTime {
+    right: 0;
+    width: 21%;
+    text-align: center;
+}
+
+.btn-work{
+    position: absolute;
+    left: 769px;
+    top: 940px;
+    width: 212px;
+    height: 65px;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: #4eb1ff;
+    text-decoration: none;
+    transition: none;
+    cursor: pointer;
+}
+.btn-work.next_Btn{
+    left: 1158px;
+}
+.btn-work:hover, .btn-work:focus{
+    opacity: .8;
+    text-decoration: none;
+    color: white;
+}
+

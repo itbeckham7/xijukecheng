@@ -1,0 +1,271 @@
+.profile_image {
+    position: fixed;
+    left: 241px;
+    top: 189px;
+    width: 183px;
+    height: 220px;
+    border-radius: 25px;
+    border: 3px solid #e8f9ff;
+}
+
+.btn-profile {
+    color: white !important;
+    background-color: #4db1ff;
+    text-decoration: none !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    font-weight: bold;
+    border-radius: 26px;
+}
+
+.btn-profile:hover {
+    background-color: #64bfff;
+}
+
+.change_password_btn,
+.edit_personal_info {
+    position: absolute;
+    left: 257px;
+    top: 420px;
+    width: 146px;
+    height: 59px;
+}
+
+.edit_personal_info {
+    left: 1538px;
+}
+
+.share_prev_btn,
+.share_next_btn,
+.comment_prev_btn,
+.comment_next_btn {
+    position: absolute;
+    left: 227px;
+    top: 687px;
+    width: 59px;
+    height: 146px;
+    background-image: url(../../images/middle/profile/prev.png);
+    background-size: 50% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.share_next_btn {
+    left: 859px;
+    background-image: url(../../images/middle/profile/next.png);
+}
+
+.comment_prev_btn {
+    left: 994px;
+    background-image: url(../../images/middle/profile/prev.png);
+}
+
+.comment_next_btn {
+    background-image: url(../../images/middle/profile/next.png);
+    left: 1628px;
+}
+
+.share_list_wrapper,
+.comment_list_wrapper {
+    position: absolute;
+    left: 15.2%;
+    right: auto;
+    top: 55%;
+    width: 29.4%;
+    height: 33.7%;
+}
+
+.comment_list_wrapper {
+    left: auto;
+    right: 15.6%;
+}
+
+a.share_item_title,
+a.comment_item_title {
+    position: absolute;
+    left: 4.64%;
+    width: 447px;
+    height: 47px;
+    padding-left: 7%;
+    background-color: #f4f4f4;
+    border-radius: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #404040;
+    text-decoration: none !important;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.share_item_delete_btn,
+.comment_item_delete_btn {
+    position: absolute;
+    left: 86.78%;
+    width: 8.9%;
+    height: 14.9%;
+    border-radius: 50%;
+    background-image: url(../../images/middle/profile/delete.png);
+}
+
+.share_list_wrapper a:hover,
+.comment_list_wrapper a:hover {
+    background-color: #e0e0e0;
+}
+
+.static_info_fields p {
+    vertical-align: bottom;
+    display: table-cell;
+    font-size: 27px;
+    font-weight: bold;
+    color: #404040;
+    user-select: none;
+}
+
+.static_info_fields > div {
+    position: absolute;
+    display: table;
+    left: 34%;
+    top: 17.8%;
+    width: 15%;
+    height: 5%;
+}
+
+div.teacher_fullname_lbl,
+div.teacher_school_lbl,
+div.teacher_nickname_lbl {
+    left: 59.2%;
+}
+
+div.teacher_school_lbl {
+    top: 24.5%;
+}
+
+div.teacher_nickname_lbl {
+    top: 31.3%;
+}
+
+div.teacher_gender_lbl {
+    top: 38.1%;
+}
+
+.hidden_edit_fields input
+{
+    font-size: 27px;
+    line-height: normal;
+}
+.hidden_edit_fields select
+{
+    font-size: 24px;
+}
+
+.hidden_edit_fields > div {
+    position: absolute;
+    display: table;
+    left: 59.2%;
+    top: 18.4%;
+    width: 15%;
+    height: 5%;
+}
+.hidden_edit_fields > div .form-control {
+    height: 100%;
+}
+
+div.teacher_nickname_edit {
+    top: 32.2%;
+}
+
+div.teacher_gender_edit {
+    left: 34%;
+    top: 38.7%;
+}
+
+div.teacher_gender_edit input[type="radio"] {
+    margin-left: -30px;
+    margin-top: 11px;
+    transform: scale(2.5);
+    width: 30px;
+}
+
+div.teacher_gender_edit label {
+    padding-left: 30px;
+    padding-right: 20px;
+    padding-top: 11px;
+    font-size: 27px;
+}
+
+.class_manage_btn {
+    position: absolute;
+    top: 16.5%;
+    right: 12.3%;
+    width: 7.60%;
+    height: 5.56%;
+}
+
+#class_list_chks {
+    position: absolute;
+    top: 23.5%;
+    right: 12.8%;
+    width: 15%;
+    height: 11.56%;
+    overflow: auto
+}
+
+/*   student part    */
+div.student_fullname_lbl,
+div.student_school_lbl,
+div.student_nickname_lbl,
+div.student_serialnum_lbl {
+    left: 59.2%;
+}
+
+div.student_nianji_lbl,
+div.student_school_lbl {
+    top: 24.5%;
+}
+
+div.student_banji_lbl,
+div.student_nickname_lbl {
+    top: 31.3%;
+}
+
+div.student_gender_lbl,
+div.student_serialnum_lbl {
+    top: 38.1%;
+}
+
+div.student_nianji_edit,
+div.student_banji_edit,
+div.student_gender_edit {
+    left: 34%;
+}
+
+div.student_nianji_edit {
+    top: 25%;
+}
+
+div.student_banji_edit,
+div.student_nickname_edit {
+    top: 32.2%;
+}
+
+div.student_gender_edit,
+div.student_serialnum_edit {
+    top: 38.7%;
+}
+
+div.student_gender_edit input[type="radio"] {
+    margin-left: -30px;
+    margin-top: 11px;
+    transform: scale(2.5);
+    width: 30px;
+}
+
+div.student_gender_edit label {
+    padding-left: 30px;
+    padding-right: 20px;
+    padding-top: 11px;
+    font-size: 27px;
+}

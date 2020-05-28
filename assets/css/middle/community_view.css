@@ -1,0 +1,314 @@
+
+.avatar-frame {
+    position: absolute;
+    left: 1.93%;
+    top: 12.59%;
+    width: 11.35%;
+    height: 30.65%;
+}
+
+.avatar-frame img {
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.avatar-frame img.avatar-img {
+    position: absolute;
+    left: 10%;
+    top: 22%;
+    width: 80%;
+    height: 57%;
+    z-index: 1
+}
+
+.avatar-frame label.user-name {
+    position: absolute;
+    left: 45%;
+    top: 77%;
+    width: 45%;
+    height: 7%;
+    color: #fff
+}
+
+.avatar-frame label.school-name {
+    position: absolute;
+    left: 45%;
+    top: 87%;
+    width: 45%;
+    height: 7%;
+    color: #fff;
+}
+
+.script-title {
+    position: absolute;
+    left: 12.5%;
+    top: 19%;
+    width: 57%;
+    height: 8%;
+}
+
+.script-title h1 {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: bold;
+    color: #ed4431;
+}
+
+.script-content {
+    position: absolute;
+    left: 13.15%;
+    top: 29.5%;
+    width: 55.1%;
+    height: 58.5%;
+}
+
+.comment-write {
+    position: absolute;
+    left: 1490px;
+    top: 194px;
+    width: 338px;
+    height: 276px;
+}
+
+.comment-write textarea {
+    position: absolute;
+    font-size: 30px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+    box-shadow: none;
+    resize: none;
+    background-color: transparent;
+}
+
+.comment-write textarea:hover {
+    /*border: none;*/
+    /*box-shadow: none;*/
+}
+
+.comment-write textarea:focus {
+    /*border: none;*/
+    /*box-shadow: none;*/
+}
+
+.like-btn {
+    position: absolute;
+    left: 1557px;
+    top: 480px;
+    width: 41px;
+    height: 41px;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #7dc5ff;
+    background-image: url(../../images/middle/community/script/like_btn.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+}
+
+.like-count {
+    position: absolute;
+    left: 1445px;
+    top: 480px;
+    width: 100px;
+    height: 41px;
+    display: table;
+    text-align: right;
+}
+
+.like-count label {
+    font-size: 30px;
+    color: #7ec6ff;
+    display: table-cell;
+    vertical-align: middle
+}
+
+.comment-btn {
+    position: absolute;
+    left: 1611px;
+    top: 480px;
+    width: 151px;
+    height: 41px;
+    border-radius: 21px;
+    cursor: pointer;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    background-color: #7dc5ff;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-decoration: none !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.like-btn:hover,
+.comment-btn:hover {
+    background-color: #9ad9ff;
+    color: white;
+}
+
+.comment-list {
+    position: absolute;
+    left: 1490px;
+    top: 531px;
+    width: 338px;
+    height: 473px;
+    border-radius: 10px;
+    overflow: auto;
+    padding: 20px 10px;
+}
+
+#totalCommentArea {
+    height: 100%;
+    overflow: auto;
+    text-align: left;
+}
+
+/* ************* custom scroll bar ********** */
+#totalCommentArea::-webkit-scrollbar {
+    width: 23px;
+}
+
+/* Track bar Background */
+#totalCommentArea::-webkit-scrollbar-track {
+    /*box-shadow:inset 2px 2px 1px rgba(52,150,182,1);*/
+    /*background: rgba(33, 135, 114, 0.3);*/
+    /*background-image: url(../images/lib/scroll-bg.png);*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 100%;
+    border-radius: 5px;
+    background-color: #e6e6e6;
+}
+
+/* Handle */
+#totalCommentArea::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    /*min-height: 72px;*/
+    overflow: hidden;
+    /*background-image: url(../images/lib/scroll-thumb.png), url(../images/lib/scroll-thumb-bg.png);*/
+    /*background-color: rgba(0,0,0,.1);*/
+    background-repeat: no-repeat;
+    background-size: 100% auto, 50% 100% !important;
+    background-position: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 1);
+    border: 3px solid #e6e6e6;
+}
+
+/*!* Handle on hover *!*/
+#totalCommentArea::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.comment_item_area {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+}
+
+.comment_item_area p {
+    font-size: 24px;
+    margin: 0;
+}
+
+.comment_item_area p span {
+    float: right;
+    opacity: .6;
+    font-size: 18px;
+    padding-right: 20px;
+    padding-top: 7px;
+}
+
+.scriptwork-content {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 22px;
+    font-family: "Arial";
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.script-content-area {
+    overflow: auto;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    border-radius: 15px;
+    overflow: auto;
+}
+
+/* ************* custom scroll bar ********** */
+.script-content-area::-webkit-scrollbar {
+    width: 34px;
+    color: #34c621;
+}
+
+/* Track bar Background */
+.script-content-area::-webkit-scrollbar-track {
+    /*box-shadow:inset 2px 2px 1px rgba(52,150,182,1);*/
+    /*background: rgba(33, 135, 114, 0.3);*/
+    /*background-image: url(../images/lib/scroll-bg.png);*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 100%;
+    border-radius: 9px;
+    background-color: #e6e6e6;
+}
+
+/* Handle */
+.script-content-area::-webkit-scrollbar-thumb {
+    border-radius: 9px;
+    /*min-height: 72px;*/
+    overflow: hidden;
+    /*background-image: url(../images/lib/scroll-thumb.png), url(../images/lib/scroll-thumb-bg.png);*/
+    /*background-color: rgba(0,0,0,.1);*/
+    background-repeat: no-repeat;
+    background-size: 100% auto, 50% 100% !important;
+    background-position: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 1);
+    border: 3px solid #e6e6e6;
+}
+
+/*!* Handle on hover *!*/
+.script-content-area::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/*****************************************************************************************************/
+.content-elem {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.elem-img {
+    display: inline-block;
+    width: 10%;
+    float: left;
+    position: relative;
+}
+
+.elem-txt {
+    display: inline-block;
+    float: left;
+    box-sizing: border-box;
+    padding-left: 2%;
+    width: 85%;
+    font-size: 24px;
+    font-family: 'Comic Sans MS';
+}
+
+.elem-img img {
+    width: 100%;
+}

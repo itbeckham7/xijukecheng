@@ -1,0 +1,235 @@
+.share_content_btn {
+    position: absolute;
+    left: 88.5%;
+    top: 58.5%;
+    width: 4.2%;
+    height: 11.7%;
+    display: none;
+}
+
+.work_view_area {
+    position: absolute;
+    left: 172px;
+    top: 164px;
+    width: 1582px;
+    height: 895px;
+    overflow: auto;
+    display: table;
+    /*background-color: #c0b696;*/
+    z-index: 3;
+}
+
+.scriptPrint_Icon,
+.headImgPrint_Icon {
+    position: absolute;
+    left: 1460px;
+    top: 190px;
+    width: 101px;
+    height: 49px;
+    z-index: 10;
+    background-color: #57b1f8;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.scriptPrint_Icon:hover, .scriptPrint_Icon:focus,
+.headImgPrint_Icon:hover, .headImgPrint_Icon:focus {
+    text-decoration: none;
+}
+
+.scriptwork-content {
+    font: normal 22px "Arial Negreta", "Arial Normal", "Arial";
+    /*padding-left:80px;*/
+}
+
+.modal-backdrop.fade.in {
+    opacity: 0.2;
+    filter: alpha(opacity=100);
+}
+
+/*****************************/
+.dubbing-content {
+    position: absolute;
+    left: 278px;
+    top: 183px;
+    width: 1359px;
+    height: 762px;
+}
+
+.dubbing-content img {
+    position: absolute;
+    left: 167px;
+    top: 7px;
+    width: 1036px;
+    height: 739px;
+}
+
+/*.player{ position: absolute; left: 33.28%; top: 63.54%; width: 39.11%; height: 5.65% }*/
+
+#pButton {
+    position: absolute;
+    left: 484px;
+    top: 949px;
+    width: 59px;
+    height: 59px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    background-image: url(../../images/middle/community/dubbing/player_play.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+}
+
+#pButton.pause {
+    background-image: url(../../images/middle/community/dubbing/player_pause.png);
+}
+
+#pButton:hover {
+    background-color: #e8e8e8;
+}
+
+
+#timeline {
+    position: absolute;
+    left: 681px;
+    top: 977px;
+    width: 638px;
+    height: 4px;
+    border-radius: 10px;
+    background-color: #595959;
+}
+
+#playhead {
+    position: absolute;
+    left: 685px;
+    top: 963px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+}
+
+#playhead:hover {
+    background-color: #e8e8e8;
+}
+
+.shooting-content {
+    position: absolute;
+    left: 278px;
+    top: 183px;
+    width: 1359px;
+    height: 762px;
+    background-color: #0000C0;
+}
+
+.shooting-content video {
+    width: 100%;
+    height: 100%
+}
+
+.shooting_share_content {
+    position: absolute;
+    left: 88.5%;
+    top: 58.5%;
+    width: 4.2%;
+    height: 11.7%;
+    display: none;
+}
+
+.elem-img {
+    display: inline-block;
+    width: 10%;
+    float: left;
+    position: relative;
+}
+
+.elem-img img {
+    width: 100%;
+}
+
+.elem-txt {
+    display: inline-block;
+    float: left;
+    box-sizing: border-box;
+    padding-left: 2%;
+    width: 85%;
+    font-size: 24px;
+    font-family: 'Comic Sans MS';
+}
+
+.content-elem {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#headImage_wrapper {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.work_view_area > div:first-child {
+    text-align: center;
+    padding-top: 15px;
+
+    color: #ee4331;
+}
+
+.work_view_area > div.content-wrap {
+    position: absolute;
+    left: 210px;
+    top: 120px;
+    width: 1151px;
+    height: 687px;
+    position: absolute;
+    overflow-y: scroll
+}
+
+/* ************* custom scroll bar ********** */
+.content-wrap::-webkit-scrollbar {
+    width: 37px;
+    color: #34c621;
+}
+
+/* Track bar Background */
+.content-wrap::-webkit-scrollbar-track {
+    /*box-shadow:inset 2px 2px 1px rgba(52,150,182,1);*/
+    /*background: rgba(33, 135, 114, 0.3);*/
+    /*background-image: url(../images/lib/scroll-bg.png);*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 100%;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+}
+
+/* Handle */
+.content-wrap::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    /*min-height: 72px;*/
+    overflow: hidden;
+    /*background-image: url(../images/lib/scroll-thumb.png), url(../images/lib/scroll-thumb-bg.png);*/
+    /*background-color: rgba(0,0,0,.1);*/
+    background-repeat: no-repeat;
+    background-size: 100% auto, 50% 100% !important;
+    background-position: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 1);
+    border: 3px solid #e6e6e6;
+}
+
+/*!* Handle on hover *!*/
+.content-wrap::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 1);
+}

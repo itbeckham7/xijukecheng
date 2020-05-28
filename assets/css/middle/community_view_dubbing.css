@@ -1,0 +1,98 @@
+
+.dubbing-content {
+    position: absolute;
+    left: 310px;
+    top: 225px;
+    width: 941px;
+    height: 672px;
+}
+
+.dubbing-content img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*.player{ position: absolute; left: 33.28%; top: 63.54%; width: 39.11%; height: 5.65% }*/
+
+#pButton {
+    position: absolute;
+    left: 351px;
+    top: 914px;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    background-image: url(../../images/middle/community/dubbing/player_play.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+}
+
+#pButton.pause {
+    background-image: url(../../images/middle/community/dubbing/player_pause.png);
+}
+
+#pButton:hover {
+    background-color: #e8e8e8;
+}
+
+
+#timeline {
+    position: absolute;
+    left: 530px;
+    top: 940px;
+    width: 579px;
+    height: 4px;
+    border-radius: 10px;
+    background-color: #595959;
+}
+
+#playhead {
+    position: absolute;
+    left: 532px;
+    top: 927px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+}
+
+#playhead:hover {
+    background-color: #e8e8e8;
+}
+
+.shooting-frame,
+.shooting-content {
+    position: absolute;
+    left: 202px;
+    top: 246px;
+    width: 1165px;
+    height: 653px;
+}
+
+.shooting-content video {
+    width: 100%;
+    height: 100%
+}
+
+.video-js {
+    position: initial;
+}
+
+.videoPlayer-dimensions {
+    width: 100%;
+    height: 100%;
+}
+
+.vjs-control-bar {
+    top: 655px;
+    width: 1030px !important;
+}
