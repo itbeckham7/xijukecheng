@@ -30,7 +30,7 @@ if ($user_type == '2') {
 <?php } else if ($this->session->userdata("loggedin") == FALSE) { ?>
     <a class="btn-main register-btn" href="<?= base_url('signin/index') ?>"><span>登录</span></a>
 <?php } ?>
-<a href="javascript:;" onclick="location.replace('<?= base_url('/middle/work') ?>');" class="btn-main back-btn"></a>
+<a href="javascript:;" onclick="location.replace('<?= base_url('/middle/coursewares') ?>');" class="btn-main back-btn"></a>
 
 
 <a href="javascript:;" class="orderByCreateTime_Btn"
