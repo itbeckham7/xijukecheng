@@ -46,30 +46,22 @@ function weixin_login() {
     setUserInfo(user_token);
     clearInterval(loginTmr);
     loginTmr = setInterval(getUserInfo, 1000);
-    window.ReactNativeWebView.postMessage(JSON.stringify({
-        cmd: 'weixin_login',
-        data: {
-            userToken: user_token
-        }
-    }))
+    executeCMD('weixin_login', user_token);
 }
 
 function pay_weixin(element) {
     var price = $(element).attr('price');
     var openId = $(element).attr('open_id');
     setUserId(loginUserId);
-    console.log('current price is '+ price);
+    console.log('current price is ' + price);
     var ordercode = price;
     var out_trade_no = '1507842611' + Date.now() + (10000 + Math.floor(Math.random() * 90000));
     //var openId = '';
 
     console.log(openId);
-	console.log(out_trade_no);
+    console.log(out_trade_no);
 
-    window.ReactNativeWebView.postMessage(JSON.stringify({
-        cmd: 'waiting_indicator',
-        data: { visible: true }
-    }))
+    executeCMD('waiting_indicator', true);
 
     $.ajax({
         type: 'post',
@@ -84,19 +76,9 @@ function pay_weixin(element) {
         },
         success: function (res) {
             console.log(res);
-            window.ReactNativeWebView.postMessage(JSON.stringify({
-                cmd: 'weixin_payment',
-                data: {
-                    partnerid: res.partnerid,
-                    timestamp: res.timestamp,
-                    noncestr: res.noncestr,
-                    prepayid: res.prepayid,
-                    type: 'MD5',
-                    sign: res.sign,
-                }
-            }))
+            executeCMD('weixin_payment', res);
             clearInterval(loginTmr);
-            loginTmr = setInterval(checkPaidCourse,1000);
+            loginTmr = setInterval(checkPaidCourse, 1000);
         }
     });
 }
@@ -236,15 +218,42 @@ function removeExtFromFilename(str) {
 function executeCMD(command, data) {
     if (osStatus === 'Android' || osStatus === 'iOS') {
         switch (command) {
-            case 'show_reference_pdf':
+            case 'waiting_indicator':
                 window.ReactNativeWebView.postMessage(JSON.stringify({
-                    cmd: 'show_reference_pdf',
+                    cmd: 'waiting_indicator',
+                    data: {visible: data}
+                }));
+                break;
+            case 'weixin_login':
+                window.ReactNativeWebView.postMessage(JSON.stringify({
+                    cmd: 'weixin_login',
+                    data: {userToken: data}
+                }));
+                break;
+            case 'weixin_payment':
+                window.ReactNativeWebView.postMessage(JSON.stringify({
+                    cmd: 'weixin_payment',
                     data: {
-                        pdfURL: data
+                        partnerid: data.partnerid,
+                        timestamp: data.timestamp,
+                        noncestr: data.noncestr,
+                        prepayid: data.prepayid,
+                        type: 'MD5',
+                        sign: data.sign,
                     }
                 }));
                 break;
-            case '':
+            case 'show_reference_pdf':
+                window.ReactNativeWebView.postMessage(JSON.stringify({
+                    cmd: 'show_reference_pdf',
+                    data: {pdfURL: data}
+                }));
+                break;
+            case 'make_script_pdf':
+                window.ReactNativeWebView.postMessage(JSON.stringify({
+                    cmd: 'make_script_pdf',
+                    data: {downloadURL: data}
+                }));
                 break;
         }
         return true;

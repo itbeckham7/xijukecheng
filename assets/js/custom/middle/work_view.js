@@ -9,36 +9,64 @@ $(window).ready(function () {
     var headImgPrintBtn = $('.headImgPrint_Icon');
 
     scriptPrintBtn.click(function () {
-        var print_dom = $('<div class="content-wrap" id="print_dom">')
-            .css({
-                width: '830px',
-                height: 'auto',
-                overflow: 'visible',
-                border: 'none',
-                background: '#fff',
-                top: '2000px'
+        if (osStatus == 'Android' || osStatus == 'iOS') {
+            executeCMD('waiting_indicator', true);
+            var contentHTML = $('#content_wrap').html();
+            contentHTML = contentHTML.replaceAll('src="', 'src="' + base_url + 'uploads/courseware/' + courseware_id + '/script/');
+            $.ajax({
+                url: base_url + 'middle/contents/uploadPDF',
+                type: 'post',
+                dataType: 'json',
+                async: false,
+                data: {filename: makeid(), pdfcontent: contentHTML}
+            }).done(function (res) {
+                if (res.status === 'success') {
+                    executeCMD('make_script_pdf', res.data);
+                } else {
+                    executeCMD('waiting_indicator', false);
+                    alert(res);
+                    console.log(res);
+                }
+
+            }).fail(function (res) {
+                executeCMD('waiting_indicator', false);
+                alert('服务器失败');
+                console.log(res);
+
+            }).always(function (res) {
+                console.log(res);
             });
-        var print_elems = $('.content-elem');
-        var print_page = $('<div class="print-page" style="height: 1080px; min-height: 1080px"></div>');
-        print_dom.append(print_page);
-        $('body').append(print_dom);
-        var h = 0;
-        for (var i = 0; i < print_elems.length; i++) {
-            var append_dom = print_elems[i];
+        } else {
+            var print_dom = $('<div class="content-wrap" id="print_dom">')
+                .css({
+                    width: '830px',
+                    height: 'auto',
+                    overflow: 'visible',
+                    border: 'none',
+                    background: '#fff',
+                    top: '2000px'
+                });
+            var print_elems = $('.content-elem');
+            var print_page = $('<div class="print-page" style="height: 1080px; min-height: 1080px"></div>');
+            print_dom.append(print_page);
+            $('body').append(print_dom);
+            var h = 0;
+            for (var i = 0; i < print_elems.length; i++) {
+                var append_dom = print_elems[i];
 
-            console.log(h);
-            console.log($(append_dom).outerHeight());
-            if (h + $(append_dom).outerHeight() >= 1080) {
-                print_page = $('<div class="print-page" style="height: 1080px; min-height: 1080px;"></div>');
-                print_dom.append(print_page);
-                h = 0;
+                console.log(h);
+                console.log($(append_dom).outerHeight());
+                if (h + $(append_dom).outerHeight() >= 1080) {
+                    print_page = $('<div class="print-page" style="height: 1080px; min-height: 1080px;"></div>');
+                    print_dom.append(print_page);
+                    h = 0;
 
+                }
+
+                print_page.append(append_dom);
+                h += $(append_dom).outerHeight();
             }
-
-            print_page.append(append_dom);
-            h += $(append_dom).outerHeight();
         }
-
 
         makePDF();
 
