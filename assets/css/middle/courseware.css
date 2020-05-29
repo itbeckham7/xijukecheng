@@ -290,26 +290,30 @@
     height: 155px !important;
     padding: 25px 30px;
 }
-.video-js .vjs-play-control{
-    width: 97px!important;
-    height: 97px!important;
+
+.video-js .vjs-play-control {
+    width: 97px !important;
+    height: 97px !important;
     background-color: #7dc6ff;
 }
-.vjs-big-play-centered .vjs-big-play-button{
-    margin-left: -3em!important;
-    margin-top: -3em!important;
-    width: 6em!important;
-    height: 6em!important;
-    border-radius: 50%!important;
+
+.vjs-big-play-centered .vjs-big-play-button {
+    margin-left: -3em !important;
+    margin-top: -3em !important;
+    width: 6em !important;
+    height: 6em !important;
+    border-radius: 50% !important;
 }
-.vjs-icon-play:before, .video-js .vjs-big-play-button, .video-js .vjs-play-control{
+
+.vjs-icon-play:before, .video-js .vjs-big-play-button, .video-js .vjs-play-control {
     background-image: url(../../images/middle/coursewares/view/player_play.png);
 }
-.vjs-icon-pause, .video-js .vjs-play-control.vjs-playing{
+
+.vjs-icon-pause, .video-js .vjs-play-control.vjs-playing {
     background-image: url(../../images/middle/coursewares/view/player_pause.png);
 }
 
-.btn-main.back-btn-img{
+.btn-main.back-btn-img {
     left: 899px;
     top: 20px;
     width: 120px;

@@ -25,7 +25,8 @@ if ($this->session->userdata('loggedin')) {
     <div class="left-tab"></div>
     <?php
     if ($courseware != null) {
-        echo "<img class='courseware-preview' src='" . base_url($courseware[0]->courseware_photo) . "'>";
+        echo "<img class='courseware-preview' src='" . base_url($courseware[0]->courseware_photo) . "'/>";
+        echo "<div class='courseware-preview-title'>" . $courseware[0]->courseware_name . "</div>";
     }
     ?>
 </div>

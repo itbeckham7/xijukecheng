@@ -222,6 +222,26 @@ html {
     box-shadow: 4px 8px 0 #bddced;
 }
 
+.courseware-preview-title {
+    position: absolute;
+    color: white;
+    background-color: #30a4ff;
+    opacity: .9;
+    left: 23px;
+    top: 285px;
+    width: 169px;
+    height: 43px;
+    border: none;
+    border-radius: 0 0 20px 20px;
+    font-size: 18px;
+    line-height: 1;
+    word-break: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .subware-nav {
     position: absolute;
     left: 0;
