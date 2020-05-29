@@ -6,6 +6,7 @@ $loged_In_user_id = $this->session->userdata("loginuserID");
 $imageAbsDir = base_url() . 'assets/images/middle/';
 $myworkURL = 'middle/work';
 $hd_menu_img_path = '';
+$user_type = '0';
 if ($this->session->userdata('loggedin')) {
     $user_type = $this->session->userdata("user_type");
     if ($user_type == '2') {
