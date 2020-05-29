@@ -350,10 +350,10 @@ if ($user_type == '2') {
     var isLoggedIn = "<?=$this->session->userdata("loggedin")?>";
     var loginUserId = "<?=$loged_In_user_id?>";
     $(function () {
-        // if (setUserInfo() != '' && !isLoggedIn) {
-        //     clearInterval(loginTmr)
-        //     loginTmr = setInterval(getUserInfo, 1000);
-        // }
+        if (setUserInfo() != '' && !isLoggedIn) {
+            clearInterval(loginTmr)
+            loginTmr = setInterval(getUserInfo, 1000);
+        }
     });
 
     //    if(!isLoggedIn) setUserInfo('');

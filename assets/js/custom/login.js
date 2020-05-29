@@ -3,6 +3,10 @@
  */
 
 $(window).load(function () {
+    if (setUserInfo() != '') {
+        getUserInfo(setUserInfo());
+        return;
+    }
     $('#username').focus();
 });
 
