@@ -10,11 +10,11 @@ if ($loggedIn_UserID != $user_id)//if current user is not owner of work.
     $bac_img_path = $imageAbsDir . 'mywork/bg-view.png';
 }
 $myworkURL = 'middle/work';
-$returnURL = 'middle/coursewares/index';
+$returnURL = 'middle/work/student';
 $hd_menu_img_path = '';
 if ($user_type == '2') {
     $myworkURL = 'middle/work';
-    $returnURL = 'middle/coursewares/index';
+    $returnURL = 'middle/work';
     $hd_menu_img_path = $imageAbsDir . 'mywork/';
 } else {
     $hd_menu_img_path = $imageAbsDir . 'mywork/stu_';
@@ -37,7 +37,7 @@ if ($user_type == '2') {
         color: #153c63;
     }
 
-    .list_title:hover, .list_title:focus{
+    .list_title:hover, .list_title:focus {
         color: #30a4ff;
     }
 
@@ -111,15 +111,18 @@ if ($user_type == '2') {
     <img src="<?= $bac_img_path ?>" class="background_image">
 </div>
 <div class="course_type_menu">
-    <a href="<?= base_url('middle/work/script') . '/' . $user_id; ?>" data-type="script"><span>剧本作品</span></a>
-    <a href="<?= base_url('middle/work/dubbing') . '/' . $user_id; ?>" data-type="dubbing"><span>配音作品</span></a>
+    <a href="<?= base_url('middle/work/script') . '/' . $user_id; ?>"
+       data-type="script" data-sel="<?= $content_type_id == 1 ? 1 : 0; ?>"><span>剧本作品</span></a>
+    <a href="<?= base_url('middle/work/dubbing') . '/' . $user_id; ?>"
+       data-type="dubbing" data-sel="<?= $content_type_id == 2 ? 1 : 0; ?>"><span>配音作品</span></a>
     <!--    <a href="--><? //= base_url('middle/work/head') . '/' . $user_id; ?><!--"></a>-->
-    <a href="<?= base_url('middle/work/shooting') . '/' . $user_id; ?>" data-type="shooting"><span>表演作品</span></a>
+    <a href="<?= base_url('middle/work/shooting') . '/' . $user_id; ?>"
+       data-type="shooting" data-sel="<?= $content_type_id == 6 ? 1 : 0; ?>"><span>表演作品</span></a>
 </div>
 
 <?php if ($this->session->userdata("loggedin") != FALSE) { ?>
     <a class="btn-main mywork" href="<?= base_url($myworkURL); ?>"
-    ><span><?= ($user_type=='2')?'我的':'学生'; ?>作品</span></a>
+    ><span><?= ($user_type == '2') ? '我的' : '学生'; ?>作品</span></a>
     <a class="btn-main community" href="<?= base_url('middle/') . 'community/index'; ?>"
     ><span>戏剧社区</span></a>
     <a class="btn-main profile"
@@ -128,8 +131,7 @@ if ($user_type == '2') {
 <?php } else if ($this->session->userdata("loggedin") == FALSE) { ?>
     <a class="btn-main register-btn" href="<?= base_url('signin/index') ?>"><span>登录</span></a>
 <?php } ?>
-<a href="javascript:;" onclick="location.replace('<?= base_url('/middle/work') ?>');" class="btn-main back-btn"></a>
-
+<a href="javascript:;" onclick="location.replace('<?= base_url($returnURL) ?>');" class="btn-main back-btn"></a>
 
 <a href="javascript:;" class="btn-work previous_Btn">上一页</a>
 
@@ -489,7 +491,6 @@ if ($user_type == '2') {
     }
 
     $('#content_share_btn').click(function () {
-
         var content_id = $(this).attr('content_id');
         shareContentItem(content_id);
     });
@@ -572,7 +573,7 @@ if ($user_type == '2') {
         });
     }
 
-    jQuery('#content_share_form').submit(function(e) {
+    jQuery('#content_share_form').submit(function (e) {
         var content_id = $(this).attr('content_id');
         jQuery.ajax({
             type: "post",

@@ -39,9 +39,11 @@ a, .btn, .btn-default, button {
 a:active, a:focus {
     outline: none;
 }
-._scripts{
-    display: none!important;
+
+._scripts {
+    display: none !important;
 }
+
 /*
 :::::;;Teacher Reference Button
  */
@@ -294,6 +296,7 @@ html {
     background-position: center;
     background-repeat: no-repeat;
     background-image: url(../../images/middle/mywork/btn-tab-script.png);
+    border: 5px solid transparent;
 }
 
 .course_type_menu a[data-type="dubbing"] {
@@ -306,11 +309,19 @@ html {
 
 .course_type_menu a span {
     position: absolute;
-    top: 125px;
+    top: 120px;
     width: 100%;
     text-align: center;
     color: black;
     font-size: 22px;
+}
+
+.course_type_menu a[data-sel="1"] {
+    border: 5px solid white;
+}
+
+.course_type_menu a[data-sel="1"] span {
+    color: #2b90e0;
 }
 
 .modal {
@@ -402,13 +413,13 @@ html {
 }
 
 .vjs-control-bar {
-    display: flex!important;
+    display: flex !important;
     top: 765px;
     font-size: 25px;
     left: 50px !important;
     width: 1200px !important;
     background-color: transparent !important;
-    opacity:1!important;
+    opacity: 1 !important;
 }
 
 .video-js .vjs-play-control {
@@ -417,34 +428,39 @@ html {
     border-radius: 50%;
     width: 70px !important;
 }
-.vjs-big-play-centered .vjs-big-play-button{
-    margin-left: -2em!important;
-    margin-top: -2em!important;
-    width: 4em!important;
-    height: 4em!important;
-    border-radius: 50%!important;
+
+.vjs-big-play-centered .vjs-big-play-button {
+    margin-left: -2em !important;
+    margin-top: -2em !important;
+    width: 4em !important;
+    height: 4em !important;
+    border-radius: 50% !important;
 }
+
 .vjs-icon-play:before,
 .video-js .vjs-big-play-button,
-.video-js .vjs-play-control{
+.video-js .vjs-play-control {
     background-image: url(../../images/middle/community/dubbing/player_play.png);
     background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .vjs-icon-play:before,
 .video-js .vjs-big-play-button:before,
-.video-js .vjs-play-control:before{
+.video-js .vjs-play-control:before {
     display: none;
 }
+
 .vjs-icon-pause,
-.video-js .vjs-play-control.vjs-playing{
+.video-js .vjs-play-control.vjs-playing {
     background-image: url(../../images/middle/community/dubbing/player_pause.png);
     background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .vjs-icon-pause:before,
-.video-js .vjs-play-control.vjs-playing:before{
+.video-js .vjs-play-control.vjs-playing:before {
     display: none;
 }

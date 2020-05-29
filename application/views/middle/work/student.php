@@ -47,9 +47,7 @@ if ($user_type == '2') {
 <?php } ?>
 <a href="javascript:;" onclick="location.replace('<?= base_url('/middle/work') ?>');" class="btn-main back-btn"></a>
 
-
 <!-------------------Class list area--------------------------------------------->
-
 
 <div class="teacher_assign_class">
     <?php foreach ($classlists as $classlist): ?>

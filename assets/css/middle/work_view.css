@@ -192,8 +192,8 @@
     top: 120px;
     width: 1151px;
     height: 687px;
-    position: absolute;
-    overflow-y: scroll
+    overflow-y: scroll;
+    border: none;
 }
 
 /* ************* custom scroll bar ********** */

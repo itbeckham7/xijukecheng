@@ -48,7 +48,7 @@ else echo base_url('middle/work/shooting/').$loged_In_user_id;
 <?php } else if ($this->session->userdata("loggedin") == FALSE) { ?>
     <a class="btn-main register-btn" href="<?= base_url('signin/index') ?>"><span>登录</span></a>
 <?php } ?>
-<a href="javascript:;" onclick="location.replace('<?= base_url('/')?>');" class="btn-main back-btn"></a>
+<a href="javascript:;" onclick="location.replace('<?= base_url('/middle/coursewares')?>');" class="btn-main back-btn"></a>
 
 <script src="<?= base_url('assets/js/custom/home.js') ?>"></script>
 

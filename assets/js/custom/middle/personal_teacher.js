@@ -22,6 +22,8 @@ $(window).ready(function () {
         content_type_id = '1';
         course_menu_img.attr('src',imageDir+'/studentwork/scriptwork.png');
         clickClass();
+        $('.course_type_menu a').removeAttr('data-sel');
+        $(this).attr('data-sel',1);
     });
     $('#dubbing_ATag_Btn').click(function () {
         curPageNo = 0;
@@ -29,6 +31,8 @@ $(window).ready(function () {
         content_type_id = '2';
         course_menu_img.attr('src',imageDir+'/studentwork/dubbingwork.png');
         clickClass();
+        $('.course_type_menu a').removeAttr('data-sel');
+        $(this).attr('data-sel',1);
     });
     $('#head_ATag_Btn').click(function () {
         curPageNo = 0;
@@ -36,6 +40,8 @@ $(window).ready(function () {
         content_type_id = '3';
         course_menu_img.attr('src',imageDir+'/studentwork/headwork.png');
         clickClass();
+        $('.course_type_menu a').removeAttr('data-sel');
+        $(this).attr('data-sel',1);
     });
     $('#shooting_ATag_Btn').click(function () {
         curPageNo = 0;
@@ -43,7 +49,8 @@ $(window).ready(function () {
         content_type_id = '4';
         course_menu_img.attr('src',imageDir+'/studentwork/shootingwork.png');
         clickClass();
-
+        $('.course_type_menu a').removeAttr('data-sel');
+        $(this).attr('data-sel',1);
     });
 
     $('.previous_Btn').click(function () {
