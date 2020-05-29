@@ -300,6 +300,7 @@ class Contents extends CI_Controller {
                     'courseware_id'=>$coursewareId,
                     'content_user_id' => $user_id,
                     'local' => '1',
+                    'info' => $_POST['info'],
                     'public' => '0',
                     'file_name' => $uploadFileName,
                     'bg_path' => $_POST["read-bg-video"],

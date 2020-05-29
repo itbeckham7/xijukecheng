@@ -65,21 +65,29 @@ if ($user_type == '2') {
         <img src="<?= base_url($bgPath); ?>">
         <?php } else { ?>
             <video controls id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered"
-                   style="background:#000;object-fit: fill;position: absolute;width: 100%;height:100%" autoplay>
+                   style="background:#000;object-fit: fill;position: absolute;width: 100%;height:100%" >
                 <source src="<?= base_url($bgPath); ?>" type="video/mp4">
             </video>
             <script>
                 var music = document.getElementById('music'); // id for audio element
+
+                timeInfo = JSON.parse('<?= $info; ?>');
+                var startTime = timeInfo.start;
+                var endTime = timeInfo.end;
+
                 var vplayer = videojs('videoPlayer', {
                     controls: true,
                     width: 1280,
                     height: 712,
                     nativeControlsForTouch: false,
                     preload: 'auto',
-                    loop: false
+                    loop: false,
+                    autoplay: false
                 }, function () {
                     vplayer.on('play', function () {
                         console.log('play');
+                        vplayer.currentTime(startTime);
+                        music.currentTime = 0;
                         music.play();
                     });
                     vplayer.on("pause", function () {
@@ -90,6 +98,17 @@ if ($user_type == '2') {
                         console.log('stop');
                         music.pause();
                     });
+                    vplayer.on("timeupdate", function (e) {
+                        if (vplayer.currentTime() > endTime-0.2) {
+                            vplayer.pause();
+                            if( $('#play-btn').hasClass('playing') ){
+                                console.log('-- 2')
+                                $('#play-btn').trigger('click');
+                            }
+                        }
+                    });
+                    vplayer.volume(0);
+                    // vplayer.play();
                 });
             </script>
         <?php } ?>
