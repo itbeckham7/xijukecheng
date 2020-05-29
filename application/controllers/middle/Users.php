@@ -38,6 +38,7 @@ class Users extends CI_Controller
                     $this->load->view('middle/_layout_main', $this->data);
                 } else if(true){///********************************************current user is student
                     $studentInfo = $this->users_m->get_single_user($user_id);
+                    if(!$studentInfo->class_arr) $studentInfo->class_arr = '[]';
                     $this->data['student'] = $studentInfo;
                     $this->data['sharedLists'] = $this->contents_m->get_where(array('content_user_id' => $user_id, 'publish' => '1'));
                     $this->data['commentedLists'] = $this->comments_m->get_where_comments(array('comment_user_id' => $user_id));

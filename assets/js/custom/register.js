@@ -19,7 +19,7 @@ $('.form-register').on('submit', function (e) {
     var cpassword = $('#cpassword').val();
     var err = -1;
     var ctrls = ['#username', '#password', '#cpassword'];
-    if (password != cpassword ) err = 2;
+    if (password != cpassword) err = 2;
     if (cpassword == '' || cpassword.length < 3 || cpassword.length > 18) err = 2;
     if (password == '' || password.length < 3 || password.length > 18) err = 1;
     if (username == '' || username.length < 3 || username.length > 18) err = 0;
@@ -75,12 +75,10 @@ $('.form-register').on('submit', function (e) {
         }
         console.log(ret);
         if (ret.status == 'success') {
-            location.href=baseURL+ ret.data;
-        }
-        else//failed
-        {
+            location.replace(baseURL + ret.data);
+        } else {//failed
             $('.info-modal').fadeIn('fast');
-            $('.info-modal div').html('操作失败 : ' +  ret.data);
+            $('.info-modal div').html('操作失败 : ' + ret.data);
             setTimeout(function () {
                 $('.info-modal').fadeOut('fast');
             }, 2000);

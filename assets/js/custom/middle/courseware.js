@@ -37,11 +37,9 @@ function updateSubwareAccessTime(swTypeId) {
 }
 
 function receiveMessage(event) {
-
     var iframe = document.getElementById('courseware_iframe').contentWindow;
     var message = event.data; //this is the message
     message = JSON.parse(message);
-
     if (message.type == 'get-courseware-id') {
         var courseware_id = $('#script').data('courseware_id');
         var response = {
@@ -82,6 +80,7 @@ $('#script').on('click', function () {
 });
 
 $('#flash_contents').on('click', function () {
+    if (login_status == '0') return;
     setSubwareNavId(curr_sw);
     if (userType == '1') setMediaType('teaching');
     else setMediaType('demovideo');
@@ -107,6 +106,7 @@ $('#flash_contents').on('click', function () {
 });
 
 $('#dubbing').on('click', function () {
+    if (login_status == '0') return;
     if (curr_sw == 'flash_sw') {
         curr_sw = 'dubbing_sw';
         setSubwareNavId(curr_sw);
@@ -133,6 +133,7 @@ $('#dubbing').on('click', function () {
 });
 
 $('#shooting').on('click', function () {
+    if (login_status == '0') return;
     if (curr_sw == 'flash_sw') {
         curr_sw = 'shooting_sw';
         setSubwareNavId(curr_sw);

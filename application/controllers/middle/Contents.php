@@ -782,7 +782,7 @@ class Contents extends CI_Controller {
         if(isset($_POST['filename']))
         {
             $mpdf = new \Mpdf\Mpdf();
-log_message('info', '-- uploadPDF : 1');
+
             $styleStr = '<style>
                                 .content-wrap textarea{ width: 100%; height: 100%; font-size: 24px; padding: 10px; resize: none; overflow: auto}
                                 .content-wrap textarea, .content-wrap textarea:focus, .content-wrap textarea:hover{
@@ -796,25 +796,25 @@ log_message('info', '-- uploadPDF : 1');
                                 .elem-txt{ display: inline-block; float: left; box-sizing: border-box; padding-left: 2%; width: 85%; font-size: 24px;font-family: \'Comic Sans MS\';}
                                 .clearfix{clear: both}
                         </style>';
-            log_message('info', '-- uploadPDF : 2');
+
             $finalPDFHTML = $styleStr.$_POST['pdfcontent'];
 
             $mpdf->WriteHTML($finalPDFHTML);
-            log_message('info', '-- uploadPDF : 3');
+
             $tempPdfDir = 'uploads/temp/-1/';
             if(!is_dir($tempPdfDir))
-            {log_message('info', '-- uploadPDF : 4');
+            {
                 mkdir($tempPdfDir,0755, true);
             }
-            log_message('info', '-- uploadPDF : 5');
+
             $filename = $_POST['filename'].'.pdf';
-            log_message('info', '-- uploadPDF : 6');
+
             $mpdf->Output($tempPdfDir.$filename, \Mpdf\Output\Destination::FILE);
-            log_message('info', '-- uploadPDF : 7');
+
             $ret['status'] = 'success';
             $ret['data'] = $tempPdfDir.$filename;
 
-        }log_message('info', '-- uploadPDF : 8');
+        }
         echo json_encode($ret);
 
     }

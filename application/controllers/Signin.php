@@ -72,7 +72,7 @@ class Signin extends CI_Controller {
             $arr['reg_time'] = date('Y-m-d H:i:s');
             $arr['login_num'] = 0;
             $arr['buycourse_arr'] = '{}';
-            $arr['class'] = '0';
+            $arr['class'] = '';
             $arr['sex'] = '男';
             $arr['user_type_id'] = 2;
             $arr['publish'] = 1;
@@ -80,6 +80,10 @@ class Signin extends CI_Controller {
             $arr['password'] = $this->users_m->hash($arr['password']);
             $this->users_m->insert($arr);
             $_POST['password'] = $pass;
+            $ret['status']='success';
+            $ret['data']='signin/index';
+            echo json_encode($ret);
+            return;
             if ($this->signin_m->signin($arr['username'],$pass) == TRUE) {
                 $user_id = $this->session->userdata("loginuserID");
                 $arr = array();

@@ -369,7 +369,8 @@ $student_id = $student->user_id;
 
     function updateStudentProfile() {
 
-        var changedClassStr = grade_select.val() + nianclass_select.val();
+        var changedClassStr = grade_select.val() + nianclass_select.val() ;
+        if(!changedClassStr) changedClassStr = '';
         var sexStr = '', fullname = '', nickname = '', serialNo = '';
         fullname = fullname_edit.val();
         nickname = nickname_edit.val();

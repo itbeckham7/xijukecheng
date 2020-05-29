@@ -14,6 +14,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
 
+    <link rel="shortcut icon" href="<?= base_url('assets/favicon.ico')?>" type="image/x-icon">
+
     <style>
 	body, html{
         height: 100%;
