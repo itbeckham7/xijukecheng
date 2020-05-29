@@ -19,8 +19,6 @@ $(window).load(function () {
             $('.flash-tab a[data-type="' + setMediaType() + '"]').click();
             break;
     }
-
-
 });
 
 function updateSubwareAccessTime(swTypeId) {

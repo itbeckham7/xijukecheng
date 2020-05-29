@@ -7,4 +7,4 @@
 <a class="weixin_login" onclick="weixin_login()"></a>
 <a class="mobile_login"></a>
 <a href="<?= base_url('signin'); ?>" class="btn-back"></a>
-<script src="<?= base_url('assets/js/custom/login.js') ?>"></script>
+<script src="<?= base_url('assets/js/custom/login_weixin.js') ?>"></script>

@@ -44,14 +44,14 @@ function weixin_login() {
     var user_token = generateRandomString(15);
     if (setUserInfo() != '') user_token = setUserInfo();
     setUserInfo(user_token);
+    clearInterval(loginTmr);
+    loginTmr = setInterval(getUserInfo, 1000);
     window.ReactNativeWebView.postMessage(JSON.stringify({
         cmd: 'weixin_login',
         data: {
             userToken: user_token
         }
     }))
-    clearInterval(loginTmr);
-    loginTmr = setInterval(getUserInfo, 1000);
 }
 
 function pay_weixin(element) {
@@ -95,6 +95,7 @@ function pay_weixin(element) {
                     sign: res.sign,
                 }
             }))
+            clearInterval(loginTmr);
             loginTmr = setInterval(checkPaidCourse,1000);
         }
     });
