@@ -97,21 +97,29 @@ $(window).ready(function () {
     });
     /***************************Filter Buttons Manage**************************************************/
     filterScriptBtn.click(function () {
+        $('.course_type_menu a').removeAttr('data-sel');
+        $(this).attr('data-sel',1);
         initStatus = '1';
         filterByWorkType(initStatus);
 
     });
     filterDubbingBtn.click(function () {
+        $('.course_type_menu a').removeAttr('data-sel');
+        $(this).attr('data-sel',1);
         initStatus = '2';
         filterByWorkType(initStatus);
 
     });
     filterHeadBtn.click(function () {
+        $('.course_type_menu a').removeAttr('data-sel');
+        $(this).attr('data-sel',1);
         initStatus = '5';
         filterByWorkType(initStatus);
 
     });
     filterShootingBtn.click(function () {
+        $('.course_type_menu a').removeAttr('data-sel');
+        $(this).attr('data-sel',1);
         initStatus = '6';
         filterByWorkType(initStatus);
 
