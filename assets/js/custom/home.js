@@ -28,3 +28,32 @@ $('#sh_sandapian_btn').mouseover(function(){
 $('#sh_sandapian_btn').mouseout(function(){
     $(this).css({width:'29.2%',height:'69.51%',top:'20.87%',left:'57.88%'});
 });
+
+function hover_back() {
+    $('#back_btn_image').attr('src', baseURL + 'assets/images/frontend/studentwork/back_hover.png');
+}
+
+function out_back() {
+    $('#back_btn_image').attr('src', baseURL + 'assets/images/frontend/studentwork/back.png');
+}
+
+
+$('a').each(function (idx, elem) {
+    var that = $(elem);
+    that.attr('data-target', that.attr('href'));
+    that.attr('href', "javascript:;");
+    if (that.attr('onclick')) return;
+    that.off('click');
+    that.on('click', function () {
+        location.replace(that.attr('data-target'));
+    });
+});
+
+function showPlatform(elem) {
+    var that = $(elem);
+    var urls = {primary: 'xiaoxueapp', middle : 'middle'};
+    // var urls = {primary: 'primary', middle : 'middle'};
+    if(executeCMD()) urls = { primary: 'xiaoxueapp', middle: 'middle'};
+    var type = that.attr('data-type');
+    window.open(baseURL + urls[type], '_self');
+}

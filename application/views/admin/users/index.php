@@ -154,26 +154,26 @@
                                 else   $pub = $this->lang->line('Publish');
                                 $countRow++;
                                 $buyList = json_decode($user->buycourse_arr);
-                                $kebenju = $buyList->kebenju;
-                                $sandapian = $buyList->sandapian;
-								$grammar = '0';
-								if(isset($buyList->grammar))
-									$grammar = $buyList->grammar;
+                                $kebenju = '0';
+                                $sandapian = '0';
+                                $grammar = '0';
+                                if (isset($buyList->kebenju)) $kebenju = $buyList->kebenju;
+                                if (isset($buyList->sandapian)) $sandapian = $buyList->sandapian;
+                                if (isset($buyList->grammar)) $grammar = $buyList->grammar;
                                 $buycourseStr = '';
-                                if ($kebenju == '1') {
-                                    $buycourseStr .= $this->lang->line('kebenju');
-                                }
+                                if ($kebenju == '1') $buycourseStr .= $this->lang->line('kebenju');
+
                                 if ($sandapian == '1') {
-									if ($buycourseStr != '') $buycourseStr .= '<br/>';
-									$buycourseStr .= $this->lang->line('sandapian');
+                                    if ($buycourseStr != '') $buycourseStr .= '<br/>';
+                                    $buycourseStr .= $this->lang->line('sandapian');
                                 }
                                 if ($grammar == '1') {
-									if ($buycourseStr != '') $buycourseStr .= '<br/>';
-									$buycourseStr .= $this->lang->line('grammar');
+                                    if ($buycourseStr != '') $buycourseStr .= '<br/>';
+                                    $buycourseStr .= $this->lang->line('grammar');
                                 }
                                 ?>
                                 <?php if ($countRow > 5) {
-                                echo '<tr style="display:none">';
+                                echo '<tr style="display: none;">';
                             } else {
                                 echo '<tr>';
                             } ?>
@@ -188,11 +188,11 @@
                                 <td><?= $user->username; ?></td>
                                 <td><?= $user->fullname ?></td>
                                 <td><?= $user->sex; ?></td>
-                                <?php if ($user->user_type_id == '2') { ?>
-                                <td><?= $user->class; ?></td>
-                            <?php } ?>
                                 <?php if ($user->user_type_id == '1') { ?>
-                                <td></td><?php } ?>
+                                    <td></td>
+                                <?php } else { ?>
+                                    <td><?= $user->class?:'无班级'; ?></td>
+                                <?php } ?>
                                 <td><?= $user->school_name; ?></td>
                                 <td><?= $user->user_type_name; ?></td>
                                 <td><?= $user->reg_time; ?></td>
@@ -202,7 +202,7 @@
                                             data-kebenju="<?= $kebenju ?>"
                                             data-sandapian="<?= $sandapian ?>"
                                             data-grammar="<?= $grammar ?>"
-                                            user_id= <?= $user->user_id; ?>>
+                                            user_id=<?= $user->user_id; ?>>
                                         <?= $this->lang->line('Modify'); ?>
                                     </button>
                                     <button class="btn btn-sm btn-warning" onclick="delete_user(this);"
@@ -325,7 +325,7 @@
                         <!--==========================================================================================================================-->
                         <div class="mt-checkbox-inline">
                             <?php foreach ($courses as $cs):
-                                if($cs->course_slug=="kebenju") { ?>
+                                if ($cs->course_slug == "kebenju") { ?>
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="checkbox" class="buycourse_chk"
                                                data-id="<?= $cs->course_id; ?>"
@@ -338,9 +338,10 @@
                             <?php endforeach; ?>
                         </div>
                         <div class="kebenju_course_list courseware_list_buy_section">
-                            <?php foreach ($kebenju_list as $kb_item):?>
+                            <?php foreach ($kebenju_list as $kb_item): ?>
                                 <label class="mt-checkbox mt-checkbox-outline" style="display: block">
-                                    <input type="checkbox" class="buycourse_chk_kebenju" id="add_cw_1_<?= $kb_item->courseware_id ?>"
+                                    <input type="checkbox" class="buycourse_chk_kebenju"
+                                           id="add_cw_1_<?= $kb_item->courseware_id ?>"
                                            data-id="<?= $kb_item->courseware_id ?>">
                                     <?= $kb_item->courseware_name; ?>
                                     <span></span>
@@ -352,7 +353,7 @@
                         <!--==========================================================================================================================-->
                         <div class="mt-checkbox-inline">
                             <?php foreach ($courses as $cs):
-                                if($cs->course_slug=="sandapian") { ?>
+                                if ($cs->course_slug == "sandapian") { ?>
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="checkbox" class="buycourse_chk"
                                                data-id="<?= $cs->course_id; ?>"
@@ -367,7 +368,8 @@
                         <div class="sandapian_course_list courseware_list_buy_section">
                             <?php foreach ($sandapian_list as $sd_item): ?>
                                 <label class="mt-checkbox mt-checkbox-outline" style="display: block">
-                                    <input type="checkbox" class="buycourse_chk_sandapian" id="add_cw_2_<?= $sd_item->childcourse_id ?>"
+                                    <input type="checkbox" class="buycourse_chk_sandapian"
+                                           id="add_cw_2_<?= $sd_item->childcourse_id ?>"
                                            data-id="<?= $sd_item->childcourse_id ?>">
                                     <?= $sd_item->childcourse_name; ?>
                                     <span></span>
@@ -379,7 +381,7 @@
                         <!--==========================================================================================================================-->
                         <div class="mt-checkbox-inline">
                             <?php foreach ($courses as $cs):
-                                if($cs->course_slug=="grammar") { ?>
+                                if ($cs->course_slug == "grammar") { ?>
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="checkbox" class="buycourse_chk"
                                                data-id="<?= $cs->course_id; ?>"
@@ -394,7 +396,8 @@
                         <div class="sandapian_course_list courseware_list_buy_section">
                             <?php foreach ($backcourse_list as $sd_item): ?>
                                 <label class="mt-checkbox mt-checkbox-outline" style="display: block">
-                                    <input type="checkbox" class="buycourse_chk_grammar" id="add_cw_3_<?= $sd_item->bcw_id ?>"
+                                    <input type="checkbox" class="buycourse_chk_grammar"
+                                           id="add_cw_3_<?= $sd_item->bcw_id ?>"
                                            data-id="<?= $sd_item->bcw_id ?>">
                                     <?= $sd_item->bcw_name; ?>
                                     <span></span>
@@ -527,7 +530,7 @@
                         <!--==========================================================================================================================-->
                         <div class="mt-checkbox-inline">
                             <?php foreach ($courses as $cs):
-                                if($cs->course_slug=="kebenju") { ?>
+                                if ($cs->course_slug == "kebenju") { ?>
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="checkbox" class="edit_buycourse_chk"
                                                id="<?= $cs->course_slug ?>"
@@ -539,9 +542,10 @@
                             <?php endforeach; ?>
                         </div>
                         <div class="kebenju_course_list courseware_list_buy_section">
-                            <?php foreach ($kebenju_list as $kb_item):?>
+                            <?php foreach ($kebenju_list as $kb_item): ?>
                                 <label class="mt-checkbox mt-checkbox-outline" style="display: block">
-                                    <input type="checkbox" class="edit_buycourse_chk_kebenju" id="cw_1_<?= $kb_item->courseware_id ?>"
+                                    <input type="checkbox" class="edit_buycourse_chk_kebenju"
+                                           id="cw_1_<?= $kb_item->courseware_id ?>"
                                            data-id="<?= $kb_item->courseware_id ?>">
                                     <?= $kb_item->courseware_name; ?>
                                     <span></span>
@@ -553,7 +557,7 @@
                         <!--==========================================================================================================================-->
                         <div class="mt-checkbox-inline">
                             <?php foreach ($courses as $cs):
-                                if($cs->course_slug=="sandapian") { ?>
+                                if ($cs->course_slug == "sandapian") { ?>
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="checkbox" class="edit_buycourse_chk"
                                                id="<?= $cs->course_slug ?>"
@@ -567,7 +571,8 @@
                         <div class="sandapian_course_list courseware_list_buy_section">
                             <?php foreach ($sandapian_list as $sd_item): ?>
                                 <label class="mt-checkbox mt-checkbox-outline" style="display: block">
-                                    <input type="checkbox" class="edit_buycourse_chk_sandapian" id="cw_2_<?= $sd_item->childcourse_id ?>"
+                                    <input type="checkbox" class="edit_buycourse_chk_sandapian"
+                                           id="cw_2_<?= $sd_item->childcourse_id ?>"
                                            data-id="<?= $sd_item->childcourse_id ?>">
                                     <?= $sd_item->childcourse_name; ?>
                                     <span></span>
@@ -579,7 +584,7 @@
                         <!--==========================================================================================================================-->
                         <div class="mt-checkbox-inline">
                             <?php foreach ($courses as $cs):
-                                if($cs->course_slug=="grammar") { ?>
+                                if ($cs->course_slug == "grammar") { ?>
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="checkbox" class="edit_buycourse_chk"
                                                id="<?= $cs->course_slug ?>"
@@ -593,7 +598,8 @@
                         <div class="sandapian_course_list courseware_list_buy_section">
                             <?php foreach ($backcourse_list as $sd_item): ?>
                                 <label class="mt-checkbox mt-checkbox-outline" style="display: block">
-                                    <input type="checkbox" class="edit_buycourse_chk_grammar" id="cw_3_<?= $sd_item->bcw_id ?>"
+                                    <input type="checkbox" class="edit_buycourse_chk_grammar"
+                                           id="cw_3_<?= $sd_item->bcw_id ?>"
                                            data-id="<?= $sd_item->bcw_id ?>">
                                     <?= $sd_item->bcw_name; ?>
                                     <span></span>
@@ -678,7 +684,7 @@
                         <!--==========================================================================================================================-->
                         <div class="mt-checkbox-inline">
                             <?php foreach ($courses as $cs):
-                                if($cs->course_slug=="kebenju") { ?>
+                                if ($cs->course_slug == "kebenju") { ?>
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="checkbox" class="bulk_buycourse_chk"
                                                name="kebenju"
@@ -692,7 +698,7 @@
                             <?php endforeach; ?>
                         </div>
                         <div class="kebenju_course_list courseware_list_buy_section">
-                            <?php foreach ($kebenju_list as $kb_item):?>
+                            <?php foreach ($kebenju_list as $kb_item): ?>
                                 <label class="mt-checkbox mt-checkbox-outline" style="display: block">
                                     <input type="checkbox"
                                            name="kb_buy[]"
@@ -709,7 +715,7 @@
                         <!--==========================================================================================================================-->
                         <div class="mt-checkbox-inline">
                             <?php foreach ($courses as $cs):
-                                if($cs->course_slug=="sandapian") { ?>
+                                if ($cs->course_slug == "sandapian") { ?>
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="checkbox" class="bulk_buycourse_chk"
                                                name="sandapian"
@@ -740,7 +746,7 @@
                         <!--==========================================================================================================================-->
                         <div class="mt-checkbox-inline">
                             <?php foreach ($courses as $cs):
-                                if($cs->course_slug=="grammar") { ?>
+                                if ($cs->course_slug == "grammar") { ?>
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="checkbox" class="bulk_buycourse_chk"
                                                name="grammar"
@@ -894,27 +900,28 @@
         $("#edit_usernewpassword").hide();
         $("#edit_userrepeatpassword").hide();
 
-        $('.edit_buycourse_chk_kebenju').prop('checked',false);
-        $('.edit_buycourse_chk_sandapian').prop('checked',false);
-        $('.edit_buycourse_chk_grammar').prop('checked',false);
+        $('.edit_buycourse_chk_kebenju').prop('checked', false);
+        $('.edit_buycourse_chk_sandapian').prop('checked', false);
+        $('.edit_buycourse_chk_grammar').prop('checked', false);
     }
+
     ////////////////////////////////////////////BULK////////////////////////////////////////////////////////////////////////
     $('.bulk_buycourse_chk').click(function () {
         var isChecked = $(this).prop("checked");
         var cwSlug = $(this).data('slug');
-        $('.bulk_buycourse_chk_'+cwSlug).prop('checked',isChecked);
+        $('.bulk_buycourse_chk_' + cwSlug).prop('checked', isChecked);
     });
 
     $('.bulk_buycourse_chk_kebenju').click(function () {
         var clickedCount = 0;
         var kebenjuCwList = $('.bulk_buycourse_chk_kebenju');
         kebenjuCwList.each(function (index) {
-            if($(kebenjuCwList[index]).prop('checked')) clickedCount ++;
+            if ($(kebenjuCwList[index]).prop('checked')) clickedCount++;
         });
-        if(clickedCount==0) {
-            $('#bulk_kebenju').prop('checked',false);
-        }else{
-            $('#bulk_kebenju').prop('checked',true);
+        if (clickedCount == 0) {
+            $('#bulk_kebenju').prop('checked', false);
+        } else {
+            $('#bulk_kebenju').prop('checked', true);
         }
     });
 
@@ -922,12 +929,12 @@
         var clickedCount = 0;
         var sandapianCwList = $('.bulk_buycourse_chk_sandapian');
         sandapianCwList.each(function (index) {
-            if($(sandapianCwList[index]).prop('checked')) clickedCount ++;
+            if ($(sandapianCwList[index]).prop('checked')) clickedCount++;
         });
-        if(clickedCount==0) {
-            $('#bulk_sandapian').prop('checked',false);
-        }else{
-            $('#bulk_sandapian').prop('checked',true);
+        if (clickedCount == 0) {
+            $('#bulk_sandapian').prop('checked', false);
+        } else {
+            $('#bulk_sandapian').prop('checked', true);
         }
     });
 
@@ -935,12 +942,12 @@
         var clickedCount = 0;
         var grammarCwList = $('.bulk_buycourse_chk_grammar');
         grammarCwList.each(function (index) {
-            if($(grammarCwList[index]).prop('checked')) clickedCount ++;
+            if ($(grammarCwList[index]).prop('checked')) clickedCount++;
         });
-        if(clickedCount==0) {
-            $('#bulk_grammar').prop('checked',false);
-        }else{
-            $('#bulk_grammar').prop('checked',true);
+        if (clickedCount == 0) {
+            $('#bulk_grammar').prop('checked', false);
+        } else {
+            $('#bulk_grammar').prop('checked', true);
         }
     });
 
@@ -949,19 +956,19 @@
     $('.buycourse_chk').click(function () {
         var isChecked = $(this).prop("checked");
         var cwSlug = $(this).data('slug');
-        $('.buycourse_chk_'+cwSlug).prop('checked',isChecked);
+        $('.buycourse_chk_' + cwSlug).prop('checked', isChecked);
     });
 
     $('.buycourse_chk_kebenju').click(function () {
         var clickedCount = 0;
         var kebenjuCwList = $('.buycourse_chk_kebenju');
         kebenjuCwList.each(function (index) {
-            if($(kebenjuCwList[index]).prop('checked')) clickedCount ++;
+            if ($(kebenjuCwList[index]).prop('checked')) clickedCount++;
         });
-        if(clickedCount==0) {
-            $('#add_kebenju').prop('checked',false);
-        }else{
-            $('#add_kebenju').prop('checked',true);
+        if (clickedCount == 0) {
+            $('#add_kebenju').prop('checked', false);
+        } else {
+            $('#add_kebenju').prop('checked', true);
         }
     });
 
@@ -969,12 +976,12 @@
         var clickedCount = 0;
         var sandapianCwList = $('.buycourse_chk_sandapian');
         sandapianCwList.each(function (index) {
-            if($(sandapianCwList[index]).prop('checked')) clickedCount ++;
+            if ($(sandapianCwList[index]).prop('checked')) clickedCount++;
         });
-        if(clickedCount==0) {
-            $('#add_sandapian').prop('checked',false);
-        }else{
-            $('#add_sandapian').prop('checked',true);
+        if (clickedCount == 0) {
+            $('#add_sandapian').prop('checked', false);
+        } else {
+            $('#add_sandapian').prop('checked', true);
         }
     });
 
@@ -982,12 +989,12 @@
         var clickedCount = 0;
         var sandapianCwList = $('.buycourse_chk_grammar');
         sandapianCwList.each(function (index) {
-            if($(sandapianCwList[index]).prop('checked')) clickedCount ++;
+            if ($(sandapianCwList[index]).prop('checked')) clickedCount++;
         });
-        if(clickedCount==0) {
-            $('#add_grammar').prop('checked',false);
-        }else{
-            $('#add_grammar').prop('checked',true);
+        if (clickedCount == 0) {
+            $('#add_grammar').prop('checked', false);
+        } else {
+            $('#add_grammar').prop('checked', true);
         }
     });
 
@@ -996,19 +1003,19 @@
     $('.edit_buycourse_chk').click(function () {
         var isChecked = $(this).prop("checked");
         var cwSlug = $(this).data('slug');
-        $('.edit_buycourse_chk_'+cwSlug).prop('checked',isChecked);
+        $('.edit_buycourse_chk_' + cwSlug).prop('checked', isChecked);
     });
 
     $('.edit_buycourse_chk_kebenju').click(function () {
         var clickedCount = 0;
         var kebenjuCwList = $('.edit_buycourse_chk_kebenju');
         kebenjuCwList.each(function (index) {
-            if($(kebenjuCwList[index]).prop('checked')) clickedCount ++;
+            if ($(kebenjuCwList[index]).prop('checked')) clickedCount++;
         });
-        if(clickedCount==0) {
-            $('#kebenju').prop('checked',false);
-        }else{
-            $('#kebenju').prop('checked',true);
+        if (clickedCount == 0) {
+            $('#kebenju').prop('checked', false);
+        } else {
+            $('#kebenju').prop('checked', true);
         }
     });
 
@@ -1016,24 +1023,24 @@
         var clickedCount = 0;
         var sandapianCwList = $('.edit_buycourse_chk_sandapian');
         sandapianCwList.each(function (index) {
-            if($(sandapianCwList[index]).prop('checked')) clickedCount ++;
+            if ($(sandapianCwList[index]).prop('checked')) clickedCount++;
         });
-        if(clickedCount==0) {
-            $('#sandapian').prop('checked',false);
-        }else{
-            $('#sandapian').prop('checked',true);
+        if (clickedCount == 0) {
+            $('#sandapian').prop('checked', false);
+        } else {
+            $('#sandapian').prop('checked', true);
         }
     });
     $('.edit_buycourse_chk_grammar').click(function () {
         var clickedCount = 0;
         var sandapianCwList = $('.edit_buycourse_chk_grammar');
         sandapianCwList.each(function (index) {
-            if($(sandapianCwList[index]).prop('checked')) clickedCount ++;
+            if ($(sandapianCwList[index]).prop('checked')) clickedCount++;
         });
-        if(clickedCount==0) {
-            $('#grammar').prop('checked',false);
-        }else{
-            $('#grammar').prop('checked',true);
+        if (clickedCount == 0) {
+            $('#grammar').prop('checked', false);
+        } else {
+            $('#grammar').prop('checked', true);
         }
     });
 
@@ -1061,9 +1068,7 @@
                     } else {
                         gradeClassListAdd.innerHTML = res.data;
                     }
-                }
-                else//failed
-                {
+                } else { //failed                
                     alert("Cannot delete CourseWare Item.");
                 }
             }
@@ -1100,18 +1105,18 @@
         initEditModal();
         //Get Uer Permissions.....
         $.ajax({
-            url:baseURL + 'admin/users/get_permissions',
-            type:'post',
-            dataType:'json',
-            data:{user_id:userId},
-            success:function (res) {
-                if(res.status == 'success' ){
+            url: baseURL + 'admin/users/get_permissions',
+            type: 'post',
+            dataType: 'json',
+            data: {user_id: userId},
+            success: function (res) {
+                if (res.status == 'success') {
                     //Init Permissions On the Courseware List.....
-                    for(var i =0;i<res.data.length;i++){
-                        $('#cw_'+res.data[i].course_type+"_"+res.data[i].course_id).prop('checked', true);
+                    for (var i = 0; i < res.data.length; i++) {
+                        $('#cw_' + res.data[i].course_type + "_" + res.data[i].course_id).prop('checked', true);
                     }
                     $('#edit_user_modal').modal({backdrop: 'static', keyboard: false})
-                }else{
+                } else {
                     alert(res.data);
                 }
             }
@@ -1203,8 +1208,7 @@
         var publish_st = '1';
         if (publishStr == curBtnText) {
             self.innerHTML = unPublishStr;
-        }
-        else {
+        } else {
             self.innerHTML = publishStr;
             publish_st = '0';
         }
@@ -1217,9 +1221,7 @@
             success: function (res) {
                 if (res.status == 'success') {
                     console.log('publication has been successed!');
-                }
-                else//failed
-                {
+                } else { //failed                
                     alert("Cannot delete CourseWare Item.");
                 }
             }
@@ -1261,9 +1263,7 @@
                     var tbody = table.getElementsByTagName("tbody")[0];
                     tbody.innerHTML = res.data;
                     executionPageNation();
-                }
-                else//failed
-                {
+                } else { //failed                
                     alert("Cannot delete CourseWare Item.");
                 }
             }
@@ -1275,8 +1275,7 @@
         var valueSelected = this.value;
         if (valueSelected == techcherStr) {
             bulkAddType = 1;
-        }
-        else {
+        } else {
             bulkAddType = 0;
         }
     });
@@ -1308,14 +1307,14 @@
     function normalizeUerPermissions() {
 
         $.ajax({
-            type:'post',
-            url:baseURL+'admin/users/normalize_permission',
-            data:{},
-            dataType:'json',
-            success:function (res) {
-                if(res.status == 'success'){
+            type: 'post',
+            url: baseURL + 'admin/users/normalize_permission',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                if (res.status == 'success') {
                     alert('done');
-                }else{
+                } else {
                     alert(res.data);
                 }
             }

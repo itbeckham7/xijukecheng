@@ -3,9 +3,9 @@
     <img src="<?= base_url('assets/images/middle/home.jpg') ?>" class="background_image">
 </div>
 
-<a href="<?= base_url('xiaoxueapp'); ?>" class="btn home-nav" data-type="primary"></a>
+<a class="btn home-nav" data-type="primary" onclick="showPlatform(this);"></a>
 
-<a href="<?= base_url('middle'); ?>" class="btn home-nav" data-type="middle"></a>
+<a class="btn home-nav" data-type="middle" onclick="showPlatform(this);"></a>
 
 <?php if ($this->session->userdata("loggedin") != FALSE) { ?>
     <a href="<?= base_url('signin/signout'); ?>" class="btn home-login">退出</a>

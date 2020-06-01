@@ -10,6 +10,8 @@ jQuery("#delete_cw_item_btn").click(function () {
         data: {delete_cw_id: delete_cw_id},
         success: function(res) {
             if(res.status=='success') {
+                location.reload();
+                return;
                 var table = document.getElementById("cwInfo_tbl");
                 var tbody = table.getElementsByTagName("tbody")[0];
                 tbody.innerHTML = res.data;
@@ -67,6 +69,8 @@ jQuery("#cw_edit_submit").submit(function (e) {
         success: function(res){
             var ret = JSON.parse(res);
             if(ret.status=='success') {
+                location.reload();
+                return;
                 var table = document.getElementById("cwInfo_tbl");
                 var tbody = table.getElementsByTagName("tbody")[0];
                 tbody.innerHTML = ret.data;

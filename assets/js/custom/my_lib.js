@@ -214,49 +214,52 @@ function removeExtFromFilename(str) {
     return str[str.length - 2].toLowerCase();
 }
 
-
 function executeCMD(command, data) {
     if (osStatus === 'Android' || osStatus === 'iOS') {
-        switch (command) {
-            case 'waiting_indicator':
-                window.ReactNativeWebView.postMessage(JSON.stringify({
-                    cmd: 'waiting_indicator',
-                    data: {visible: data}
-                }));
-                break;
-            case 'weixin_login':
-                window.ReactNativeWebView.postMessage(JSON.stringify({
-                    cmd: 'weixin_login',
-                    data: {userToken: data}
-                }));
-                break;
-            case 'weixin_payment':
-                window.ReactNativeWebView.postMessage(JSON.stringify({
-                    cmd: 'weixin_payment',
-                    data: {
-                        partnerid: data.partnerid,
-                        timestamp: data.timestamp,
-                        noncestr: data.noncestr,
-                        prepayid: data.prepayid,
-                        type: 'MD5',
-                        sign: data.sign,
-                    }
-                }));
-                break;
-            case 'show_reference_pdf':
-                window.ReactNativeWebView.postMessage(JSON.stringify({
-                    cmd: 'show_reference_pdf',
-                    data: {pdfURL: data}
-                }));
-                break;
-            case 'make_script_pdf':
-                window.ReactNativeWebView.postMessage(JSON.stringify({
-                    cmd: 'make_script_pdf',
-                    data: {downloadURL: data}
-                }));
-                break;
+        if(window.ReactNativeWebView) {
+            switch (command) {
+                case 'waiting_indicator':
+                    window.ReactNativeWebView.postMessage(JSON.stringify({
+                        cmd: 'waiting_indicator',
+                        data: {visible: data}
+                    }));
+                    break;
+                case 'weixin_login':
+                    window.ReactNativeWebView.postMessage(JSON.stringify({
+                        cmd: 'weixin_login',
+                        data: {userToken: data}
+                    }));
+                    break;
+                case 'weixin_payment':
+                    window.ReactNativeWebView.postMessage(JSON.stringify({
+                        cmd: 'weixin_payment',
+                        data: {
+                            partnerid: data.partnerid,
+                            timestamp: data.timestamp,
+                            noncestr: data.noncestr,
+                            prepayid: data.prepayid,
+                            type: 'MD5',
+                            sign: data.sign,
+                        }
+                    }));
+                    break;
+                case 'show_reference_pdf':
+                    window.ReactNativeWebView.postMessage(JSON.stringify({
+                        cmd: 'show_reference_pdf',
+                        data: {pdfURL: data}
+                    }));
+                    break;
+                case 'make_script_pdf':
+                    window.ReactNativeWebView.postMessage(JSON.stringify({
+                        cmd: 'make_script_pdf',
+                        data: {downloadURL: data}
+                    }));
+                    break;
+                default:
+                    break;
+            }
+            return true;
         }
-        return true;
     }
     return false;
 }

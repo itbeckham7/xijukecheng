@@ -51,7 +51,7 @@ if ($user_type == '2') {
 
 
 <div class="player" style="display: <?php if ($content_type_id != '4') echo "none"; else echo 'block'; ?>">
-    <audio id="music" preload="true" autoplay>
+    <audio id="music" preload="true">
         <source src="<?php echo base_url() . $wavPath; ?>">
     </audio>
     <a id="pButton" class="play"></a>

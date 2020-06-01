@@ -16,8 +16,8 @@ class Home extends CI_Controller {
 	}
 
 	public function index(){
-	    redirect(base_url('primary/coursewares'));
-	    return;
+//	    redirect(base_url('primary/coursewares'));
+//	    return;
         $user_type = $this->session->userdata("user_type");
         $user_id = $this->session->userdata("loginuserID");
         if ($this->signin_m->loggedin()) {

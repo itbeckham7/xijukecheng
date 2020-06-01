@@ -37,7 +37,8 @@ class Coursewares extends CI_Controller
             $this->data['cws_permissions'] = [];
         }
         $this->data['cws_permissions'] = $this->getUserCws($this->data['cws_permissions']);
-        $this->data['cwSets'] = $this->coursewares_m->get_where(array('platform_type' => 1));
+        $this->data['cwSets'] = $this->coursewares_m->get_where(array(
+            'platform_type' => 1, 'school_type_id' => 2));
         $this->data['paidCourse'] = $this->payhistory_m->get_where(array('user_id'=>$user_id));
         $this->data['wxStatus'] = $this->signin_m->getWxStatus();
         $this->data['unitSets'] = $this->units_m->get_units();

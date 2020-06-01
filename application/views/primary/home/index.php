@@ -1,4 +1,19 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/frontend/home.css') ?>">
+<style>
+    .back-btn {
+        position: absolute;
+        left: 93.84%;
+        top: 1.37%;
+        width: 4.31%;
+        height: 7.8%;
+    }
+
+    .back-btn img {
+        width: 100%;
+        height: 100%
+    }
+    .teacher-reference-btn { display: none;}
+</style>
 <div class="bg" style="">
     <img src="<?= base_url('assets/images/sandapian/home/home.png')?>" class="background_image" >
 </div>
@@ -39,7 +54,9 @@ if (count($grammar_permissions)>0){
                background-size: 100% 100%">
     </a>
 <?php }?>
+<div class="back-btn">
+    <a onmouseover="hover_back()" onmouseout="out_back()" href="<?= base_url()?>" >
+        <img id="back_btn_image" src="<?= base_url('assets/images/frontend/studentwork/back.png'); ?>">
+    </a>
+</div>
 <script src="<?= base_url('assets/js/custom/home.js') ?>"></script>
-
-
-<style>   .teacher-reference-btn { display: none;} </style>

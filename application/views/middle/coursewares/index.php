@@ -500,5 +500,6 @@ if ($user_type == '2') {
         }
     });
 </script>
-
+<!--
 <img src="<?= base_url('assets/images/owner.png') ?>" style="left: 0;top:94%;width:24%;height:6%;position: absolute">
+-->

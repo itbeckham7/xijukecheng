@@ -130,7 +130,7 @@ if ($subware_isexist['shooting'] == 0) : ?>
     <?php if ($user_type == '1') { ?>
         <a class="flash-nav teaching" data-type="teaching"><span>教学指导</span></a>
         <a class="flash-nav demovideo" data-type="demovideo"><span>示范表演</span></a>
-        <a class="flash-nav demoimage" data-type="demoimage"><span>背景材料</span></a>
+        <a class="flash-nav demoimage" data-type="demoimage"><span>表演材料</span></a>
     <?php } else { ?>
         <a class="flash-nav demovideo" data-type="demovideo"><span>示范表演</span></a>
     <?php } ?>
