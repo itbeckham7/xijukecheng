@@ -249,11 +249,9 @@ html {
     width: 228px;
     height: 144px;
     z-index: 3;
-}
-
-.subware-nav {
     background-color: transparent;
     border-bottom: 1px solid white;
+    cursor: pointer;
 }
 
 .subware-nav:hover {
@@ -268,6 +266,12 @@ html {
     color: #30a4ff;
 }
 
+.subware-nav[data-disabled="1"]{
+    cursor: auto;
+    background-color: transparent;
+}
+
+.subware-nav
 .subware-nav img {
     width: auto;
     height: 50%;
@@ -277,7 +281,6 @@ html {
 .subware-nav a {
     display: flex;
     height: 100%;
-    cursor: pointer;
     justify-content: center;
     align-items: center;
     flex-direction: column;

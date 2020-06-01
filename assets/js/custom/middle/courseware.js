@@ -35,7 +35,13 @@ function updateSubwareAccessTime(swTypeId) {
         }
     });
 }
-
+if(login_status == '0'){
+    $('.subware-nav').each(function(idx, elem){
+        var that = $(elem);
+        that.attr('data-disabled', '1');
+    });
+    $('#script').parent().removeAttr('data-disabled');
+}
 function receiveMessage(event) {
     var iframe = document.getElementById('courseware_iframe').contentWindow;
     var message = event.data; //this is the message
