@@ -8,7 +8,7 @@ $myworkURL = 'xiaoxueapp/work/student';
 $hd_menu_img_path = '';
 if($this->session->userdata('loggedin')) {
     $user_type = $this->session->userdata("user_type");
-    if($user_type=='2'){
+    if($user_type!='1'){
         $myworkURL = 'xiaoxueapp/work/script/'.$loged_In_user_id;
         $hd_menu_img_path = $imageAbsDir.'coursewares/';
     }else{

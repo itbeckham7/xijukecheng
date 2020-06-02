@@ -14,7 +14,7 @@ $imageAbsDir = base_url() . 'assets/images/xiaoxueapp/';
 $user_type = $this->session->userdata("user_type");
 $myworkURL = 'xiaoxueapp/work';
 $hd_menu_img_path = '';
-if ($user_type == '2') {
+if ($user_type != '1') {
     $myworkURL = 'xiaoxueapp/work/script/' . $loged_In_user_id;
     $hd_menu_img_path = $imageAbsDir . 'coursewares/';
 } else {

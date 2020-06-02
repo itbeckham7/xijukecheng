@@ -6,7 +6,7 @@ $myworkURL = 'middle/work';
 $returnURL = 'middle/work/script';
 $hd_menu_img_path = '';
 
-if ($user_type == '2') {
+if ($user_type != '1') {
 
     $myworkURL = 'middle/work';
     $hd_menu_img_path = $imageAbsDir . 'studentwork/';
@@ -29,7 +29,7 @@ if ($user_type == '2') {
 <!--<div class="page-main-menu">-->
 <?php if ($this->session->userdata("loggedin") != FALSE) { ?>
     <a class="btn-main mywork" href="<?= base_url($myworkURL); ?>"
-    ><span><?= ($user_type == '2') ? '我的' : '学生'; ?>作品</span></a>
+    ><span><?= ($user_type != '1') ? '我的' : '学生'; ?>作品</span></a>
     <a class="btn-main community" href="<?= base_url('middle/') . 'community/index'; ?>"
     ><span>戏剧社区</span></a>
     <a class="btn-main profile"

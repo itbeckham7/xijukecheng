@@ -166,7 +166,7 @@ if($this->session->userdata("loggedin") != FALSE)
 
 </div>
 <?php if($this->session->userdata("loggedin") != FALSE){?>
-    <?php if($user_type=='2'){?>
+    <?php if($user_type!='1'){?>
     <a href="<?= base_url('primary/nwork/view').'/'.$loged_In_user_id?>"
        class="btn" id="workview_btn"
        style="background:url(<?= $imageAbsDir.'workview/workview.png';?>) no-repeat;background-size: 100% 100%;">

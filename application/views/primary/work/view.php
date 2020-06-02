@@ -12,7 +12,7 @@ if($loggedIn_UserID != $user_id)//if current user is not owner of work.
 $myworkURL = 'primary/work/student';
 $returnURL = 'primary/coursewares/index';
 $hd_menu_img_path = '';
-if($user_type=='2'){
+if($user_type!='1'){
     $myworkURL = 'primary/work/script/'.$loggedIn_UserID;
     $returnURL = 'primary/coursewares/index';
     $hd_menu_img_path = $imageAbsDir.'mywork/';

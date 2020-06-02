@@ -14,7 +14,7 @@ $imageAbsDir = base_url() . 'assets/images/frontend/';
 $user_type = $this->session->userdata("user_type");
 $myworkURL = 'primary/work';
 $hd_menu_img_path = '';
-if ($user_type == '2') {
+if ($user_type != '1') {
     $myworkURL = 'primary/work';
     $hd_menu_img_path = $imageAbsDir . 'coursewares/';
 } else {

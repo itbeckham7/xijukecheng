@@ -5,7 +5,7 @@ $imageAbsDir =  base_url().'assets/images/frontend/';
 $myworkURL = 'primary/work/student';
 $returnURL = 'primary/community/index';
 $course_menu_img_path = '';
-if($user_type=='2'){
+if($user_type!='1'){
     $myworkURL = 'primary/work/script/'.$logged_In_user_id;
     $hd_menu_img_path = $imageAbsDir.'studentwork/';
 }else{

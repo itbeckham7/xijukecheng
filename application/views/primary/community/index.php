@@ -5,7 +5,7 @@
     $myworkURL = 'primary/work/student';
     $returnURL = 'primary/work/student';
     $course_menu_img_path = '';
-    if($user_type=='2'){
+    if($user_type!='1'){
         $myworkURL = 'primary/work/script/'.$loged_In_user_id;
         $returnURL = 'primary/coursewares/index';
         $hd_menu_img_path = $imageAbsDir.'community/';
