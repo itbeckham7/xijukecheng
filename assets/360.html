@@ -3,6 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <script>
+        function checkBrowser(){
+            var ua = window.navigator.userAgent;
+            console.log('-- ua : ', ua);
+            var msie = ua.indexOf('MSIE ');
+            var trident = ua.indexOf('Trident/');
+            var edge = ua.indexOf('Edge/');
+
+            if (msie > 0 || trident > 0 || edge > 0) {
+
+            } else {
+                console.log('-- host : ', location.hostname);
+                location.replace('https://' + location.hostname)
+            }
+        }
+    </script>
+
     <style>
         body{
             text-align: center;
@@ -31,7 +49,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="checkBrowser()">
     <p class="info">您的浏览器不支持录音功能。 请使用360浏览器极速模式。</p>
 
     <img src="images/360chrome.png"/>
