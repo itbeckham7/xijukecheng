@@ -14,6 +14,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
 
     <link rel="shortcut icon" href="<?= base_url('assets/favicon.ico')?>" type="image/x-icon">
 
@@ -41,6 +43,16 @@
 
     </script>
 
+    <script>
+        function mode(){
+            if(window.navigator.userAgent.indexOf('AppleWebKit') != -1) {
+
+            }  else {
+                alert('您的浏览器不支持录音功能。 请使用360浏览器极速方法。 ');
+            }
+        }
+    </script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -49,7 +61,7 @@
     <script src="<?= base_url('assets/js/jquery-1.12.3.min.js') ?>"></script>
     <![endif]-->
 </head>
-<body>
+<body onload="mode()">
 <div>
 
     <?php
