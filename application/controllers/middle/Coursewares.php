@@ -97,7 +97,8 @@ class Coursewares extends CI_Controller
             break;
         }
         $this->data['pdfData'] = '';
-        if($pdf) {
+        $user_type = $this->session->userdata("user_type");
+        if($pdf && $user_type == '1') {
             $pdf_base64 = $pdf->subware_file;    //Get File content from file
             if(file_exists($pdf_base64)) {
                 $pdf_base64_handler = fopen($pdf_base64, 'r');
