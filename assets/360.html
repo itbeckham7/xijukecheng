@@ -15,6 +15,15 @@
             if (msie > 0 || trident > 0 || edge > 0) {
 
             } else {
+                var chrome = ua.indexOf('Chrome/');
+                if( chrome > 0 ){
+                    var version = parseInt(ua.substring(chrome+7, ua.indexOf('.', chrome)), 10)
+                    console.log('-- version : ', version);
+                    if( version < 78 ){
+                        return;
+                    }
+                }
+
                 console.log('-- host : ', location.hostname);
                 location.replace('https://' + location.hostname)
             }
