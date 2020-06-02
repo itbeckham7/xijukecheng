@@ -44,11 +44,15 @@
     </script>
 
     <script>
-        function mode(){
-            if(window.navigator.userAgent.indexOf('AppleWebKit') != -1) {
+        function checkBrowser(){
+            var ua = window.navigator.userAgent;
+            console.log('-- ua : ', ua);
+            var msie = ua.indexOf('MSIE ');
+            var trident = ua.indexOf('Trident/');
+            var edge = ua.indexOf('Edge/');
 
-            }  else {
-                alert('您的浏览器不支持录音功能。 请使用360浏览器极速方法。 ');
+            if (msie > 0 || trident > 0 || edge > 0) {
+                location.replace(base_url + 'assets/360.html')
             }
         }
     </script>
@@ -61,7 +65,7 @@
     <script src="<?= base_url('assets/js/jquery-1.12.3.min.js') ?>"></script>
     <![endif]-->
 </head>
-<body onload="mode()">
+<body onload="checkBrowser()">
 <div>
 
     <?php

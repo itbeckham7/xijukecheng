@@ -49,6 +49,18 @@
 		document.ontouchmove = function(event){
 				event.preventDefault();
 			}
+
+        function checkBrowser(){
+            var ua = window.navigator.userAgent;
+            console.log('-- ua : ', ua);
+            var msie = ua.indexOf('MSIE ');
+            var trident = ua.indexOf('Trident/');
+            var edge = ua.indexOf('Edge/');
+
+            if (msie > 0 || trident > 0 || edge > 0) {
+                location.replace(base_url + 'assets/360.html')
+            }
+        }
     </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -59,7 +71,7 @@
     <script src="<?= base_url('assets/js/jquery-1.12.3.min.js') ?>"></script>
     <![endif]-->
 </head>
-<body>
+<body onload="checkBrowser()">
 
 
 <?php
