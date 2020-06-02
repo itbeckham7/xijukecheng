@@ -47,7 +47,7 @@ class Work extends CI_Controller
         $this->data['content_id'] = $content_id;
         $this->data['content_type_id'] = $content_type_id;
         $this->data['content_title'] = $contentInfo->content_title;
-        $this->data['info'] = $contentInfo->info;
+        $this->data['info'] = $contentInfo->info?:'{"start":0,"end":-1}';
         $this->data['courseware_id'] = $courseware_id;
         $this->data['fullname'] = $this->users_m->getFullNameFromUserId($content_user_id);///current student name;
 

@@ -71,7 +71,7 @@ if ($user_type != '1') {
             <script>
                 var music = document.getElementById('music'); // id for audio element
 
-                timeInfo = JSON.parse('<?= $info; ?>');
+                var timeInfo = JSON.parse('<?= $info; ?>');
                 var startTime = timeInfo.start;
                 var endTime = timeInfo.end;
 
