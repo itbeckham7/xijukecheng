@@ -99,6 +99,7 @@ if ($user_type != '1') {
                         music.pause();
                     });
                     vplayer.on("timeupdate", function (e) {
+                        if(endTime<0) return;
                         if (vplayer.currentTime() > endTime-0.2) {
                             vplayer.pause();
                             if( $('#play-btn').hasClass('playing') ){
