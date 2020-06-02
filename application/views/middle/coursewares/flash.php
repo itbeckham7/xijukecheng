@@ -142,9 +142,7 @@ if ($subware_isexist['shooting'] == 0) : ?>
     <div class="subware-container"></div>
 </div>
 
-<p class="nosubware_msg">
-    <?= $this->lang->line('CourseDeveloping'); ?>
-</p>
+<p class="nosubware_msg"><?= $this->lang->line('CourseDeveloping'); ?></p>
 <div class="_scripts">
     <input class="_mainList" value='<?= json_encode($mainList) ?>'/>
     <input class="_pdfData" value='<?= $pdfData ?>'/>

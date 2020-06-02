@@ -176,7 +176,10 @@ $('.flash-tab a').on('click', function () {
         return (a.subware_type_slug == type &&
             a.subware_file != 'nosubware');
     });
+    $('.nosubware_msg').hide();
     if (swList.length == 0) {
+        $('.flash-content > iframe').hide();
+        $('.flash-content > div').hide();
         $('.nosubware_msg').show();
         return;
     }

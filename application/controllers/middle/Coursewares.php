@@ -96,11 +96,16 @@ class Coursewares extends CI_Controller
             $pdf = $item;
             break;
         }
-        $pdf_base64 = $pdf->subware_file;    //Get File content from file
-        $pdf_base64_handler = fopen($pdf_base64, 'r');
-        $pdf_content = fread($pdf_base64_handler, filesize($pdf_base64));
-        fclose($pdf_base64_handler);
-        $this->data['pdfData'] = base64_encode($pdf_content);
+        $this->data['pdfData'] = '';
+        if($pdf) {
+            $pdf_base64 = $pdf->subware_file;    //Get File content from file
+            if(file_exists($pdf_base64)) {
+                $pdf_base64_handler = fopen($pdf_base64, 'r');
+                $pdf_content = fread($pdf_base64_handler, filesize($pdf_base64));
+                fclose($pdf_base64_handler);
+                $this->data['pdfData'] = base64_encode($pdf_content);
+            }
+        }
         $this->data["subview"] = "middle/coursewares/flash";
         $this->load->view('middle/_layout_main', $this->data);
 
