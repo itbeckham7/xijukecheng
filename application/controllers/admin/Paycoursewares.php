@@ -13,6 +13,8 @@ class Paycoursewares extends Admin_Controller
         $this->load->model("units_m");
         $this->load->model("coursewares_m");
         $this->load->model("users_m");
+        $this->load->model("subwares_m");
+        $this->load->model("subwaretypes_m");
         $this->lang->load('courses', $language);
         $this->load->library("pagination");
 
@@ -27,11 +29,10 @@ class Paycoursewares extends Admin_Controller
         $this->data["subview"] = "admin/paycoursewares/index";
         $this->data["subscript"] = "admin/settings/script";
         $this->data["subcss"] = "admin/settings/css";
-        $this->data['courseware_content'] = $this->output_content($this->data['coursewares']);;
+        $this->data['courseware_content'] = $this->output_content($this->data['coursewares']);
+
         if (!$this->checkRole()) {
-
             $this->load->view('errors/html/access_denied.php', $this->data);
-
         } else {
             $this->load->view('admin/_layout_main', $this->data);
         }
@@ -44,13 +45,14 @@ class Paycoursewares extends Admin_Controller
             'status' => 'fail'
         );
         $config['upload_path'] = "./uploads/images";
-        $config['allowed_types'] = 'bmp|gif|jpg|png';
+        $config['allowed_types'] = 'bmp|gif|jpg|png|zip';
         //$config['max_size'] = '1024*8';
         //$config['max_width']  = '300';
         //$config['max_height']  = '300';
         $this->load->library('upload', $config);
 
-        if (isset($_FILES["add_file_name"]["name"]) && $_POST) {
+        if (isset($_FILES["add_file_name"]["name"]) &&
+            isset($_FILES["add_cw_package"]["name"]) && $_POST) {
             $add_cw_image_path = '';
             //image uploading
             if ($this->upload->do_upload('add_file_name')) {
@@ -80,10 +82,64 @@ class Paycoursewares extends Admin_Controller
                 'price' => $add_cw_price,
             );
             log_message('info', '-- $param : ' . var_export($param, true));
-            $this->data['cwsets'] = $this->coursewares_m->add($param);
-            $ret['data'] = '操作成功';//$this->output_content($this->data['cwsets']);;
-            $ret['status'] = 'success';
+            $cw_id = $this->coursewares_m->add($param);
+            $this->data['cwsets'] = $this->coursewares_m->get_cw(array('platform_type' => $add_cw_type));
+
+            $uploadPath = 'courseware/' . $cw_id;
+            $dirPath = 'uploads/' . $uploadPath;
+            log_message('info', '-- add : 0 ' . $dirPath);
+            if (!is_dir($dirPath)) {
+                mkdir($dirPath, 0755, true);
+            }
+//            $config['upload_path']='./uploads/'.$uploadPath.'/';
+//            $config['allowed_types']='zip';
+//            $this->load->library('upload',$config);
+            log_message('info', '-- add : 1 ' . $cw_id);
+            //***************************file uploading**************************//
+            $isPackageUpload = false;
+            if ($this->upload->do_upload('add_cw_package')) {
+                log_message('info', '-- add : 2');
+                ///$data["file_name"];
+                $data = array('cw_data' => $this->upload->data());
+                $zip = new ZipArchive;
+                $file = $data['cw_data']['full_path'];
+                chmod($file, 0777);
+                if ($zip->open($file) === TRUE) {
+                    log_message('info', '-- add : 3 ' . $file);
+                    $zip->extractTo('./uploads/' . $uploadPath);
+                    $zip->close();
+                    unlink($file);
+                    $add_cw_package = $dirPath;
+                    log_message('info', '-- add : 4 ' . $add_cw_package);
+
+                    $sw_types = $this->subwaretypes_m->get_swtypes();
+                    for ($i = 0; $i < count($sw_types); $i++) {
+                        $sw_type = $sw_types[$i];
+                        if ($sw_type->subware_type_id > 4) continue;
+                        $param = array(
+                            'cw_id' => $cw_id,
+                            'sw_type_id' => $sw_type->subware_type_id,
+                            'sw_file_path' => $add_cw_package . '/' . $sw_type->subware_type_slug,
+                            'publish' => 1
+                        );
+                        $this->subwares_m->add($param);
+                    }
+                    log_message('info', '-- add : 7');
+                    $isPackageUpload = true;
+
+                }
+            }
+            //***************************file uploading**************************//
+
+            if ($isPackageUpload == true) {
+                $ret['data'] = $this->output_content($this->data['cwsets']);;
+                $ret['status'] = 'success';
+            } else {
+                $this->coursewares_m->delete($cw_id);
+                $this->rrmdir('uploads/courseware/' . $cw_id);
+            }
         }
+
         echo json_encode($ret);
 
     }

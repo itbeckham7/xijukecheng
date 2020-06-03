@@ -226,6 +226,12 @@
                                    accept=".png,.jpg,.bmp,.gif,.jpeg,.mp4,.mp3,.pdf,.doc,.docx">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-4">
+                            <label class="control-label" data-name="file_name"></label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-actions">
@@ -392,6 +398,7 @@
                 formElem.find('select[name="subware_type_id"]').val(itemData.subware_type_id);
                 formElem.find('select[name="courseware_id"]').val(itemData.courseware_id);
                 formElem.find('input[name="file_name"]').val('');
+                formElem.find('label[data-name="file_name"]').html('已上传 ： ' + getFilenameFromURL(itemData.subware_file));
             }
 
             jQuery("#sw_addNew_modal").modal({
@@ -442,13 +449,12 @@
 
         jQuery("#sw_addNew_submit_form").submit(function (e) {
             ////////////////////////////////////////////////////////////////////////
-            e.preventDefault();
             $(".uploading_backdrop").show();
             $(".progressing_area").show();
             var fdata = new FormData(this);
             fdata.append('id', _editItemId);
             fdata.append('fileType', _fileType);
-            console.log('---- filetype is : ',_fileType);
+            e.preventDefault();
             $.ajax({
                 url: baseURL + "admin/coursewaresub/add",
                 type: "POST",

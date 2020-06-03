@@ -31,6 +31,7 @@ class Coursewaresub extends Admin_Controller
         $this->data['school_types'] = $this->schooltypes_m->getItems();
         $this->data['cwsets'] = $this->coursewares_m->get_cw(
             "coursewares.platform_type = {$this->data['platformType']}"
+            . " and coursewares.school_type_id = 2"
         );
         $this->data["subview"] = "admin/coursewaresub/index";
         $this->data["subscript"] = "admin/settings/script";
@@ -105,7 +106,17 @@ class Coursewaresub extends Admin_Controller
                 'courseware_id' => $coursewareId,
                 'view_num' => 0,
             );
-            if($add_sw_file_path) $param['subware_file'] = $add_sw_file_path;
+            if ($add_sw_file_path) $param['subware_file'] = $add_sw_file_path;
+
+            if ($subwareTypeId == '6') {
+                $oldSW = $this->subwares_m->get_where(array(
+                    'courseware_id' => $coursewareId,
+                    'platform_type' => $platformType,
+                    'subware_type_id' => $subwareTypeId,
+                ));
+                if ($oldSW != null) $id = $oldSW[0]->subware_id;
+            }
+
             if ($id == 0) {
                 $param['publish'] = 1;
                 $this->data['swsets'] = $this->subwares_m->add($param);
@@ -133,7 +144,7 @@ class Coursewaresub extends Admin_Controller
 
             $this->data['swsets'] = $this->subwares_m->delete($delete_sw_id);
 
-            $ret['data'] = $this->output_content($this->data['swsets']);
+            $ret['data'] = '操作成功';//$this->output_content($this->data['swsets']);
 
             $ret['status'] = 'success';
         }
@@ -150,7 +161,7 @@ class Coursewaresub extends Admin_Controller
             $publish_sw_id = $_POST['publish_sw_id'];
             $publish_sw_st = $_POST['publish_state'];
             $this->data['swsets'] = $this->subwares_m->publish($publish_sw_id, $publish_sw_st);
-            //$ret['data'] = $this->output_content($this->data['swsets']);
+            $ret['data'] = '操作成功';//$this->output_content($this->data['swsets']);
             $ret['status'] = 'success';
         }
         echo json_encode($ret);

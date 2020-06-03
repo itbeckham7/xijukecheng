@@ -10,6 +10,8 @@ jQuery("#delete_cw_item_btn").click(function () {
         data: {delete_cw_id: delete_cw_id, delete_cw_type: '0'},
         success: function(res) {
             if(res.status=='success') {
+                location.reload();
+                return;
                 var table = document.getElementById("cwInfo_tbl");
                 var tbody = table.getElementsByTagName("tbody")[0];
                 tbody.innerHTML = res.data;
@@ -64,9 +66,10 @@ jQuery("#cw_addNew_submit_form").submit(function (e) {
             alert('File Uploading has been failed');
             // jQuery('#cw_addNew_modal').modal('toggle');
             console.log('file uploading has been failed');
-            return;
         }
         if(ret.status=='success') {
+            location.reload();
+            return;
             console.log('-- cw_addNew_submit_form end')
             var table = document.getElementById("cwInfo_tbl");
             var tbody = table.getElementsByTagName("tbody")[0];
@@ -131,6 +134,8 @@ jQuery("#cw_edit_submit").submit(function (e) {
             return;
         }
         if(ret.status=='success') {
+            location.reload();
+            return;
             var table = document.getElementById("cwInfo_tbl");
             var tbody = table.getElementsByTagName("tbody")[0];
             tbody.innerHTML = ret.data;

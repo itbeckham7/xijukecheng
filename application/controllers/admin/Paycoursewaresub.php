@@ -31,6 +31,7 @@ class Paycoursewaresub extends Admin_Controller
         $this->data['school_types'] = $this->schooltypes_m->getItems();
         $this->data['cwsets'] = $this->coursewares_m->get_cw(
             "coursewares.platform_type = {$this->data['platformType']}"
+            ." and coursewares.school_type_id = 2"
         );
         $this->data["subview"] = "admin/paycoursewaresub/index";
         $this->data["subscript"] = "admin/settings/script";

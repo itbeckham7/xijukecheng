@@ -16,11 +16,11 @@
                                 <form action="#" class="form-horizontal">
                                     <div class="form-body">
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label"><?php echo $this->lang->line('CoursewareName'); ?>
-                                                :</label>
+                                            <label class="col-md-4 control-label"><?php
+                                                echo $this->lang->line('CoursewareName'); ?>:</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" id="cw_name_search"
-                                                       placeholder="">
+                                                <input type="text" class="form-control"
+                                                       id="cw_name_search" placeholder="">
                                             </div>
                                         </div>
                                     </div>
@@ -30,11 +30,11 @@
                                 <form action="#" class="form-horizontal">
                                     <div class="form-body">
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label"><?php echo $this->lang->line('keyword'); ?>
-                                                :</label>
+                                            <label class="col-md-4 control-label"><?php
+                                                echo $this->lang->line('keyword'); ?>:</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" id="keyword_cw_search"
-                                                       placeholder="">
+                                                <input type="text" class="form-control"
+                                                       id="keyword_cw_search" placeholder="">
                                             </div>
                                         </div>
                                     </div>
@@ -43,8 +43,8 @@
                             <div class="col-md-offset-5 col-md-1">
                                 <div class="btn-group">
                                     <button class=" btn blue" id="add_new_cw_btn"><i
-                                                class="fa fa-plus"></i>&nbsp&nbsp<?php echo $this->lang->line('AddNew'); ?>
-                                    </button>
+                                                class="fa fa-plus"></i>&nbsp&nbsp<?php
+                                        echo $this->lang->line('AddNew'); ?></button>
                                 </div>
                             </div>
                             <!-------Table tool parts----------------->
@@ -83,21 +83,23 @@
         <h4 class="modal-title"><?php echo $this->lang->line('AddNewCourseWare'); ?></h4>
     </div>
     <div class="modal-body">
-        <form class="form-horizontal" enctype="multipart/form-data" action="" id="cw_addNew_submit_form" role="form"
-              method="post" accept-charset="utf-8">
+        <form class="form-horizontal" enctype="multipart/form-data" action="" id="cw_addNew_submit_form"
+              role="form" method="post" accept-charset="utf-8">
             <div class="form-body">
                 <div class="form-group">
                     <label class="col-md-2 control-label"><?php echo $this->lang->line('CoursewareName'); ?>:</label>
                     <div class="col-md-4">
-                        <input class="form-control input-inline " type="text" name="add_cw_name" id="add_cw_name"
-                               value="">
+                        <input class="form-control input-inline " type="text"
+                               name="add_cw_name" id="add_cw_name" value="">
                     </div>
                     <label class="col-md-2 control-label"><?php echo $this->lang->line('CourswareSN'); ?>:</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control input-inline" name="add_cw_sn" id="add_cw_sn" value="">
+                        <input type="text" class="form-control input-inline"
+                               name="add_cw_sn" id="add_cw_sn" value="">
                     </div>
                 </div>
-                <input type="hidden" id="add_unit_type_name" name="add_unit_type_name" value="<?php echo $this->lang->line('China');?>">
+                <input type="hidden" id="add_unit_type_name" name="add_unit_type_name"
+                       value="<?php echo $this->lang->line('China'); ?>">
                 <input type="hidden" id="add_school_type_id" name="add_school_type_id" value="1">
                 <input type="hidden" id="add_courseware_type" name="add_cw_type" value="1">
                 <div class="form-group">
@@ -105,35 +107,44 @@
                     <div class="col-md-3">
                         <select class="form-control" id="add_course_name" name="add_course_name">
                             <?php foreach ($courses as $course) : ?>
-                                <option value="<?= $course->course_id ?>" data-school-type-id="<?= $course->school_type_id ?>"><?= $course->course_name ?></option>
+                                <option value="<?= $course->course_id ?>"
+                                        data-school-type-id="<?= $course->school_type_id ?>"><?= $course->course_name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <label class="col-md-offset-1 col-md-2 control-label"><?php echo $this->lang->line('IsFree'); ?>:</label>
+                    <label class="col-md-offset-1 col-md-2 control-label"><?php
+                        echo $this->lang->line('IsFree'); ?>:</label>
                     <div class="col-md-4">
-                        <div class="mt-radio-inline">
-                            <label class="mt-radio mt-radio-outline">
-                                <input type="radio" name="free_option" value="1"><?= $this->lang->line('Free') ?>
-                                <span></span>
+                        <div class="mt-radio-inline" style="padding-bottom: 0;">
+                            <label class="mt-radio mt-radio-outline" style="margin: 0;">
+                                <input type="radio" name="free_option" value="1"><?= $this->lang->line('Yes') ?>
+                                <span style="margin-left: 8px;"></span>
                             </label>
-                            <label class="mt-radio mt-radio-outline">
-                                <input type="radio" name="free_option" value="0" checked><?= $this->lang->line('Unfree') ?>
-                                <span></span>
+                            <label class="mt-radio mt-radio-outline" style="margin: 0;">
+                                <input type="radio" name="free_option" value="0" checked><?= $this->lang->line('No') ?>
+                                <span style="margin-left: 8px;"></span>
                             </label>
                         </div>
                     </div>
                 </div>
-                <div class="form-group price_group" style="margin-bottom: 0; display: none">
+                <div class="form-group price_group" style="display: none">
                     <label class="col-md-2 control-label"><?php echo $this->lang->line('Price'); ?>:</label>
                     <div class="col-md-3">
                         <input type="number" class="form-control input-inline" name="add_cw_price" id="add_cw_price"
-                               value="0.00" step="0.01">
+                               value="0.00" step="0.01" style="width: 70%;">
                         <label class="control-label"><?php echo $this->lang->line('UnitPrice'); ?></label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="cwImageUpload"
-                           class="col-md-2 control-label"><?php echo $this->lang->line('CoursewareImage'); ?></label>
+                    <label for="swFileUpload"
+                           class="col-md-2 control-label"><?php echo $this->lang->line('UploadCourseware'); ?>:</label>
+                    <div class="col-md-4">
+                        <input type="file" id="add_cw_package" name="add_cw_package">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cwImageUpload" class="col-md-2 control-label"><?php
+                        echo $this->lang->line('CoursewareImage'); ?>:</label>
                     <div class="col-md-3">
                         <input type="file" id="add_cw_upload_img" name="add_file_name" onchange="add_upload_image();">
                         <p class="help-block"><?php echo $this->lang->line('ImageUploadDescription'); ?></p>
@@ -167,41 +178,51 @@
         <h4 class="modal-title"><?php echo $this->lang->line('ModifyUnitInfo'); ?></h4>
     </div>
     <div class="modal-body">
-        <form class="form-horizontal" enctype="multipart/form-data" action="" id="cw_edit_submit" role="form"
-              method="post" accept-charset="utf-8">
+        <form class="form-horizontal" enctype="multipart/form-data"
+              action="" id="cw_edit_submit" role="form" method="post" accept-charset="utf-8">
             <div class="form-body">
                 <div class="form-group">
-                    <label class="col-md-2 control-label"><?php echo $this->lang->line('CoursewareName'); ?>:</label>
+                    <label class="col-md-2 control-label"><?php
+                        echo $this->lang->line('CoursewareName'); ?>:</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control input-inline" name="cw_name" id="cw_name" value="">
+                        <input type="text" class="form-control input-inline"
+                               name="cw_name" id="cw_name" value="">
                     </div>
-                    <label class="col-md-2 control-label"><?php echo $this->lang->line('CourswareSN'); ?>:</label>
+                    <label class="col-md-2 control-label"><?php
+                        echo $this->lang->line('CourswareSN'); ?>:</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control input-inline" name="cw_sn" id="cw_sn" value="">
+                        <input type="text" class="form-control input-inline"
+                               name="cw_sn" id="cw_sn" value="">
                     </div>
                 </div>
-                <input type="hidden" id="edit_unit_type_name" name="unit_type_name" value="<?php echo $this->lang->line('China');?>">
+                <input type="hidden" id="edit_unit_type_name" name="unit_type_name"
+                       value="<?php echo $this->lang->line('China'); ?>">
                 <input type="hidden" id="edit_school_type_id" name="school_type_id" value="1">
                 <input type="hidden" id="edit_courseware_type" name="cw_type" value="1">
                 <div class="form-group">
-                    <label class="col-md-2 control-label"><?php echo $this->lang->line('CourseName'); ?>:</label>
+                    <label class="col-md-2 control-label"><?php
+                        echo $this->lang->line('CourseName'); ?>:</label>
                     <div class="col-md-3">
                         <select class="form-control" id="course_name" name="course_name">
                             <?php foreach ($courses as $course) : ?>
-                                <option value="<?= $course->course_id ?>" data-school-type-id="<?= $course->school_type_id ?>"><?= $course->course_name ?></option>
+                                <option value="<?= $course->course_id ?>"
+                                        data-school-type-id="<?= $course->school_type_id ?>"><?= $course->course_name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <label class="col-md-offset-1 col-md-2 control-label"><?php echo $this->lang->line('IsFree'); ?>:</label>
+                    <label class="col-md-offset-1 col-md-2 control-label"><?php
+                        echo $this->lang->line('IsFree'); ?>:</label>
                     <div class="col-md-4">
-                        <div class="mt-radio-inline">
-                            <label class="mt-radio mt-radio-outline">
-                                <input type="radio" name="free_option" value="1" id="free_yes_option" checked><?= $this->lang->line('Free') ?>
-                                <span></span>
+                        <div class="mt-radio-inline" style="padding-bottom: 0;">
+                            <label class="mt-radio mt-radio-outline" style="margin: 0;">
+                                <input type="radio" name="free_option" value="1"
+                                       id="free_yes_option" checked><?= $this->lang->line('Yes') ?>
+                                <span style="margin-left: 8px;"></span>
                             </label>
-                            <label class="mt-radio mt-radio-outline">
-                                <input type="radio" name="free_option" value="0" id="free_no_option"><?= $this->lang->line('Unfree') ?>
-                                <span></span>
+                            <label class="mt-radio mt-radio-outline" style="margin: 0;">
+                                <input type="radio" name="free_option" value="0"
+                                       id="free_no_option"><?= $this->lang->line('No') ?>
+                                <span style="margin-left: 8px;"></span>
                             </label>
                         </div>
                     </div>
@@ -210,13 +231,22 @@
                     <label class="col-md-2 control-label"><?php echo $this->lang->line('Price'); ?>:</label>
                     <div class="col-md-3">
                         <input type="number" class="form-control input-inline" name="cw_price" id="cw_price"
-                               value="0.00" step="0.01">
+                               value="0.00" step="0.01" style="width: 70%;">
                         <label class="control-label"><?php echo $this->lang->line('UnitPrice'); ?></label>
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="swFileUpload"
+                           class="col-md-2 control-label"><?php
+                        echo $this->lang->line('UploadCourseware'); ?>:</label>
+                    <div class="col-md-4">
+                        <input type="file" id="cw_package" name="cw_package">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="cwImageUpload"
-                           class="col-md-2 control-label"><?php echo $this->lang->line('CoursewareImage'); ?></label>
+                           class="col-md-2 control-label"><?php
+                        echo $this->lang->line('CoursewareImage'); ?>:</label>
                     <div class="col-md-3">
                         <input type="file" id="cw_upload_img" name="file_name" onchange="edit_upload_image();">
                         <p class="help-block"><?php echo $this->lang->line('ImageUploadDescription'); ?></p>
@@ -259,6 +289,41 @@
                 class="btn btn-outline dark"><?php echo $this->lang->line('No'); ?></button>
     </div>
 </div>
+
+<style>
+    .uploading_backdrop {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: 0.9;
+        z-index: 12000;
+    }
+
+    #wait_ajax_loader {
+        position: absolute;
+        top: 41%;
+        left: 50%;
+        z-index: 15000
+    }
+
+    #progress_percent {
+        position: absolute;
+        top: 43%;
+        left: 56.5%;
+        font-size: 18px;
+        color: #fff;
+        z-index: 17000
+    }
+</style>
+<div class="uploading_backdrop" style="display: none"></div>
+<div class="progressing_area" style="display: none">
+    <img id="wait_ajax_loader" src='<?php echo base_url('assets/images/frontend/ajax-loader-1.gif'); ?>'/>
+    <span style="position: absolute;top: 43%;left: 53.5%;font-size:18px;color: #fff;z-index: 16000"><?= $this->lang->line('uploading') ?></span>
+    <span id="progress_percent">0%</span>
+</div>
+
+
 <!----------pagenation-------->
 <script type="text/javascript">
     var prevstr = "<?php echo $this->lang->line('PrevPage');?>";
@@ -447,8 +512,7 @@
         var pub_st = '1';
         if (publish == curBtnText) {
             self.innerHTML = unpublish;
-        }
-        else {
+        } else {
             self.innerHTML = publish;
             pub_st = '0';
         }
@@ -461,14 +525,14 @@
             success: function (res) {
                 if (res.status == 'success') {
                     console.log('courseware publish has been successed!')
-                }
-                else//failed
+                } else//failed
                 {
                     alert("Cannot delete CourseWare Item.");
                 }
             }
         });
     }
+
     function validate_cw(self) {
         var publish_cw_id = self.getAttribute("cw_id");
         var publish = "开放";
@@ -477,8 +541,7 @@
         var pub_st = '1';
         if (publish == curBtnText) {
             self.innerHTML = unpublish;
-        }
-        else {
+        } else {
             self.innerHTML = publish;
             pub_st = '0';
         }
@@ -491,8 +554,7 @@
             success: function (res) {
                 if (res.status == 'success') {
                     console.log('courseware publish has been successed!')
-                }
-                else//failed
+                } else//failed
                 {
                     alert("Cannot delete CourseWare Item.");
                 }
@@ -505,9 +567,9 @@
         console.log('-- course_id : ', course_id);
 
         var ops = jQuery('#course_name').children();
-        for( var i=0; i<ops.length; i++ ){
+        for (var i = 0; i < ops.length; i++) {
             var op = jQuery(ops[i]);
-            if( op.attr('value') == course_id ){
+            if (op.attr('value') == course_id) {
                 console.log('-- op : ', op.attr('data-school-type-id'))
                 $('#edit_school_type_id').val(op.attr('data-school-type-id'))
             }
@@ -519,9 +581,9 @@
         console.log('-- add course_id : ', course_id);
 
         var ops = jQuery('#add_course_name').children();
-        for( var i=0; i<ops.length; i++ ){
+        for (var i = 0; i < ops.length; i++) {
             var op = jQuery(ops[i]);
-            if( op.attr('value') == course_id ){
+            if (op.attr('value') == course_id) {
                 console.log('-- op : ', op.attr('data-school-type-id'))
                 $('#add_school_type_id').val(op.attr('data-school-type-id'))
             }
@@ -585,8 +647,7 @@
             }
             if (cmpst > 0) {
                 tr[i].style.display = "";
-            }
-            else tr[i].style.display = "none";
+            } else tr[i].style.display = "none";
         }
     });
 </script>

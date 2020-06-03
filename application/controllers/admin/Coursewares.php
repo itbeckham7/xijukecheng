@@ -29,6 +29,7 @@ class Coursewares extends Admin_Controller
         $this->data["subview"] = "admin/coursewares/index";
         $this->data["subscript"] = "admin/settings/script";
         $this->data["subcss"] = "admin/settings/css";
+        $this->data['courseware_content'] = $this->output_content($this->data['coursewares']);
 
         if (!$this->checkRole()) {
             $this->load->view('errors/html/access_denied.php', $this->data);
@@ -57,8 +58,8 @@ class Coursewares extends Admin_Controller
             if ($this->upload->do_upload('add_file_name')) {
                 $data = $this->upload->data();
                 $add_cw_image_path = 'uploads/images/' . $data["file_name"];
-            }
 
+            }
             ///update courseware table
             $add_cw_name = $this->input->post('add_cw_name');
             $add_cw_sn = $this->input->post('add_cw_sn');
@@ -67,7 +68,8 @@ class Coursewares extends Admin_Controller
             $add_course_name = $this->input->post('add_course_name');
             $add_cw_type = $this->input->post('add_cw_type');
             $isFree = $this->input->post('free_option');
-            log_message('info', '-- add : 5');
+            $add_cw_price = $this->input->post('add_cw_price');
+
             $param = array(
                 'cw_sn' => $add_cw_sn,
                 'cw_name' => $add_cw_name,
@@ -75,8 +77,9 @@ class Coursewares extends Admin_Controller
                 'school_type_id' => $add_school_type_id,
                 'course_name' => $add_course_name,
                 'cw_image_path' => $add_cw_image_path,
+                'free' => $isFree,
                 'cw_type' => $add_cw_type,
-                'free' => $isFree
+                'price' => $add_cw_price,
             );
             log_message('info', '-- $param : ' . var_export($param, true));
             $cw_id = $this->coursewares_m->add($param);
@@ -162,8 +165,10 @@ class Coursewares extends Admin_Controller
             $unit_type_name = $this->input->post('unit_type_name');
             $school_type_id = $this->input->post('school_type_id');
             $course_name = $this->input->post('course_name');
-            $cw_type = $this->input->post('cw_type');
             $isFree = $this->input->post('free_option');
+            $cw_price = $this->input->post('cw_price');
+            $cw_type = $this->input->post('cw_type');
+            if ($isFree == '1') $cw_price = '0.00';
 
             $param = array(
                 'cw_id' => $cw_id,
@@ -172,8 +177,9 @@ class Coursewares extends Admin_Controller
                 'unit_type_name' => $unit_type_name,
                 'school_type_id' => $school_type_id,
                 'course_name' => $course_name,
+                'free' => $isFree,
                 'cw_type' => $cw_type,
-                'free' => $isFree
+                'price' => $cw_price
             );
             log_message('info', '-- $param : ' . var_export($param, true));
             $cw_image_path = '';
@@ -234,6 +240,22 @@ class Coursewares extends Admin_Controller
         echo json_encode($ret);
     }
 
+    public function validate()
+    {
+        $ret = array(
+            'data' => '',
+            'status' => 'fail'
+        );
+        if ($_POST) {
+            $publish_cw_id = $_POST['publish_cw_id'];
+            $publish_cw_st = $_POST['publish_state'];
+            $this->data['swsets'] = $this->coursewares_m->validate($publish_cw_id, $publish_cw_st);
+            //$ret['data'] = $this->output_content($this->data['cwsets']);
+            $ret['status'] = 'success';
+        }
+        echo json_encode($ret);
+    }
+
     public function output_content($cwsets)
     {
         $output = '';
@@ -247,6 +269,7 @@ class Coursewares extends Admin_Controller
             $output .= '<td align="center">' . $cw->courseware_num . '</td>';
             $output .= '<td align="center">' . $cw->courseware_name . '</td>';
             $output .= '<td align="center" data-course-id="' . $cw->course_id . '">' . $cw->course_name . '</td>';
+            $output .= '<td align="center">' . (floatval($cw->price) == 0 ? $this->lang->line('Free') : $cw->price) . '</td>';
             $output .= '<td align="center" data-school-type-id="' . $cw->school_type_id . '">' . $cw->school_type_name . '</td>';
             $output .= '<td align="center">';
             $output .= '<button class="btn btn-sm btn-success" onclick = "edit_cw(this);" cw-free="' . $cw->free . '" cw_photo = "' . $cw->courseware_photo . '"cw_id = ' . $cw->courseware_id . '>' . $this->lang->line('Modify') . '</button>';

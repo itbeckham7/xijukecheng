@@ -7,7 +7,7 @@ jQuery("#delete_cw_item_btn").click(function () {
         type: "post",
         url: baseURL+"admin/paycoursewares/delete",
         dataType: "json",
-        data: {delete_cw_id: delete_cw_id},
+        data: {delete_cw_id: delete_cw_id, delete_cw_type: '0'},
         success: function(res) {
             if(res.status=='success') {
                 location.reload();
@@ -26,6 +26,9 @@ jQuery("#delete_cw_item_btn").click(function () {
     jQuery('#cw_delete_modal').modal('toggle');
 });
 jQuery("#cw_addNew_submit_form").submit(function (e) {
+    console.log('-- cw_addNew_submit_form start')
+    $(".uploading_backdrop").toggle();
+    $(".progressing_area").toggle();
     e.preventDefault();
     jQuery.ajax({
         url:baseURL+"admin/paycoursewares/add",
@@ -35,25 +38,60 @@ jQuery("#cw_addNew_submit_form").submit(function (e) {
         contentType:false,
         cache:false,
         async:false,
-        success: function(res){
-            var ret = JSON.parse(res);
-            if(ret.status=='success') {
-                location.reload();
-                return;
-                var table = document.getElementById("cwInfo_tbl");
-                var tbody = table.getElementsByTagName("tbody")[0];
-                tbody.innerHTML = ret.data;
-                executionPageNation();
+        xhr: function(){
+            //upload Progress
+            var xhr = $.ajaxSettings.xhr();
+            if (xhr.upload) {
+                xhr.upload.addEventListener('progress', function(event) {
+                    var percent = 0;
+                    var position = event.loaded || event.position;
+                    var total = event.total;
+                    if (event.lengthComputable) {
+                        percent = Math.ceil(position / total * 100);
+                    }
+                    $("#progress_percent").text(percent+'%');
+
+                }, true);
             }
-            else//failed
-            {
-                alert("Cannot modify Unit Data.");
-            }
+            return xhr;
+        },
+        mimeType:"multipart/form-data"
+    }).done(function(res) { //
+        var ret;
+        try {
+            ret = JSON.parse(res);
+        } catch (e) {
+            $(".uploading_backdrop").hide();
+            $(".progressing_area").hide();
+            alert('File Uploading has been failed');
+            // jQuery('#cw_addNew_modal').modal('toggle');
+            console.log('file uploading has been failed');
         }
+        if(ret.status=='success') {
+            location.reload();
+            return;
+            console.log('-- cw_addNew_submit_form end')
+            var table = document.getElementById("cwInfo_tbl");
+            var tbody = table.getElementsByTagName("tbody")[0];
+            tbody.innerHTML = ret.data;
+            executionPageNation();
+            $(".uploading_backdrop").hide();
+            $(".progressing_area").hide();
+        }
+        else//failed
+        {
+            alert('File Uploading has been failed. Operation failed');
+            $(".uploading_backdrop").hide();
+            $(".progressing_area").hide();
+            alert(ret.data);
+        }
+        jQuery('#cw_addNew_modal').modal('toggle');
     });
-    jQuery('#cw_addNew_modal').modal('toggle');
+
 });
 jQuery("#cw_edit_submit").submit(function (e) {
+    $(".uploading_backdrop").show();
+    $(".progressing_area").show();
     e.preventDefault();
     var cw_id = jQuery("#cw_info_id").val();
     var fdata = new  FormData(this);
@@ -66,21 +104,52 @@ jQuery("#cw_edit_submit").submit(function (e) {
         contentType:false,
         cache:false,
         async:false,
-        success: function(res){
-            var ret = JSON.parse(res);
-            if(ret.status=='success') {
-                location.reload();
-                return;
-                var table = document.getElementById("cwInfo_tbl");
-                var tbody = table.getElementsByTagName("tbody")[0];
-                tbody.innerHTML = ret.data;
-                executionPageNation();
+        xhr: function(){
+            //upload Progress
+            var xhr = $.ajaxSettings.xhr();
+            if (xhr.upload) {
+                xhr.upload.addEventListener('progress', function(event) {
+                    var percent = 0;
+                    var position = event.loaded || event.position;
+                    var total = event.total;
+                    if (event.lengthComputable) {
+                        percent = Math.ceil(position / total * 100);
+                    }
+                    $("#progress_percent").text(percent+'%');
+                }, true);
             }
-            else//failed
-            {
-                alert("Cannot modify Unit Data.");
-            }
+            return xhr;
+        },
+        mimeType:"multipart/form-data"
+    }).done(function(res){
+        var ret;
+        try{
+            ret = JSON.parse(res);
+        }catch(e){
+            $(".uploading_backdrop").hide();
+            $(".progressing_area").hide();
+            jQuery('#cw_modify_modal').modal('toggle');
+            alert('File uploading has been failed.');
+            console.log(res);
+            return;
         }
-    });
-    jQuery('#cw_modify_modal').modal('toggle');
+        if(ret.status=='success') {
+            location.reload();
+            return;
+            var table = document.getElementById("cwInfo_tbl");
+            var tbody = table.getElementsByTagName("tbody")[0];
+            tbody.innerHTML = ret.data;
+            executionPageNation();
+            $(".uploading_backdrop").hide();
+            $(".progressing_area").hide();
+        }
+        else//failed
+        {
+            $(".uploading_backdrop").hide();
+            $(".progressing_area").hide();
+            alert('File uploading has been failed');
+            console.log(ret.data)
+        }
+        jQuery('#sw_modify_modal').modal('toggle');
+    })
 });
