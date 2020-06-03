@@ -61,7 +61,8 @@
                 var version = parseInt(ua.substring(chrome+7, ua.indexOf('.', chrome)), 10)
                 console.log('-- version : ', version);
                 if( version < 78 ){
-                    location.replace(base_url + 'assets/360.html')
+                    alert('-- version : ' + version)
+                    // location.replace(base_url + 'assets/360.html')
                     return;
                 }
             }
