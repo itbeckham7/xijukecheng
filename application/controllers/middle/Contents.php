@@ -311,7 +311,7 @@ class Contents extends CI_Controller {
                 'courseware_id'=>$coursewareId,
                 'content_user_id' => $user_id,
                 'local' => '1',
-                'info' => $_POST['info'],
+                'info' => json_encode($_POST['info']),
                 'public' => '0',
                 'file_name' => json_encode($file_name_arr),
                 'bg_path' => $_POST["read-bg-video"],
