@@ -283,41 +283,49 @@ class Contents extends CI_Controller {
             if (!is_dir($uploadDirectory)) {
                 mkdir($uploadDirectory, 0777, true);
             }
-            $file_name_rename = $_POST['new_filename'];
-            $this->duplication_process($file_name_rename,'2');///duplication processing
-            ///
-            $uploadFileName = 'uploads/work/dubbing/'.$file_name_rename.'.wav';
-            if (!move_uploaded_file($_FILES["read-blob"]["tmp_name"], $uploadFileName)) {
-                $error = "Problem writing read audio file to disk!";
-                $output = array(
-                    'status' => 'fail',
-                    'error' => $error
-                );
 
-                echo json_encode($output);
+            $this->duplication_process($_POST['new_filename'],'2');///duplication processing
+            $file_name_arr = array();
+
+            for($i=0; $i<count($_FILES["read-blob"]["tmp_name"]); $i++){
+                $file_name_rename = $_POST['new_filename'] . '-' . $i;
+                ///
+                $uploadFileName = 'uploads/work/dubbing/'.$file_name_rename.'.wav';
+                if (!move_uploaded_file($_FILES["read-blob"]["tmp_name"][$i], $uploadFileName)) {
+                    $error = "Problem writing read audio file to disk!";
+                    $output = array(
+                        'status' => 'fail',
+                        'error' => $error
+                    );
+
+                    echo json_encode($output);
+                    return;
+                } else {
+                    array_push($file_name_arr, $uploadFileName);
+                }
             }
-            else {
-                $data = array(
-                    'content_title' => trim($file_name_rename),
-                    'content_type_id' => '2',
-                    'courseware_id'=>$coursewareId,
-                    'content_user_id' => $user_id,
-                    'local' => '1',
-                    'info' => $_POST['info'],
-                    'public' => '0',
-                    'file_name' => $uploadFileName,
-                    'bg_path' => $_POST["read-bg-video"],
-                );
 
-                $this->contents_m->insert_contents( $data );
+            $data = array(
+                'content_title' => trim($file_name_rename),
+                'content_type_id' => '2',
+                'courseware_id'=>$coursewareId,
+                'content_user_id' => $user_id,
+                'local' => '1',
+                'info' => $_POST['info'],
+                'public' => '0',
+                'file_name' => json_encode($file_name_arr),
+                'bg_path' => $_POST["read-bg-video"],
+            );
 
-                $output = array(
-                    'status' => 'success',
-                    'filename' => $uploadFileName
-                );
+            $this->contents_m->insert_contents( $data );
 
-                echo json_encode($output);
-            }
+            $output = array(
+                'status' => 'success',
+                'filename' => $uploadFileName
+            );
+
+            echo json_encode($output);
+
         } else {
             $error = "There are no read audio file";
 
