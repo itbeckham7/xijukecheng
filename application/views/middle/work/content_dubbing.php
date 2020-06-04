@@ -52,7 +52,7 @@ if ($user_type != '1') {
 
 <div class="player" style="display: <?php if ($content_type_id != '4') echo "none"; else echo 'block'; ?>">
     <audio id="music" preload="true">
-        <source src="<?php echo base_url() . $wavPath; ?>">
+        <source src="">
     </audio>
     <a id="pButton" class="play"></a>
     <div id="timeline"></div>
@@ -65,15 +65,15 @@ if ($user_type != '1') {
         <img src="<?= base_url($bgPath); ?>">
         <?php } else { ?>
             <video controls id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered"
-                   style="background:#000;object-fit: fill;position: absolute;width: 100%;height:100%" >
+                   style="background:#000;object-fit: fill;position: absolute;width: 100%;height:100%">
                 <source src="<?= base_url($bgPath); ?>" type="video/mp4">
             </video>
             <script>
                 var music = document.getElementById('music'); // id for audio element
 
                 var timeInfo = JSON.parse('<?= $info; ?>');
-                var startTime = timeInfo.start;
-                var endTime = timeInfo.end;
+                var wavInfo = JSON.parse('<?= $wavPath; ?>');
+                var isWavPlaying = false;
 
                 var vplayer = videojs('videoPlayer', {
                     controls: true,
@@ -86,28 +86,57 @@ if ($user_type != '1') {
                 }, function () {
                     vplayer.on('play', function () {
                         console.log('play');
-                        vplayer.currentTime(startTime);
-                        music.currentTime = 0;
-                        music.play();
+                        var wavIdx = -1;
+                        isWavPlaying = false;
+                        vplayer.volume(1);
+                        var vidTime = vplayer.currentTime();
+                        for (var i = 0; i < timeInfo.length; i++) {
+                            var item = timeInfo[i];
+                            if (vidTime > item.start && vidTime < item.end) {
+                                wavIdx = i;
+                                break;
+                            }
+                        }
+                        if (wavIdx > -1) {
+                            music.src = baseURL + wavInfo[wavIdx];
+                            music.currentTime = vidTime - timeInfo[wavIdx].start;
+                            music.play();
+                            vplayer.volume(0);
+                            isWavPlaying = true;
+                        }
                     });
                     vplayer.on("pause", function () {
                         console.log('stop');
                         music.pause();
+                        isWavPlaying = false;
                     });
                     vplayer.on("ended", function () {
                         console.log('stop');
                         music.pause();
+                        isWavPlaying = false;
                     });
                     vplayer.on("timeupdate", function (e) {
-                        if(endTime<0) return;
-                        if (vplayer.currentTime() > endTime-0.2) {
-                            vplayer.pause();
-                            if( $('#play-btn').hasClass('playing') ){
-                                $('#play-btn').trigger('click');
+                        var wavIdx = -1;
+                        vplayer.volume(1);
+                        var vidTime = vplayer.currentTime();
+                        for (var i = 0; i < timeInfo.length; i++) {
+                            var item = timeInfo[i];
+                            if (vidTime > item.start && vidTime < item.end) {
+                                wavIdx = i;
                             }
                         }
+                        if (!isWavPlaying && wavIdx > -1) {
+                            music.src = baseURL + wavInfo[wavIdx];
+                            music.currentTime = vidTime - timeInfo[wavIdx].start;
+                            music.play();
+                            vplayer.volume(0);
+                            isWavPlaying = true;
+                        }else if(wavIdx == -1){
+                            isWavPlaying = false;
+                            music.pause();
+                        }
                     });
-                    vplayer.volume(0);
+                    // vplayer.volume(0);
                     // vplayer.play();
                 });
             </script>
@@ -254,10 +283,10 @@ if ($user_type != '1') {
     // Synchronizes playhead position with current point in audio
     function timeUpdate() {
         timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
-        if(music.paused) {
+        if (music.paused) {
             pButton.className = "";
             pButton.className = "play";
-        }else{
+        } else {
             pButton.className = "";
             pButton.className = "pause";
         }
