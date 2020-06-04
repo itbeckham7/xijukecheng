@@ -43,7 +43,9 @@ class Contents extends CI_Controller {
         } else if( $type == 'shooting' ){
             $this->shooting_upload( $user_id, $coursewareId, $new_filename );
         } else if( $type == 'record' ){
-            $this->record_upload( $user_id, $coursewareId, $new_filename );
+            $author = $_POST['author'];
+            $school = $_POST['school'];
+            $this->record_upload( $user_id, $coursewareId, $new_filename, $author, $school );
         } else if( $type == 'dubbing-read' ){
             $this->dubbing_read_upload( $user_id, $coursewareId, $new_filename );
         } else if( $type == 'dubbing-song' ){
@@ -219,7 +221,7 @@ class Contents extends CI_Controller {
         }
     }
 
-    private function record_upload( $user_id, $coursewareId, $new_filename ){
+    private function record_upload( $user_id, $coursewareId, $new_filename, $author, $school ){
         // if it is audio-blob
         if (isset($_FILES["video-blob"])) {
             $this->duplication_process($_POST['new_filename'],'4');///duplication processing
@@ -251,6 +253,7 @@ class Contents extends CI_Controller {
                     'local' => '1',
                     'public' => '0',
                     'file_name' => $uploadDirectory,
+                    'info' => json_encode(array('author' => $author, 'school' => $school))
                 );
 
                 $this->contents_m->insert_contents( $data );
