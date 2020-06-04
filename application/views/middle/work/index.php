@@ -52,8 +52,10 @@ else echo base_url('middle/work/shooting/') . $loged_In_user_id;
    class="btn-main back-btn"></a>
 
 <script src="<?= base_url('assets/js/custom/home.js') ?>"></script>
+<script>
+    $('.home-nav').on('click', function () {
+        var type = $(this).attr('data-type');
+        setMediaType(type);
+    });
 
-
-<style>   .teacher-reference-btn {
-        display: none;
-    } </style>
+</script>
