@@ -103,7 +103,6 @@ if ($user_type != '1') {
                         if (vplayer.currentTime() > endTime-0.2) {
                             vplayer.pause();
                             if( $('#play-btn').hasClass('playing') ){
-                                console.log('-- 2')
                                 $('#play-btn').trigger('click');
                             }
                         }

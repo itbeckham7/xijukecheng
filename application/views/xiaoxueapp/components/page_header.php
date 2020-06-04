@@ -52,7 +52,6 @@
 
         function checkBrowser(){
             var ua = window.navigator.userAgent;
-            console.log('-- ua : ', ua);
             var msie = ua.indexOf('MSIE ');
             var trident = ua.indexOf('Trident/');
             var edge = ua.indexOf('Edge/');
@@ -65,7 +64,6 @@
             var chrome = ua.indexOf('Chrome/');
             if( chrome > 0 ){
                 var version = parseInt(ua.substring(chrome+7, ua.indexOf('.', chrome)), 10)
-                console.log('-- version : ', version);
                 if( version < 78 ){
                     // alert('-- version : ' + version)
                     // location.replace(base_url + 'assets/360.html')

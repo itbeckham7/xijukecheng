@@ -26,7 +26,6 @@ jQuery("#delete_cw_item_btn").click(function () {
     jQuery('#cw_delete_modal').modal('toggle');
 });
 jQuery("#cw_addNew_submit_form").submit(function (e) {
-    console.log('-- cw_addNew_submit_form start')
     $(".uploading_backdrop").toggle();
     $(".progressing_area").toggle();
     e.preventDefault();
@@ -70,7 +69,7 @@ jQuery("#cw_addNew_submit_form").submit(function (e) {
         if(ret.status=='success') {
             location.reload();
             return;
-            console.log('-- cw_addNew_submit_form end')
+
             var table = document.getElementById("cwInfo_tbl");
             var tbody = table.getElementsByTagName("tbody")[0];
             tbody.innerHTML = ret.data;

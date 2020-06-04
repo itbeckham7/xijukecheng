@@ -81,36 +81,33 @@ class Coursewares extends Admin_Controller
                 'cw_type' => $add_cw_type,
                 'price' => $add_cw_price,
             );
-            log_message('info', '-- $param : ' . var_export($param, true));
+
             $cw_id = $this->coursewares_m->add($param);
             $this->data['cwsets'] = $this->coursewares_m->get_cw(array('platform_type' => $add_cw_type));
 
             $uploadPath = 'courseware/' . $cw_id;
             $dirPath = 'uploads/' . $uploadPath;
-            log_message('info', '-- add : 0 ' . $dirPath);
+
             if (!is_dir($dirPath)) {
                 mkdir($dirPath, 0755, true);
             }
 //            $config['upload_path']='./uploads/'.$uploadPath.'/';
 //            $config['allowed_types']='zip';
 //            $this->load->library('upload',$config);
-            log_message('info', '-- add : 1 ' . $cw_id);
+
             //***************************file uploading**************************//
             $isPackageUpload = false;
             if ($this->upload->do_upload('add_cw_package')) {
-                log_message('info', '-- add : 2');
                 ///$data["file_name"];
                 $data = array('cw_data' => $this->upload->data());
                 $zip = new ZipArchive;
                 $file = $data['cw_data']['full_path'];
                 chmod($file, 0777);
                 if ($zip->open($file) === TRUE) {
-                    log_message('info', '-- add : 3 ' . $file);
                     $zip->extractTo('./uploads/' . $uploadPath);
                     $zip->close();
                     unlink($file);
                     $add_cw_package = $dirPath;
-                    log_message('info', '-- add : 4 ' . $add_cw_package);
 
                     $sw_types = $this->subwaretypes_m->get_swtypes();
                     for ($i = 0; $i < count($sw_types); $i++) {
@@ -124,7 +121,7 @@ class Coursewares extends Admin_Controller
                         );
                         $this->subwares_m->add($param);
                     }
-                    log_message('info', '-- add : 7');
+
                     $isPackageUpload = true;
 
                 }
@@ -181,7 +178,7 @@ class Coursewares extends Admin_Controller
                 'cw_type' => $cw_type,
                 'price' => $cw_price
             );
-            log_message('info', '-- $param : ' . var_export($param, true));
+
             $cw_image_path = '';
             //image uploading
             if ($_FILES["file_name"]["name"] != '') {

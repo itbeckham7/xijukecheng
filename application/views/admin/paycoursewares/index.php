@@ -564,13 +564,11 @@
 
     jQuery("#course_name").change(function () {
         var course_id = jQuery(this).val();
-        console.log('-- course_id : ', course_id);
 
         var ops = jQuery('#course_name').children();
         for (var i = 0; i < ops.length; i++) {
             var op = jQuery(ops[i]);
             if (op.attr('value') == course_id) {
-                console.log('-- op : ', op.attr('data-school-type-id'))
                 $('#edit_school_type_id').val(op.attr('data-school-type-id'))
             }
         }
@@ -578,13 +576,11 @@
 
     jQuery("#add_course_name").change(function () {
         var course_id = jQuery(this).val();
-        console.log('-- add course_id : ', course_id);
 
         var ops = jQuery('#add_course_name').children();
         for (var i = 0; i < ops.length; i++) {
             var op = jQuery(ops[i]);
             if (op.attr('value') == course_id) {
-                console.log('-- op : ', op.attr('data-school-type-id'))
                 $('#add_school_type_id').val(op.attr('data-school-type-id'))
             }
         }
