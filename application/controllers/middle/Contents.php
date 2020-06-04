@@ -47,7 +47,9 @@ class Contents extends CI_Controller {
             $school = $_POST['school'];
             $this->record_upload( $user_id, $coursewareId, $new_filename, $author, $school );
         } else if( $type == 'dubbing-read' ){
-            $this->dubbing_read_upload( $user_id, $coursewareId, $new_filename );
+            $author = $_POST['author'];
+            $school = $_POST['school'];
+            $this->dubbing_read_upload( $user_id, $coursewareId, $new_filename, $author, $school );
         } else if( $type == 'dubbing-song' ){
             $this->dubbing_song_upload( $user_id, $coursewareId, $new_filename );
         } else if( $type == 'dubbing-script' ){
@@ -276,7 +278,7 @@ class Contents extends CI_Controller {
 
     }
 
-    private function dubbing_read_upload( $user_id, $coursewareId, $new_filename ){
+    private function dubbing_read_upload( $user_id, $coursewareId, $new_filename, $author, $school ){
         // if it is read-blob
         if (isset($_FILES["read-blob"]) && isset($_POST["read-bg-video"])) {
             $uploadDirectory = FCPATH . 'uploads/work/dubbing';
@@ -312,7 +314,7 @@ class Contents extends CI_Controller {
                 'courseware_id'=>$coursewareId,
                 'content_user_id' => $user_id,
                 'local' => '1',
-                'info' => json_encode($info_arr),
+                'info' => json_encode(array('author' => $author, 'school' => $school, 'dubbing' => $info_arr)),
                 'public' => '0',
                 'file_name' => json_encode($file_name_arr),
                 'bg_path' => $_POST["read-bg-video"],
