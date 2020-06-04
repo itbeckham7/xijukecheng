@@ -103,6 +103,7 @@ $(window).ready(function () {
         filterByWorkType(initStatus);
 
     });
+    filterScriptBtn.click();
     filterDubbingBtn.click(function () {
         $('.course_type_menu a').removeAttr('data-sel');
         $(this).attr('data-sel',1);

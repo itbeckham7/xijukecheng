@@ -211,11 +211,13 @@ $student_id = $student->user_id;
     </div>
 </div>
 <!---------------------My commented content modal------------------------------->
+<input hidden class="_sharedList" value='<?= json_encode($sharedLists); ?>'/>
+<input hidden class="_commentedList" value='<?= json_encode($commentedLists); ?>'/>
 <script>
     var deleteStr = '<?php echo $this->lang->line('Delete')?>';
     var classArr = '<?php echo $student->class_arr;?>';
-    var sharedList = '<?php echo json_encode($sharedLists);?>';
-    var commentedList = '<?php echo json_encode($commentedLists);?>';
+    var sharedList = $('._sharedList').val();
+    var commentedList = $('._commentedList').val();
     var student_id = '<?php echo $student_id;?>';
     var imageDir = baseURL + "assets/images/middle/profile/";
     var passEditBtn = $('.change_password_btn');

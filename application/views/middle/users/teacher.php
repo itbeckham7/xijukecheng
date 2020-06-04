@@ -294,11 +294,13 @@ $teacher_id = $teacher->user_id;
         </form>
     </div>
 </div>
+<input hidden class="_sharedList" value='<?= json_encode($sharedLists); ?>'/>
+<input hidden class="_commentedList" value='<?= json_encode($commentedLists); ?>'/>
 <script>
 
     var imageDir = baseURL + "assets/images/middle/profile/";
-    var sharedList = '<?php echo json_encode($sharedLists);?>';
-    var commentedList = '<?php echo json_encode($commentedLists);?>';
+    var sharedList = $('._sharedList').val();
+    var commentedList = $('._commentedList').val();
     var teacherId = '<?php echo $teacher_id;?>';
     var classOfTeacher = '<?php echo $teacherclasslist;?>';
     var showedClassListStatus = false;

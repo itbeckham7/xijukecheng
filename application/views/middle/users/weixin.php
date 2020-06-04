@@ -234,10 +234,11 @@
     </div>
 </div>
 <!---------------------My commented content modal------------------------------->
+<input hidden class="_paidList" value='<?= json_encode($paidLists); ?>'/>
 <script>
     var deleteStr = '<?php echo $this->lang->line('Delete')?>';
     var classArr = '<?php echo $student->class_arr;?>';
-    var paidList = '<?php echo addslashes(json_encode($paidLists));?>';
+    var paidList = $('._paidList').val();
     var student_id = '<?php echo $student_id;?>';
     var imageDir = baseURL + "assets/images/frontend/profile/";
     var passEditBtn = $('.change_password_btn');

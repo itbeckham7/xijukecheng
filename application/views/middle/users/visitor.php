@@ -42,8 +42,9 @@
 </style>
 <div class="share_list_wrapper" id="shared_list_area">
 </div>
+<input hidden class="_sharedList" value='<?= json_encode($sharedLists); ?>'/>
 <script>
-    var sharedList = '<?php echo json_encode($sharedLists);?>';
+    var sharedList = $('._sharedList').val();
 </script>
 <script src="<?= base_url('assets/js/custom/middle/menu_manage.js') ?>" type="text/javascript"></script>
 <script src="<?= base_url('assets/js/custom/middle/profile_visitor.js') ?>" type="text/javascript"></script>
