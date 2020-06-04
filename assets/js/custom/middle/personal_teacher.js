@@ -7,7 +7,7 @@ $(window).ready(function () {
     var course_menu_img = $('#course_menu_img');
     current_className = $('.custom_classlist_btn:first').attr('data-class_name');
     current_classbgname = $('.custom_classlist_btn:first').attr('data-image_name');
-    // $('#' + current_classbgname).attr('data-sel', 1);
+    $('#' + current_classbgname).attr('data-sel', 1);
     // clickClass();
     //$('.teacher_assign_class button:first-child').css('background','#ff0');
     $(".custom_classlist_btn").on('click', function () {
