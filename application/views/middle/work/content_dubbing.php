@@ -119,7 +119,6 @@ if ($user_type != '1') {
                     });
                     vplayer.on("timeupdate", function (e) {
                         var wavIdx = -1;
-                        vplayer.volume(1);
                         var vidTime = vplayer.currentTime();
                         for (var i = 0; i < timeInfo.length; i++) {
                             var item = timeInfo[i];
@@ -136,6 +135,7 @@ if ($user_type != '1') {
                         } else if (wavIdx == -1) {
                             isWavPlaying = false;
                             music.pause();
+                            vplayer.volume(1);
                         }
                     });
                     // vplayer.volume(0);
