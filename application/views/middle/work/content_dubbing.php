@@ -71,8 +71,10 @@ if ($user_type != '1') {
             <script>
                 var music = document.getElementById('music'); // id for audio element
 
-                var timeInfo = JSON.parse('<?= $info; ?>');
-                var wavInfo = JSON.parse('<?= $wavPath; ?>');
+                var timeInfo = JSON.parse('<?= $info; ?>')['dubbing'];
+                var wavInfo = '<?= $wavPath; ?>';
+                if (wavInfo.substr(0, 1) == '[') wavInfo = JSON.parse(wavInfo);
+                else music.src = baseURL + wavInfo;
                 var isWavPlaying = false;
 
                 var vplayer = videojs('videoPlayer', {
@@ -131,7 +133,7 @@ if ($user_type != '1') {
                             music.play();
                             vplayer.volume(0);
                             isWavPlaying = true;
-                        }else if(wavIdx == -1){
+                        } else if (wavIdx == -1) {
                             isWavPlaying = false;
                             music.pause();
                         }
