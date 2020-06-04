@@ -286,7 +286,7 @@ class Contents extends CI_Controller {
 
             $this->duplication_process($_POST['new_filename'],'2');///duplication processing
             $file_name_arr = array();
-
+            $info_arr = array();
             for($i=0; $i<count($_FILES["read-blob"]["tmp_name"]); $i++){
                 $file_name_rename = $_POST['new_filename'] . '-' . $i;
                 ///
@@ -302,6 +302,7 @@ class Contents extends CI_Controller {
                     return;
                 } else {
                     array_push($file_name_arr, $uploadFileName);
+                    array_push($info_arr, json_decode($_POST['info'][$i]));
                 }
             }
 
@@ -311,7 +312,7 @@ class Contents extends CI_Controller {
                 'courseware_id'=>$coursewareId,
                 'content_user_id' => $user_id,
                 'local' => '1',
-                'info' => json_encode($_POST['info']),
+                'info' => json_encode($info_arr),
                 'public' => '0',
                 'file_name' => json_encode($file_name_arr),
                 'bg_path' => $_POST["read-bg-video"],
