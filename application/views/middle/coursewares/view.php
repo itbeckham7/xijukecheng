@@ -44,8 +44,7 @@ if ($this->session->userdata('loggedin')) {
 <?php } else if ($this->session->userdata("loggedin") == FALSE) { ?>
     <a class="btn-main register-btn" href="<?= base_url('signin/index') ?>"><span>登录</span></a>
 <?php } ?>
-<a href="javascript:;" onclick="location.replace('<?= base_url('middle/coursewares') ?>')"
-   class="btn-main back-btn"></a>
+<a href="javascript:;" onclick="return_back()" class="btn-main back-btn"></a>
 <!--</div>-->
 
 <?php $subware_isexist = array(
@@ -142,8 +141,12 @@ if ($this->session->userdata('loggedin')) {
     var userType = '<?= $user_type; ?>';
 
     function return_back() {
+        if(setBackStatus() == 'false') {
+            history.back();
+            return;
+        }
         if (curr_sw == 'script_sw') {
-            window.location.replace(baseURL + 'middle/coursewares/index');
+            location.replace('<?= base_url('middle/coursewares') ?>');
         } else {
             //history.back();
             window.location.replace(baseURL + 'middle/coursewares/index');

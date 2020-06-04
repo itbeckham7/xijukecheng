@@ -159,6 +159,15 @@ function setMediaType(param) {
     return param;
 }
 
+function setBackStatus(param) {
+    var key = 'dubbing_back_status';
+    var param_val = sessionStorage.getItem(key);
+    if (param_val == undefined) sessionStorage.setItem(key, '');
+    param_val = sessionStorage.getItem(key);
+    if (param == undefined) return param_val;
+    sessionStorage.setItem(key, param);
+    return param;
+}
 function getUserInfo(token) {
     jQuery.ajax({
         url: baseURL + "/signin/signin_weixin",

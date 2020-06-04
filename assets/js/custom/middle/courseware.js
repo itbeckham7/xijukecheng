@@ -60,6 +60,7 @@ function receiveMessage(event) {
 }
 
 $('#script').on('click', function () {
+    setBackStatus(true);
     if (curr_sw == 'flash_sw') {
         curr_sw = 'script_sw';
         setSubwareNavId(curr_sw);
@@ -87,6 +88,7 @@ $('#script').on('click', function () {
 
 $('#flash_contents').on('click', function () {
     if (login_status == '0') return;
+    setBackStatus(true);
     setSubwareNavId(curr_sw);
     if (userType == '1') setMediaType('teaching');
     else setMediaType('demovideo');
@@ -113,6 +115,7 @@ $('#flash_contents').on('click', function () {
 
 $('#dubbing').on('click', function () {
     if (login_status == '0') return;
+    setBackStatus(true);
     if (curr_sw == 'flash_sw') {
         curr_sw = 'dubbing_sw';
         setSubwareNavId(curr_sw);
@@ -140,6 +143,7 @@ $('#dubbing').on('click', function () {
 
 $('#shooting').on('click', function () {
     if (login_status == '0') return;
+    setBackStatus(true);
     if (curr_sw == 'flash_sw') {
         curr_sw = 'shooting_sw';
         setSubwareNavId(curr_sw);
@@ -168,6 +172,7 @@ $('#shooting').on('click', function () {
 // flash page part
 
 $('.flash-tab a').on('click', function () {
+    setBackStatus(true);
     var that = $(this);
     var type = that.attr('data-type');
     $('.flash-tab a').removeAttr('data-sel');
