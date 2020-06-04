@@ -12,10 +12,10 @@ $loged_In_user_id = $this->session->userdata("loginuserID");
 if (!isset($loged_In_user_id)) $loged_In_user_id = '';
 $imageAbsDir = base_url() . 'assets/images/frontend/';
 $user_type = $this->session->userdata("user_type");
-$myworkURL = 'primary/work';
+$myworkURL = 'primary/work/student';
 $hd_menu_img_path = '';
 if ($user_type != '1') {
-    $myworkURL = 'primary/work';
+    $myworkURL = 'primary/work/script/' . $loged_In_user_id;
     $hd_menu_img_path = $imageAbsDir . 'coursewares/';
 } else {
     $hd_menu_img_path = $imageAbsDir.'coursewares/stu_';
