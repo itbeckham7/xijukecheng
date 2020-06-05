@@ -76,7 +76,7 @@ if ($user_type != '1') {
                 for (var i = 0; i < qInfo.length; i++) {
                     var item = qInfo[i];
                     if (item.question) {
-                        $('.question-bg').html(item.question);
+                        $('.question-bg').html('Question<br><br>' + item.question);
                         music.src = baseURL + wavInfo[i];
                         break;
                     }
@@ -106,7 +106,6 @@ if ($user_type != '1') {
                     autoplay: false
                 }, function () {
                     vplayer.on('play', function () {
-                        console.log('play');
                         var wavIdx = -1;
                         isWavPlaying = false;
                         vplayer.volume(1);
@@ -127,12 +126,10 @@ if ($user_type != '1') {
                         }
                     });
                     vplayer.on("pause", function () {
-                        console.log('stop');
                         music.pause();
                         isWavPlaying = false;
                     });
                     vplayer.on("ended", function () {
-                        console.log('stop');
                         music.pause();
                         isWavPlaying = false;
                     });
@@ -157,8 +154,6 @@ if ($user_type != '1') {
                             vplayer.volume(1);
                         }
                     });
-                    // vplayer.volume(0);
-                    // vplayer.play();
                 });
             </script>
         <?php } ?>

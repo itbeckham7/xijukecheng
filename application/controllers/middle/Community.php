@@ -54,6 +54,7 @@ class Community extends CI_Controller
             $this->data['user_nickname'] = $user_nickname;
             $this->data['user_school'] = $user_school;
             $this->data['content_type_id'] = $content_type_id;
+            $this->data['info'] = $contentInfo->info ?: json_encode(array('dubbing'=>array(array('start' => -1, 'end' => -1))));
             $this->data['courseware_id'] = $courseware_id;
             $this->data['vote_num'] = $contentInfo->vote_num;
 
