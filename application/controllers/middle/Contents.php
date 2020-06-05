@@ -175,36 +175,28 @@ class Contents extends CI_Controller {
     }
 
     private function shooting_upload( $user_id, $coursewareId, $new_filename ){
-        log_message('info', '-- user_id : ' . $user_id);
-        log_message('info', '-- coursewareId : ' . $coursewareId);
-        log_message('info', '-- new_filename : ' . $new_filename);
-
         if($_FILES["file"]['name'] !="") {
             $file_name = $_FILES["file"]['name'];
             $file_name_rename = $new_filename;
-            log_message('info', '-- 1');
+
             $explode = explode('.', $file_name);
             if(count($explode) >= 2) {
-                log_message('info', '-- 2');
                 $uploadDirectory = FCPATH . 'uploads/work/shooting';
                 if (!is_dir($uploadDirectory)) {
-                    log_message('info', '-- 3');
                     mkdir($uploadDirectory, 0777, true);
                 }
                 $new_file = $file_name_rename.'.'.$explode[1];
                 $config['upload_path'] = "./uploads/work/shooting";
                 $config['allowed_types'] = "mp4|mov";
                 $config['file_name'] = $new_file;
-                log_message('info', '-- 4');
+
                 $this->duplication_process($file_name_rename,'4');///duplication processing
-                log_message('info', '-- 5');
+
                 $this->load->library('upload', $config);
                 if(!$this->upload->do_upload("file")) {
-                    log_message('info', '-- 6');
                     $error = $this->upload->display_errors();
                     echo $error;
                 } else {
-                    log_message('info', '-- 7');
                     $path = FCPATH . 'uploads/work/shooting/' . $new_file;
                     $path1 = 'uploads/work/shooting/' . $new_file;
                     $data = array(
@@ -216,9 +208,8 @@ class Contents extends CI_Controller {
                         'public' => '0',
                         'file_name' => $path1,
                     );
-                    log_message('info', '-- 8');
+
                     $this->contents_m->insert_contents( $data );
-                    log_message('info', '-- 9');
                 }
             } else {
                 echo 'File type error.';
@@ -284,17 +275,13 @@ class Contents extends CI_Controller {
 
     private function dubbing_read_upload( $user_id, $coursewareId, $new_filename ){
         // if it is read-blob
-        log_message('info', '-- dubbing_read_upload 1');
         if (isset($_FILES["read-blob"]) && isset($_POST["read-bg-video"])) {
-            log_message('info', '-- dubbing_read_upload 2');
             $uploadDirectory = FCPATH . 'uploads/work/dubbing';
             if (!is_dir($uploadDirectory)) {
-                log_message('info', '-- dubbing_read_upload 3');
                 mkdir($uploadDirectory, 0777, true);
             }
-            log_message('info', '-- dubbing_read_upload 4');
+
             $this->duplication_process($_POST['new_filename'],'2');///duplication processing
-            log_message('info', '-- dubbing_read_upload 5');
             $file_name_arr = array();
             $info_arr = array();
             for($i=0; $i<count($_FILES["read-blob"]["tmp_name"]); $i++){
@@ -302,7 +289,6 @@ class Contents extends CI_Controller {
                 ///
                 $uploadFileName = 'uploads/work/dubbing/'.$file_name_rename.'.wav';
                 if (!move_uploaded_file($_FILES["read-blob"]["tmp_name"][$i], $uploadFileName)) {
-                    log_message('info', '-- dubbing_read_upload 6');
                     $error = "Problem writing read audio file to disk!";
                     $output = array(
                         'status' => 'fail',
@@ -312,12 +298,11 @@ class Contents extends CI_Controller {
                     echo json_encode($output);
                     return;
                 } else {
-                    log_message('info', '-- dubbing_read_upload 7');
                     array_push($file_name_arr, $uploadFileName);
                     array_push($info_arr, json_decode($_POST['info'][$i]));
                 }
             }
-            log_message('info', '-- dubbing_read_upload 8');
+
             $data = array(
                 'content_title' => trim($file_name_rename),
                 'content_type_id' => '2',
@@ -329,9 +314,9 @@ class Contents extends CI_Controller {
                 'file_name' => json_encode($file_name_arr),
                 'bg_path' => $_POST["read-bg-video"],
             );
-            log_message('info', '-- dubbing_read_upload 9');
+
             $this->contents_m->insert_contents( $data );
-            log_message('info', '-- dubbing_read_upload 10');
+
             $output = array(
                 'status' => 'success',
                 'filename' => $uploadFileName
