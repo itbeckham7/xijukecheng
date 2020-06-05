@@ -175,28 +175,36 @@ class Contents extends CI_Controller {
     }
 
     private function shooting_upload( $user_id, $coursewareId, $new_filename ){
+        log_message('info', '-- user_id : ' . $user_id);
+        log_message('info', '-- coursewareId : ' . $coursewareId);
+        log_message('info', '-- new_filename : ' . $new_filename);
+
         if($_FILES["file"]['name'] !="") {
             $file_name = $_FILES["file"]['name'];
             $file_name_rename = $new_filename;
-
+            log_message('info', '-- 1');
             $explode = explode('.', $file_name);
             if(count($explode) >= 2) {
+                log_message('info', '-- 2');
                 $uploadDirectory = FCPATH . 'uploads/work/shooting';
                 if (!is_dir($uploadDirectory)) {
+                    log_message('info', '-- 3');
                     mkdir($uploadDirectory, 0777, true);
                 }
                 $new_file = $file_name_rename.'.'.$explode[1];
                 $config['upload_path'] = "./uploads/work/shooting";
                 $config['allowed_types'] = "mp4|mov";
                 $config['file_name'] = $new_file;
-
+                log_message('info', '-- 4');
                 $this->duplication_process($file_name_rename,'4');///duplication processing
-
+                log_message('info', '-- 5');
                 $this->load->library('upload', $config);
                 if(!$this->upload->do_upload("file")) {
+                    log_message('info', '-- 6');
                     $error = $this->upload->display_errors();
                     echo $error;
                 } else {
+                    log_message('info', '-- 7');
                     $path = FCPATH . 'uploads/work/shooting/' . $new_file;
                     $path1 = 'uploads/work/shooting/' . $new_file;
                     $data = array(
@@ -208,8 +216,9 @@ class Contents extends CI_Controller {
                         'public' => '0',
                         'file_name' => $path1,
                     );
-
+                    log_message('info', '-- 8');
                     $this->contents_m->insert_contents( $data );
+                    log_message('info', '-- 9');
                 }
             } else {
                 echo 'File type error.';
