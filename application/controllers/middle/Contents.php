@@ -16,15 +16,15 @@ class Contents extends CI_Controller {
         $this->load->library("session");
     }
     public function upload(){
-
+        log_message('info', '-- upload 1');
         $user_id = 1;
         if(!($this->signin_m->loggedin()))
-        {
+        {log_message('info', '-- upload 2');
             return;
-        }else{
+        }else{log_message('info', '-- upload 3');
             $user_id = $this->session->userdata("loginuserID");
         }
-        if(!($_POST)){
+        if(!($_POST)){log_message('info', '-- upload 4');
             $error = 'File Type or file name is mistake.';
             $output = array(
                 'status' => 'fail',
@@ -32,7 +32,7 @@ class Contents extends CI_Controller {
             );
             echo json_encode($output);
             return;
-        }
+        }log_message('info', '-- upload 5');
         $type = $_POST['type'];
         $new_filename = $_POST['new_filename'];
         $coursewareId = $_POST['coursewareId'];
@@ -44,7 +44,7 @@ class Contents extends CI_Controller {
             $this->shooting_upload( $user_id, $coursewareId, $new_filename );
         } else if( $type == 'record' ){
             $this->record_upload( $user_id, $coursewareId, $new_filename );
-        } else if( $type == 'dubbing-read' ){
+        } else if( $type == 'dubbing-read' ){log_message('info', '-- upload 6');
             $this->dubbing_read_upload( $user_id, $coursewareId, $new_filename );
         } else if( $type == 'dubbing-song' ){
             $this->dubbing_song_upload( $user_id, $coursewareId, $new_filename );
