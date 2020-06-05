@@ -23,7 +23,7 @@ if ($user_type != '1') {
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/middle/menu_manage.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/middle/work_view.css') ?>">
 <div class="bg" style="background-color: #f4f4f4;" ondragstart="false;">
-    <?php if ($content_type_id == '4') { ?>
+    <?php if ($content_type_id == '4' || !$bgPath) { ?>
         <img src="<?= $imageAbsDir . 'mywork/bg-dubbing-image.png'; ?>" class="background_image">
     <?php } else { ?>
         <img src="<?= $imageAbsDir . 'mywork/bg-dubbing.png'; ?>" class="background_image">
@@ -50,7 +50,7 @@ if ($user_type != '1') {
 <?php } ?>
 
 
-<div class="player" style="display: <?php if ($content_type_id != '4') echo "none"; else echo 'block'; ?>">
+<div class="player" style="display: <?php if ($content_type_id == '4' || !$bgPath) echo "block"; else echo 'none'; ?>">
     <audio id="music" preload="true">
         <source src="">
     </audio>
@@ -61,8 +61,27 @@ if ($user_type != '1') {
 
 <div class="dubbing-content">
     <div style="height: 100%;width:100%">
-        <?php if ($content_type_id == '4') { ?>
+        <?php if ($content_type_id == '4' || !$bgPath) {
+        if ($bgPath) { ?>
         <img src="<?= base_url($bgPath); ?>">
+        <?php } else { ?>
+            <div class="question-bg"></div>
+        <?php } ?>
+            <script>
+                var music = document.getElementById('music'); // id for audio element
+                var wavInfo = '<?= $wavPath; ?>';
+                if (wavInfo.substr(0, 1) == '[') wavInfo = JSON.parse(wavInfo);
+                else music.src = baseURL + wavInfo;
+                var qInfo = JSON.parse('<?= $info; ?>')['dubbing'];
+                for (var i = 0; i < qInfo.length; i++) {
+                    var item = qInfo[i];
+                    if (item.question) {
+                        $('.question-bg').html(item.question);
+                        music.src = baseURL + wavInfo[i];
+                        break;
+                    }
+                }
+            </script>
         <?php } else { ?>
             <video controls id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered"
                    style="background:#000;object-fit: fill;position: absolute;width: 100%;height:100%">

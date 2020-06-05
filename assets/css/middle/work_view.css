@@ -62,12 +62,22 @@
     height: 762px;
 }
 
-.dubbing-content img {
+.dubbing-content img,
+.dubbing-content div.question-bg{
     position: absolute;
     left: 167px;
     top: 7px;
     width: 1036px;
     height: 739px;
+    background-color: white;
+    color: #7ec6ff;
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
 }
 
 /*.player{ position: absolute; left: 33.28%; top: 63.54%; width: 39.11%; height: 5.65% }*/
