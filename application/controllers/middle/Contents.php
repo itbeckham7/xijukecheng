@@ -284,13 +284,17 @@ class Contents extends CI_Controller {
 
     private function dubbing_read_upload( $user_id, $coursewareId, $new_filename ){
         // if it is read-blob
+        log_message('info', '-- dubbing_read_upload 1');
         if (isset($_FILES["read-blob"]) && isset($_POST["read-bg-video"])) {
+            log_message('info', '-- dubbing_read_upload 2');
             $uploadDirectory = FCPATH . 'uploads/work/dubbing';
             if (!is_dir($uploadDirectory)) {
+                log_message('info', '-- dubbing_read_upload 3');
                 mkdir($uploadDirectory, 0777, true);
             }
-
+            log_message('info', '-- dubbing_read_upload 4');
             $this->duplication_process($_POST['new_filename'],'2');///duplication processing
+            log_message('info', '-- dubbing_read_upload 5');
             $file_name_arr = array();
             $info_arr = array();
             for($i=0; $i<count($_FILES["read-blob"]["tmp_name"]); $i++){
@@ -298,6 +302,7 @@ class Contents extends CI_Controller {
                 ///
                 $uploadFileName = 'uploads/work/dubbing/'.$file_name_rename.'.wav';
                 if (!move_uploaded_file($_FILES["read-blob"]["tmp_name"][$i], $uploadFileName)) {
+                    log_message('info', '-- dubbing_read_upload 6');
                     $error = "Problem writing read audio file to disk!";
                     $output = array(
                         'status' => 'fail',
@@ -307,11 +312,12 @@ class Contents extends CI_Controller {
                     echo json_encode($output);
                     return;
                 } else {
+                    log_message('info', '-- dubbing_read_upload 7');
                     array_push($file_name_arr, $uploadFileName);
                     array_push($info_arr, json_decode($_POST['info'][$i]));
                 }
             }
-
+            log_message('info', '-- dubbing_read_upload 8');
             $data = array(
                 'content_title' => trim($file_name_rename),
                 'content_type_id' => '2',
@@ -323,9 +329,9 @@ class Contents extends CI_Controller {
                 'file_name' => json_encode($file_name_arr),
                 'bg_path' => $_POST["read-bg-video"],
             );
-
+            log_message('info', '-- dubbing_read_upload 9');
             $this->contents_m->insert_contents( $data );
-
+            log_message('info', '-- dubbing_read_upload 10');
             $output = array(
                 'status' => 'success',
                 'filename' => $uploadFileName
