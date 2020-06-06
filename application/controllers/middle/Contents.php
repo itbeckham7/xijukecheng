@@ -18,10 +18,14 @@ class Contents extends CI_Controller {
     public function upload(){
         log_message('info', '-- upload 1');
         $user_id = 1;
-        if(!($this->signin_m->loggedin()))
-        {log_message('info', '-- upload 2');
+        if($_POST['userId']){
+            log_message('info', '-- upload 1.1');
+            $user_id = $_POST['userId'];
+        } else if(!($this->signin_m->loggedin())){
+            log_message('info', '-- upload 2');
             return;
-        }else{log_message('info', '-- upload 3');
+        } else {
+            log_message('info', '-- upload 3');
             $user_id = $this->session->userdata("loginuserID");
         }
         if(!($_POST)){log_message('info', '-- upload 4');
