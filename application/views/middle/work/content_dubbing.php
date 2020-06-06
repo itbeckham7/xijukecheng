@@ -52,7 +52,7 @@ if ($user_type != '1') {
 
 <div class="player" style="display: <?php if ($content_type_id == '4' || !$bgPath) echo "block"; else echo 'none'; ?>">
     <audio id="music" preload="true">
-        <source src="" type="audio/m4a" />
+        <source src="" type="audio/mp3" />
         <source src="" type="audio/mp4" />
         <source src="" type="audio/wav" />
         <source src="" type="audio/ogg" />
