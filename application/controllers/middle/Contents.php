@@ -296,6 +296,7 @@ class Contents extends CI_Controller {
                 $file_name_rename = $_POST['new_filename'] . '-' . $i;
                 ///
                 $fileExt = isset($_POST['ext']) ? $_POST['ext'] : 'wav';
+                log_message('info', '-- dubbing_read_upload 5.1' . $_POST['ext']);
                 $uploadFileName = 'uploads/work/dubbing/'.$file_name_rename.'.'.$fileExt;
                 if (!move_uploaded_file($_FILES["read-blob"]["tmp_name"][$i], $uploadFileName)) {
                     log_message('info', '-- dubbing_read_upload 6');
@@ -308,7 +309,7 @@ class Contents extends CI_Controller {
                     echo json_encode($output);
                     return;
                 } else {
-                    log_message('info', '-- dubbing_read_upload 7');
+                    log_message('info', '-- dubbing_read_upload 7' . $uploadFileName);
                     array_push($file_name_arr, $uploadFileName);
                     array_push($info_arr, json_decode($_POST['info'][$i]));
                 }
