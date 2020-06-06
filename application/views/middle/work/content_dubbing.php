@@ -52,7 +52,9 @@ if ($user_type != '1') {
 
 <div class="player" style="display: <?php if ($content_type_id == '4' || !$bgPath) echo "block"; else echo 'none'; ?>">
     <audio id="music" preload="true">
-        <source src="">
+        <source src="" type="audio/mp4" />
+        <source src="" type="audio/wav" />
+        <source src="" type="audio/ogg" />
     </audio>
     <a id="pButton" class="play"></a>
     <div id="timeline"></div>
@@ -71,13 +73,13 @@ if ($user_type != '1') {
                 var music = document.getElementById('music'); // id for audio element
                 var wavInfo = '<?= $wavPath; ?>';
                 if (wavInfo.substr(0, 1) == '[') wavInfo = JSON.parse(wavInfo);
-                else music.src = baseURL + wavInfo;
+                else $(music).find('source').attr('src', baseURL + wavInfo);
                 var qInfo = JSON.parse('<?= $info; ?>')['dubbing'];
                 for (var i = 0; i < qInfo.length; i++) {
                     var item = qInfo[i];
                     if (item.question) {
                         $('.question-bg').html('Question<br><br>' + item.question);
-                        music.src = baseURL + wavInfo[i];
+                        $(music).find('source').attr('src', baseURL + wavInfo[i]);
                         break;
                     }
                 }
@@ -93,7 +95,7 @@ if ($user_type != '1') {
                 var timeInfo = JSON.parse('<?= $info; ?>')['dubbing'];
                 var wavInfo = '<?= $wavPath; ?>';
                 if (wavInfo.substr(0, 1) == '[') wavInfo = JSON.parse(wavInfo);
-                else music.src = baseURL + wavInfo;
+                else $(music).find('source').attr('src', baseURL + wavInfo);
                 var isWavPlaying = false;
 
                 var vplayer = videojs('videoPlayer', {
@@ -118,7 +120,7 @@ if ($user_type != '1') {
                             }
                         }
                         if (wavIdx > -1) {
-                            music.src = baseURL + wavInfo[wavIdx];
+                            $(music).find('source').attr('src', baseURL + wavInfo[wavIdx]);
                             music.currentTime = vidTime - timeInfo[wavIdx].start;
                             music.play();
                             vplayer.volume(0);
@@ -143,7 +145,7 @@ if ($user_type != '1') {
                             }
                         }
                         if (!isWavPlaying && wavIdx > -1) {
-                            music.src = baseURL + wavInfo[wavIdx];
+                            $(music).find('source').attr('src', baseURL + wavInfo[wavIdx]);
                             music.currentTime = vidTime - timeInfo[wavIdx].start;
                             music.play();
                             vplayer.volume(0);
