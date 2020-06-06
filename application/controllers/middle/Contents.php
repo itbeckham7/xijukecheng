@@ -289,7 +289,7 @@ class Contents extends CI_Controller {
             }
             log_message('info', '-- dubbing_read_upload 4');
             $this->duplication_process($_POST['new_filename'],'2');///duplication processing
-            log_message('info', '-- dubbing_read_upload 5');
+            log_message('info', '-- dubbing_read_upload 5 : ' . var_export($_FILES["read-blob"], true));
             $file_name_arr = array();
             $info_arr = array();
             for($i=0; $i<count($_FILES["read-blob"]["tmp_name"]); $i++){
