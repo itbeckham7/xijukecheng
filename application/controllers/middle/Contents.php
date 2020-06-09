@@ -18,7 +18,7 @@ class Contents extends CI_Controller {
     public function upload(){
         log_message('info', '-- upload 1');
         $user_id = 1;
-        if($_POST['userId']){
+        if(isset($_POST['userId']) && $_POST['userId']){
             log_message('info', '-- upload 1.1');
             $user_id = $_POST['userId'];
         } else if(!($this->signin_m->loggedin())){
