@@ -1,4 +1,3 @@
-
 /******************************Below part relate with head menu********************************************************************/
 
 .switch {
@@ -59,11 +58,11 @@
     height: 11%;
 }
 
-.local_mark {
+.local_mark{
     position: absolute;
     left: 0;
-    width: 66px;
-    height: 66px;
+    width: 70px;
+    height: 70px;
     background-size: auto;
 }
 
@@ -187,7 +186,7 @@
     top: 1.5%;
 }
 
-.btn-work{
+.btn-work {
     position: absolute;
     left: 769px;
     top: 940px;
@@ -205,10 +204,12 @@
     transition: none;
     cursor: pointer;
 }
-.btn-work.next_Btn{
+
+.btn-work.next_Btn {
     left: 1158px;
 }
-.btn-work:hover, .btn-work:focus{
+
+.btn-work:hover, .btn-work:focus {
     opacity: .8;
     text-decoration: none;
     color: white;

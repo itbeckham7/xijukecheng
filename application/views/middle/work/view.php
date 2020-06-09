@@ -65,7 +65,7 @@ if ($user_type != '1') {
     .list_delete {
         position: absolute;
         right: 6.2%;
-        width: 4.43%;
+        width: 4.93%;
         height: 100%;
         background: url(<?= $imageAbsDir.'mywork/delete.png';?>);
         background-size: 100% 100%;
@@ -74,7 +74,7 @@ if ($user_type != '1') {
     .list_delete_tech {
         position: absolute;
         right: 21%;
-        width: 4.43%;
+        width: 4.93%;
         height: 100%;
         background: url(<?= $imageAbsDir.'mywork/delete.png';?>);
         background-size: 100% 100%;
@@ -83,7 +83,7 @@ if ($user_type != '1') {
     .list_delete2 {
         position: absolute;
         right: 18%;
-        width: 4.43%;
+        width: 4.93%;
         height: 100%;
         background: url(<?= $imageAbsDir.'mywork/delete.png';?>);
         background-size: 100% 100%;
@@ -92,7 +92,7 @@ if ($user_type != '1') {
     .list_share {
         position: absolute;
         right: 0;
-        width: 4.43%;
+        width: 4.93%;
         height: 100%;
         background: url(<?= $imageAbsDir.'mywork/share.png';?>);
         background-size: 100% 100%;
