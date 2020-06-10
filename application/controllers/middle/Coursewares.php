@@ -43,6 +43,7 @@ class Coursewares extends CI_Controller
         $this->data['wxStatus'] = $this->signin_m->getWxStatus();
         $this->data['unitSets'] = $this->units_m->get_units();
         $this->data["subview"] = "middle/coursewares/index";
+        $this->session->set_userdata(array('target' => $this->data["subview"]));
         $this->load->view('middle/_layout_main', $this->data);
     }
 
@@ -70,6 +71,7 @@ class Coursewares extends CI_Controller
         $this->db->insert('courseware_accesses', $arr);
         $this->data['subwares'] = $this->subwares_m->get_swForFrontend($id);
         $this->data["subview"] = "middle/coursewares/view";
+        $this->session->set_userdata(array('target' => $this->data["subview"].'/'.$id));
         $this->load->view('middle/_layout_main', $this->data);
     }
 

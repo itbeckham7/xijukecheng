@@ -1,8 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Signin extends CI_Controller {
+class Signin extends CI_Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
 
         $language = 'chinese';
@@ -14,11 +16,12 @@ class Signin extends CI_Controller {
         $this->load->library('form_validation');
     }
 
-    public function index() {
+    public function index()
+    {
 
         $this->signin_m->loggedin() == FALSE || redirect(base_url('home/index'));
         $this->data['form_validation'] = 'No';
-        $this->data['wxStatus']=$this->signin_m->getWxStatus();
+        $this->data['wxStatus'] = $this->signin_m->getWxStatus();
         if ($_POST) {
             $rules = $this->rules();
             $this->form_validation->set_rules($rules);
@@ -36,7 +39,10 @@ class Signin extends CI_Controller {
                     $this->users_m->update_user($arr, $user_id);
                     $this->users_m->update_user_login_num($user_id);
 
-                    redirect(base_url('home/index'));
+                    if ($this->session->userdata("target"))
+                        redirect(base_url($this->session->userdata("target")));
+                    else
+                        redirect(base_url('home/index'));
                 } else {
                     $this->session->set_flashdata("errors", "That user does not signin");
                     $this->data['form_validation'] = "Incorrect Signin";
@@ -55,13 +61,13 @@ class Signin extends CI_Controller {
         $this->signin_m->loggedin() == FALSE || redirect(base_url('home/index'));
         $this->data['form_validation'] = 'No';
         $ret = [
-            'status'=>'fail',
-            'data'=>'信息无效'
+            'status' => 'fail',
+            'data' => '信息无效'
         ];
         if ($_POST) {
             $arr = $_POST;
             $userInfo = $this->users_m->get_where(array('username' => $arr['username']));
-            if ( $userInfo != null) {
+            if ($userInfo != null) {
                 $ret['data'] = '用户已存在';
                 echo json_encode($ret);
                 return;
@@ -80,11 +86,11 @@ class Signin extends CI_Controller {
             $arr['password'] = $this->users_m->hash($arr['password']);
             $this->users_m->insert($arr);
             $_POST['password'] = $pass;
-            $ret['status']='success';
-            $ret['data']='signin/index';
+            $ret['status'] = 'success';
+            $ret['data'] = 'signin/index';
             echo json_encode($ret);
             return;
-            if ($this->signin_m->signin($arr['username'],$pass) == TRUE) {
+            if ($this->signin_m->signin($arr['username'], $pass) == TRUE) {
                 $user_id = $this->session->userdata("loginuserID");
                 $arr = array();
                 $arr['last_login'] = date('Y-m-d H:i:s');
@@ -93,14 +99,14 @@ class Signin extends CI_Controller {
                 $this->users_m->update_user($arr, $user_id);
                 $this->users_m->update_user_login_num($user_id);
 
-                $ret['status']='success';
-                $ret['data']='home/index';
+                $ret['status'] = 'success';
+                $ret['data'] = 'home/index';
                 echo json_encode($ret);
             } else {
-                $ret['data'] ='注册失败';
+                $ret['data'] = '注册失败';
                 echo json_encode($ret);
             }
-        }else {
+        } else {
             $this->data["subview"] = "signin/register";
             $this->load->view('middle/_layout_main', $this->data);
         }
@@ -151,14 +157,13 @@ class Signin extends CI_Controller {
             if ($sex == 0) $param['sex'] = '男';
             else $param['sex'] = '女';
 
-			
 
             if (empty($_GET['openId'])) {
                 $ret['data'] = 'openid empty!';///password empty
                 echo json_encode($ret);
                 return;
             }
-			$param['open_id'] = $_GET['openId'];
+            $param['open_id'] = $_GET['openId'];
 
             $param['user_type_id'] = '3';
             $param['username'] = $this->lang->line('weixin') . ' - ' . $param['nickname'];
@@ -323,12 +328,14 @@ class Signin extends CI_Controller {
 
     }
 
-    public function signout() {
+    public function signout()
+    {
         $this->signin_m->signout();
         redirect(base_url("home/index"));
     }
 
-    protected function rules() {
+    protected function rules()
+    {
         $rules = array(
             array(
                 'field' => 'username',

@@ -22,7 +22,7 @@ class Ncoursewares extends CI_Controller {
         $this->data['nccsName'] = $this->nchildcourses_m->get_single(array('childcourse_id'=>$nccsId))->childcourse_name;
         $this->data['nunitSet'] = $this->nunits_m->get_nunitByChildCourseId($nccsId);
         $this->data["subview"] = "primary/ncoursewares/view";
-
+        $this->session->set_userdata(array('target' => $this->data["subview"].'/'.$nccsId));
         $this->data["cur_cs_id"] = $nccsId;
 
         $user_id = $this->session->userdata("loginuserID");

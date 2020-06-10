@@ -141,7 +141,7 @@ if ($this->session->userdata('loggedin')) {
     var userType = '<?= $user_type; ?>';
 
     function return_back() {
-        if(setBackStatus() == 'false') {
+        if (setBackStatus() == 'false') {
             history.back();
             return;
         }

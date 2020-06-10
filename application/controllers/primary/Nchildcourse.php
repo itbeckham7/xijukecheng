@@ -29,6 +29,7 @@ class Nchildcourse extends CI_Controller {
         $this->data['cws_permissions'] = $this->getUserCws($this->data['cws_permissions']);
         $this->data['nccsSet'] = $this->nchildcourses_m->get_nchild_publish();
         $this->data["subview"] = "primary/nchildcourse/index";
+        $this->session->set_userdata(array('target' => $this->data["subview"]));
         $this->load->view('primary/_layout_main', $this->data);
     }
     public function view($id)
