@@ -82,7 +82,27 @@ a:active, a:focus {
     height: 100%;
 
 }
-
+a.home-link{
+    position: absolute;
+    left: 1656px;
+    top: 100px;
+    width: 264px;
+    height: 61px;
+    border-radius: 20px 0 0 20px;
+    background-color: #ff5e5c;
+    background-image: url(../../images/middle/coursewares/home-link.png);
+    background-repeat: no-repeat;
+    background-size: 59px 57px;
+    background-position: 5px center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 0 50px;
+    text-decoration: none;
+}
 /*
 ::Menu Area
  */
@@ -228,11 +248,11 @@ html {
     background-color: #30a4ff;
     opacity: .9;
     left: 23px;
-    top: 285px;
+    top: 286px;
     width: 169px;
     height: 43px;
     border: none;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 16px 16px;
     font-size: 18px;
     line-height: 1;
     word-break: break-word;
