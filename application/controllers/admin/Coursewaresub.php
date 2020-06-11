@@ -64,7 +64,7 @@ class Coursewaresub extends Admin_Controller
             $add_sw_file_path = '';
             if ($_FILES["file_name"]["name"] != '') {
                 $fileId = $this->subwares_m->get_new_id()[0]->fileId + 1;
-                $filename = $fileId . '.' . $fileType;
+                $filename = $coursewareId . '_' . $fileSlug . $fileId . '.' . $fileType;
                 if ($id != 0) {
                     $fileId = $this->subwares_m->get_where(array('subware_id' => $id))[0]->subware_file;
                     if ($fileId) {
@@ -72,10 +72,10 @@ class Coursewaresub extends Admin_Controller
                         $fileId = $fileId[count($fileId) - 1];
                         $filename = $fileId;
                     } else {
-                        $filename = $id . '.' . $fileType;
+                        $filename = $coursewareId . '_' . $fileSlug . $id . '.' . $fileType;
                     }
                 }
-                $uploadPath = 'courseware/' . $coursewareId . '/' . $fileSlug;
+                $uploadPath = 'teachingdemo';
                 $dirPath = 'uploads/' . $uploadPath;
                 $config['file_name'] = $filename;
                 if (!is_dir($dirPath)) {
