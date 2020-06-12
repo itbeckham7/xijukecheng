@@ -59,9 +59,9 @@ if ($user_type != '1') {
 
 <div class="player" style="display: <?php if ($content_type_id == '4' || !$bgPath) echo "block"; else echo 'none'; ?>">
     <audio id="music" preload="true">
-        <source src="" type="audio/mp4" />
-        <source src="" type="audio/wav" />
-        <source src="" type="audio/ogg" />
+        <source src="" type="audio/mp4"/>
+        <source src="" type="audio/wav"/>
+        <source src="" type="audio/ogg"/>
     </audio>
     <a id="pButton" class="play"></a>
     <div id="timeline"></div>
@@ -71,292 +71,300 @@ if ($user_type != '1') {
 <?php if ($content_type_id == '4' || !$bgPath) { ?>
     <div class="dubbing-content">
         <div style="height: 100%; width:100%;">
-        <?php if ($bgPath) { ?>
-            <img src="<?= base_url($bgPath); ?>">
-        <?php } else { ?>
-            <div class="question-bg"></div>
+            <?php if ($bgPath) { ?>
+                <img src="<?= base_url($bgPath); ?>">
+            <?php } else { ?>
+                <div class="question-bg"></div>
             <?php } ?>
         </div>
         <script>
             var music = document.getElementById('music'); // id for audio element
+            function loadAudio(url) {
+                music.src = url;
+            }
+
             var wavInfo = '<?= $wavPath; ?>';
             if (wavInfo.substr(0, 1) == '[') wavInfo = JSON.parse(wavInfo);
-            else $(music).find('source').attr('src', baseURL + wavInfo);
+            else loadAudio(baseURL + wavInfo);
             var qInfo = JSON.parse('<?= $info; ?>')['dubbing'];
             for (var i = 0; i < qInfo.length; i++) {
                 var item = qInfo[i];
                 if (item.question) {
                     $('.question-bg').html('Question<br><br>' + item.question);
-                    $(music).find('source').attr('src', baseURL + wavInfo[i]);
+                    loadAudio(baseURL + wavInfo[i]);
                     break;
                 }
             }
         </script>
     </div>
-    <?php } else { ?>
-        <div class="shooting-frame"></div>
-        <div class="shooting-content">
-            <video controls id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered"
-                   style="background:#343434;object-fit: fill;" autoplay>
-                <source src="<?php echo base_url($bgPath) ?>" type="video/mp4">
-            </video>
-            <script>
-                var music = document.getElementById('music');
+<?php } else { ?>
+    <div class="shooting-frame"></div>
+    <div class="shooting-content">
+        <video controls id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered"
+               style="background:#343434;object-fit: fill;" autoplay>
+            <source src="<?php echo base_url($bgPath) ?>" type="video/mp4">
+        </video>
+        <script>
+            var music = document.getElementById('music');
 
-                var timeInfo = JSON.parse('<?= $info; ?>')['dubbing'];
-                var wavInfo = '<?= $wavPath; ?>';
-                if (wavInfo.substr(0, 1) == '[') wavInfo = JSON.parse(wavInfo);
-                else $(music).find('source').attr('src', baseURL + wavInfo);
-                var isWavPlaying = false;
+            function loadAudio(url) {
+                music.src = url;
+            }
 
-                var vplayer = videojs('videoPlayer', {
-                    controls: true,
-                    width: 1280,
-                    nativeControlsForTouch: false,
-                    height: 712,
-                    preload: 'auto',
-                    loop: false,
-                    autoplay: false
-                }, function () {
-                    vplayer.on('play', function () {
-                        var wavIdx = -1;
+            var timeInfo = JSON.parse('<?= $info; ?>')['dubbing'];
+            var wavInfo = '<?= $wavPath; ?>';
+            if (wavInfo.substr(0, 1) == '[') wavInfo = JSON.parse(wavInfo);
+            else loadAudio(baseURL + wavInfo);
+            var isWavPlaying = false;
+
+            var vplayer = videojs('videoPlayer', {
+                controls: true,
+                width: 1280,
+                nativeControlsForTouch: false,
+                height: 712,
+                preload: 'auto',
+                loop: false,
+                autoplay: false
+            }, function () {
+                vplayer.on('play', function () {
+                    var wavIdx = -1;
+                    isWavPlaying = false;
+                    vplayer.volume(1);
+                    var vidTime = vplayer.currentTime();
+                    for (var i = 0; i < timeInfo.length; i++) {
+                        var item = timeInfo[i];
+                        if (vidTime > item.start && vidTime < item.end) {
+                            wavIdx = i;
+                            break;
+                        }
+                    }
+                    if (wavIdx > -1) {
+                        loadAudio(baseURL + wavInfo[wavIdx]);
+                        music.currentTime = vidTime - timeInfo[wavIdx].start;
+                        music.play();
+                        vplayer.volume(0);
+                        isWavPlaying = true;
+                    }
+                });
+                vplayer.on("pause", function () {
+                    music.pause();
+                    isWavPlaying = false;
+                });
+                vplayer.on("ended", function () {
+                    music.pause();
+                    isWavPlaying = false;
+                });
+                vplayer.on("timeupdate", function (e) {
+                    var wavIdx = -1;
+                    var vidTime = vplayer.currentTime();
+                    for (var i = 0; i < timeInfo.length; i++) {
+                        var item = timeInfo[i];
+                        if (vidTime > item.start && vidTime < item.end) {
+                            wavIdx = i;
+                        }
+                    }
+                    if (!isWavPlaying && wavIdx > -1) {
+                        loadAudio(baseURL + wavInfo[wavIdx]);
+                        music.currentTime = vidTime - timeInfo[wavIdx].start;
+                        music.play();
+                        vplayer.volume(0);
+                        isWavPlaying = true;
+                    } else if (wavIdx == -1) {
                         isWavPlaying = false;
+                        music.pause();
                         vplayer.volume(1);
-                        var vidTime = vplayer.currentTime();
-                        for (var i = 0; i < timeInfo.length; i++) {
-                            var item = timeInfo[i];
-                            if (vidTime > item.start && vidTime < item.end) {
-                                wavIdx = i;
-                                break;
-                            }
-                        }
-                        if (wavIdx > -1) {
-                            $(music).find('source').attr('src', baseURL + wavInfo[wavIdx]);
-                            music.currentTime = vidTime - timeInfo[wavIdx].start;
-                            music.play();
-                            vplayer.volume(0);
-                            isWavPlaying = true;
-                        }
-                    });
-                    vplayer.on("pause", function () {
-                        music.pause();
-                        isWavPlaying = false;
-                    });
-                    vplayer.on("ended", function () {
-                        music.pause();
-                        isWavPlaying = false;
-                    });
-                    vplayer.on("timeupdate", function (e) {
-                        var wavIdx = -1;
-                        var vidTime = vplayer.currentTime();
-                        for (var i = 0; i < timeInfo.length; i++) {
-                            var item = timeInfo[i];
-                            if (vidTime > item.start && vidTime < item.end) {
-                                wavIdx = i;
-                            }
-                        }
-                        if (!isWavPlaying && wavIdx > -1) {
-                            $(music).find('source').attr('src', baseURL + wavInfo[wavIdx]);
-                            music.currentTime = vidTime - timeInfo[wavIdx].start;
-                            music.play();
-                            vplayer.volume(0);
-                            isWavPlaying = true;
-                        } else if (wavIdx == -1) {
-                            isWavPlaying = false;
-                            music.pause();
-                            vplayer.volume(1);
-                        }
-                    });
-                });
-            </script>
-        </div>
-    <?php } ?>
-
-    <div class="comment-write">
-        <div>
-            <textarea class="form-control" rows="3" id="comment" placeholder="说点什么吧"></textarea>
-        </div>
-    </div>
-
-    <a class="like-btn"></a>
-
-    <div class="like-count">
-        <label id="vote_number_lbl"><?php if (strlen($vote_num) < 2) echo '0' . $vote_num; else echo $vote_num; ?></label>
-    </div>
-
-    <a class="comment-btn">评论一下</a>
-
-    <div class="comment-list">
-        <div class="" id="totalCommentArea" style="text-align: left;">
-            <?php foreach ($commentSets as $comemntItem): ?>
-                <div class="comment_item_area">
-                    <p style="font-weight: bold"><?= $comemntItem->fullname . '<span>' . $comemntItem->create_time . '</span>'; ?></p>
-                    <p style="color:#6cc"><?= $comemntItem->comment_desc; ?></p>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-
-    <script>
-        var hdmenuImgPath = '<?= $hd_menu_img_path;?>';
-        window.addEventListener('load', function () {
-            var logedIn_UserId = '<?php echo $logged_In_user_id;?>';
-            var contentId = '<?php echo $content_id;?>';
-            var voteStatus = '0';
-            var base_url = $('#base_url').val();
-
-            var vote_lbl = $('#vote_number_lbl');
-            $('.like-btn').click(function () {
-                if (voteStatus == '0') voteStatus = '1';
-                else voteStatus = '0';
-                $.ajax({
-                    type: 'post',
-                    url: base_url + 'middle/community/update_voteNum',
-                    dataType: 'json',
-                    data: {content_id: contentId, vote_status: voteStatus},
-                    success: function (res) {
-                        if (res.status == 'success') {
-                            var realvoteStr = (res.data.length < 2) ? ('0' + res.data) : res.data;
-                            vote_lbl.text(realvoteStr);
-                        } else {
-                            alert('Can not give vote numbers');
-                        }
                     }
                 });
             });
+        </script>
+    </div>
+<?php } ?>
 
-            $('.comment-btn').click(function () {
+<div class="comment-write">
+    <div>
+        <textarea class="form-control" rows="3" id="comment" placeholder="说点什么吧"></textarea>
+    </div>
+</div>
 
-                var comment_desc = $('#comment').val();
-                $.ajax({
-                    type: "post",
-                    url: base_url + 'middle/community/add_comment',
-                    dataType: "json",
-                    data: {content_id: contentId, comment_user_id: logedIn_UserId, comment_desc: comment_desc},
-                    success: function (res) {
-                        if (res.status == 'success') {
-                            $('#totalCommentArea').html(res.data);
-                            $('#comment').val('');
-                        } else {
-                            alert('Can not add comment');
-                        }
+<a class="like-btn"></a>
+
+<div class="like-count">
+    <label id="vote_number_lbl"><?php if (strlen($vote_num) < 2) echo '0' . $vote_num; else echo $vote_num; ?></label>
+</div>
+
+<a class="comment-btn">评论一下</a>
+
+<div class="comment-list">
+    <div class="" id="totalCommentArea" style="text-align: left;">
+        <?php foreach ($commentSets as $comemntItem): ?>
+            <div class="comment_item_area">
+                <p style="font-weight: bold"><?= $comemntItem->fullname . '<span>' . $comemntItem->create_time . '</span>'; ?></p>
+                <p style="color:#6cc"><?= $comemntItem->comment_desc; ?></p>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<script>
+    var hdmenuImgPath = '<?= $hd_menu_img_path;?>';
+    window.addEventListener('load', function () {
+        var logedIn_UserId = '<?php echo $logged_In_user_id;?>';
+        var contentId = '<?php echo $content_id;?>';
+        var voteStatus = '0';
+        var base_url = $('#base_url').val();
+
+        var vote_lbl = $('#vote_number_lbl');
+        $('.like-btn').click(function () {
+            if (voteStatus == '0') voteStatus = '1';
+            else voteStatus = '0';
+            $.ajax({
+                type: 'post',
+                url: base_url + 'middle/community/update_voteNum',
+                dataType: 'json',
+                data: {content_id: contentId, vote_status: voteStatus},
+                success: function (res) {
+                    if (res.status == 'success') {
+                        var realvoteStr = (res.data.length < 2) ? ('0' + res.data) : res.data;
+                        vote_lbl.text(realvoteStr);
+                    } else {
+                        alert('Can not give vote numbers');
                     }
-
-                });
+                }
             });
+        });
 
-        })
-    </script>
+        $('.comment-btn').click(function () {
 
-    <script>
-        var music = document.getElementById('music'); // id for audio element
-        var duration = music.duration; // Duration of audio clip, calculated here for embedding purposes
-        var pButton = document.getElementById('pButton'); // play button
-        var playhead = document.getElementById('playhead'); // playhead
-        var timeline = document.getElementById('timeline'); // timeline
+            var comment_desc = $('#comment').val();
+            $.ajax({
+                type: "post",
+                url: base_url + 'middle/community/add_comment',
+                dataType: "json",
+                data: {content_id: contentId, comment_user_id: logedIn_UserId, comment_desc: comment_desc},
+                success: function (res) {
+                    if (res.status == 'success') {
+                        $('#totalCommentArea').html(res.data);
+                        $('#comment').val('');
+                    } else {
+                        alert('Can not add comment');
+                    }
+                }
 
-        // timeline width adjusted for playhead
-        var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
+            });
+        });
 
-        // play button event listenter
-        pButton.addEventListener("click", play);
+    })
+</script>
 
-        // timeupdate event listener
-        music.addEventListener("timeupdate", timeUpdate, false);
+<script>
+    var music = document.getElementById('music'); // id for audio element
+    var duration = music.duration; // Duration of audio clip, calculated here for embedding purposes
+    var pButton = document.getElementById('pButton'); // play button
+    var playhead = document.getElementById('playhead'); // playhead
+    var timeline = document.getElementById('timeline'); // timeline
 
-        // makes timeline clickable
-        timeline.addEventListener("click", function (event) {
+    // timeline width adjusted for playhead
+    var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
+
+    // play button event listenter
+    pButton.addEventListener("click", play);
+
+    // timeupdate event listener
+    music.addEventListener("timeupdate", timeUpdate, false);
+
+    // makes timeline clickable
+    timeline.addEventListener("click", function (event) {
+        moveplayhead(event);
+        music.currentTime = duration * clickPercent(event);
+    }, false);
+
+    // returns click as decimal (.77) of the total timelineWidth
+    function clickPercent(event) {
+        return (event.clientX - getPosition(timeline)) / timelineWidth;
+    }
+
+    // makes playhead draggable
+    playhead.addEventListener('mousedown', mouseDown, false);
+    window.addEventListener('mouseup', mouseUp, false);
+
+    // Boolean value so that audio position is updated only when the playhead is released
+    var onplayhead = false;
+
+    // mouseDown EventListener
+    function mouseDown() {
+        onplayhead = true;
+        window.addEventListener('mousemove', moveplayhead, true);
+        music.removeEventListener('timeupdate', timeUpdate, false);
+    }
+
+    // mouseUp EventListener
+    // getting input from all mouse clicks
+    function mouseUp(event) {
+
+        if (onplayhead == true) {
             moveplayhead(event);
+            window.removeEventListener('mousemove', moveplayhead, true);
+            // change current time
+
+
             music.currentTime = duration * clickPercent(event);
-        }, false);
-
-        // returns click as decimal (.77) of the total timelineWidth
-        function clickPercent(event) {
-            return (event.clientX - getPosition(timeline)) / timelineWidth;
+            music.addEventListener('timeupdate', timeUpdate, false);
         }
+        onplayhead = false;
+    }
 
-        // makes playhead draggable
-        playhead.addEventListener('mousedown', mouseDown, false);
-        window.addEventListener('mouseup', mouseUp, false);
+    // mousemove EventListener
+    // Moves playhead as user drags
+    function moveplayhead(event) {
+        var newMargLeft = event.clientX - getPosition(timeline);
 
-        // Boolean value so that audio position is updated only when the playhead is released
-        var onplayhead = false;
-
-        // mouseDown EventListener
-        function mouseDown() {
-            onplayhead = true;
-            window.addEventListener('mousemove', moveplayhead, true);
-            music.removeEventListener('timeupdate', timeUpdate, false);
+        if (newMargLeft >= 0 && newMargLeft <= timelineWidth) {
+            playhead.style.marginLeft = newMargLeft + "px";
         }
-
-        // mouseUp EventListener
-        // getting input from all mouse clicks
-        function mouseUp(event) {
-
-            if (onplayhead == true) {
-                moveplayhead(event);
-                window.removeEventListener('mousemove', moveplayhead, true);
-                // change current time
-
-
-                music.currentTime = duration * clickPercent(event);
-                music.addEventListener('timeupdate', timeUpdate, false);
-            }
-            onplayhead = false;
+        if (newMargLeft < 0) {
+            playhead.style.marginLeft = "0px";
         }
-
-        // mousemove EventListener
-        // Moves playhead as user drags
-        function moveplayhead(event) {
-            var newMargLeft = event.clientX - getPosition(timeline);
-
-            if (newMargLeft >= 0 && newMargLeft <= timelineWidth) {
-                playhead.style.marginLeft = newMargLeft + "px";
-            }
-            if (newMargLeft < 0) {
-                playhead.style.marginLeft = "0px";
-            }
-            if (newMargLeft > timelineWidth) {
-                playhead.style.marginLeft = timelineWidth + "px";
-            }
+        if (newMargLeft > timelineWidth) {
+            playhead.style.marginLeft = timelineWidth + "px";
         }
+    }
 
-        // timeUpdate
-        // Synchronizes playhead position with current point in audio
-        function timeUpdate() {
-            var playPercent = timelineWidth * (music.currentTime / duration);
-            playhead.style.marginLeft = playPercent + "px";
-            if (music.currentTime == duration) {
-                pButton.className = "";
-                pButton.className = "play";
-            }
+    // timeUpdate
+    // Synchronizes playhead position with current point in audio
+    function timeUpdate() {
+        var playPercent = timelineWidth * (music.currentTime / duration);
+        playhead.style.marginLeft = playPercent + "px";
+        if (music.currentTime == duration) {
+            pButton.className = "";
+            pButton.className = "play";
         }
+    }
 
-        //Play and Pause
-        function play() {
-            // start music
-            if (music.paused) {
-                music.play();
-                // remove play, add pause
-                pButton.className = "";
-                pButton.className = "pause";
-            } else { // pause music
-                music.pause();
-                // remove pause, add play
-                pButton.className = "";
-                pButton.className = "play";
-            }
+    //Play and Pause
+    function play() {
+        // start music
+        if (music.paused) {
+            music.play();
+            // remove play, add pause
+            pButton.className = "";
+            pButton.className = "pause";
+        } else { // pause music
+            music.pause();
+            // remove pause, add play
+            pButton.className = "";
+            pButton.className = "play";
         }
+    }
 
-        // Gets audio file duration
-        music.addEventListener("canplaythrough", function () {
-            duration = music.duration;
-        }, false);
+    // Gets audio file duration
+    music.addEventListener("canplaythrough", function () {
+        duration = music.duration;
+    }, false);
 
-        // getPosition
-        // Returns elements left position relative to top-left of viewport
-        function getPosition(el) {
-            return el.getBoundingClientRect().left;
-        }
-    </script>
-    <script src="<?= base_url('assets/js/custom/middle/menu_manage.js') ?>" type="text/javascript"></script>
+    // getPosition
+    // Returns elements left position relative to top-left of viewport
+    function getPosition(el) {
+        return el.getBoundingClientRect().left;
+    }
+</script>
+<script src="<?= base_url('assets/js/custom/middle/menu_manage.js') ?>" type="text/javascript"></script>
