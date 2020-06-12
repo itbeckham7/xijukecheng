@@ -117,7 +117,7 @@ if ($user_type != '1') {
 <div class="bg" style="width: 100%;height:100%;background-color: #e8f9ff;">
     <img src="<?= $imageAbsDir . 'coursewares/bg.png'; ?>" class="background_image">
 </div>
-<a href="https://shop18725122.m.youzan.com/wscgoods/detail/35wr17wjl4i2i" class="home-link">点击购买绘本纸书</a>
+<a href="https://shop18725122.m.youzan.com/wscgoods/detail/35wr17wjl4i2i" class="home-link" target="_blank">点击购买绘本纸书</a>
 
 <div class="switch">
     <div style="position: relative; height: 100%; display: none; ">
