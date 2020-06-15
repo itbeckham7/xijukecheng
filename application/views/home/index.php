@@ -8,9 +8,9 @@
 <a class="btn home-nav" data-type="middle" onclick="showPlatform(this);"></a>
 
 <?php if ($this->session->userdata("loggedin") != FALSE) { ?>
-    <a href="<?= base_url('signin/signout'); ?>" class="btn home-login">退出</a>
+    <a href="<?= base_url('signin/signout'); ?>" class="btn home-login" data-type="logout">退出</a>
 <?php } else { ?>
-    <a href="<?= base_url('signin/'); ?>" class="btn home-login">登录</a>
+    <a href="<?= base_url('signin/'); ?>" class="btn home-login" data-type="login">登录</a>
     <a href="<?= base_url('signin/register'); ?>" class="btn home-login" data-type="register">注册</a>
 <?php } ?>
 <a href="javascript:;" class="btn home-profile"></a>

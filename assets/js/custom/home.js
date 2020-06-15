@@ -45,6 +45,8 @@ $('a').each(function (idx, elem) {
     if (that.attr('onclick')) return;
     that.off('click');
     that.on('click', function () {
+        var type = that.attr('data-type');
+        if(type == 'logout') setUserInfo('');
         location.replace(that.attr('data-target'));
     });
 });
