@@ -45,7 +45,7 @@ function weixin_login() {
     if (setUserInfo() != '') user_token = setUserInfo();
     setUserInfo(user_token);
     clearInterval(loginTmr);
-    loginTmr = setInterval(getUserInfo, 1000);
+    loginTmr = setInterval(getUserInfo, 3000);
     executeCMD('weixin_login', user_token);
 }
 
@@ -78,7 +78,7 @@ function pay_weixin(element) {
             console.log(res);
             executeCMD('weixin_payment', res);
             clearInterval(loginTmr);
-            loginTmr = setInterval(checkPaidCourse, 1000);
+            loginTmr = setInterval(checkPaidCourse, 3000);
         }
     });
 }
@@ -101,7 +101,8 @@ function checkPaidCourse(course_id) {
             res = JSON.parse(res);
             if (res.status == 'success') {
                 clearInterval(loginTmr);
-                location.replace = baseURL + "middle/coursewares/index";
+                location.reload();
+                // location.replace = baseURL + "middle/coursewares/index";
             } else {
                 // console.log(res.data);
             }
