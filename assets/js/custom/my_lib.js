@@ -101,7 +101,7 @@ function checkPaidCourse(course_id) {
             res = JSON.parse(res);
             if (res.status == 'success') {
                 clearInterval(loginTmr);
-                location.href = baseURL + "coursewares/index";
+                location.replace = baseURL + "middle/coursewares/index";
             } else {
                 // console.log(res.data);
             }

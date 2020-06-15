@@ -188,7 +188,7 @@ class Api extends CI_Controller
             $param['courseware_id'] = $_POST['course_id'];
 
             $result = $this->payhistory_m->get_where($param);
-            if ($result != null) {
+            if ($result == null) {
                 $ret['data'] = 'course is not paid';
                 echo json_encode($ret);
                 return;
