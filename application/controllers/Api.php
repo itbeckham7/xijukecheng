@@ -377,14 +377,15 @@ class Api extends CI_Controller
         $courseware_id = $book['courseware_id'];
         if (empty($total_fee)) //押金
         {
-            $body = "英语课本剧-充值押金";
+            $body = "戏剧课程-充值押金";
             $total_fee = floatval(99 * 100);
         } else {
-            $body = "英语课本剧-充值余额";
+            $body = "戏剧课程-充值余额";
             $total_fee = floatval($total_fee * 100);
         }
         $weixinpay = new WeixinPay($appid, $openid, $mch_id, $key, $out_trade_no, $body, $total_fee,
-            'http://kebenjuzhifu.hulalaedu.com/api/notify?uId=' . $user_id . '&cId=' . $courseware_id
+            'http://xijvkecheng.hulalaedu.com/api/notify'
+            . '?uId=' . $user_id . '&cId=' . $courseware_id
         );
         $return = $weixinpay->pay();
         echo json_encode($return);
@@ -416,7 +417,8 @@ class Api extends CI_Controller
             $total_fee = floatval($total_fee * 100);
         }
         $weixinpay = new WeixinPay($appid, $openid, $mch_id, $key, $out_trade_no, $body, $total_fee,
-            'http://kebenjuzhifu.hulalaedu.com/application/controllers/notify?uId=' . $user_id . '&cId=' . $courseware_id
+            'http://xijvkecheng.hulalaedu.com/application/controllers/notify'
+            . '?uId=' . $user_id . '&cId=' . $courseware_id
         );
         $return = $weixinpay->pay();
         echo json_encode($return);
@@ -490,6 +492,18 @@ class Api extends CI_Controller
             * 最后，订单没有为ok的，更新状态为ok，返回SUCCESS
             */
             if ($order_status['order_status'] == 'ok') {
+                $user_id = $_GET['uId'];
+                $course_id = $_GET['cId'];
+                $dbData = $this->payhistory_m->get_where(array('user_id'=>$user_id, 'courseware_id'=>$course_id));
+                if($dbData == null){
+                    $this->payhistory_m->insert(array(
+                        'courseware_id'=>$course_id,
+                        'user_id'=>$user_id,
+                        'sender'=>$user_id,
+                        'paid_time'=>date('Y-m-d H:i:s'),
+                        'out_trade_no'=>$post_data['out_trade_no']
+                    ));
+                }
                 $this->return_success();
             } else {
                 $updata['order_status'] = 'ok';
