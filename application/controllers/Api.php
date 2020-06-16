@@ -482,35 +482,25 @@ class Api extends CI_Controller
         $str = $this->ToUrlParams($post_data);//对数组数据拼接成key=value字符串
         $user_sign = strtoupper(md5($post_data));   //再次生成签名，与$postSign比较
 
-        $where['crsNo'] = $post_data['out_trade_no'];
-        $order_status = M('home_order', 'xxf_witkey_')->where($where)->find();
-
         if ($post_data['return_code'] == 'SUCCESS' && $postSign) {
             /*
             * 首先判断，订单是否已经更新为ok，因为微信会总共发送8次回调确认
             * 其次，订单已经为ok的，直接返回SUCCESS
             * 最后，订单没有为ok的，更新状态为ok，返回SUCCESS
             */
-            if ($order_status['order_status'] == 'ok') {
-                $user_id = $_GET['uId'];
-                $course_id = $_GET['cId'];
-                $dbData = $this->payhistory_m->get_where(array('user_id' => $user_id, 'courseware_id' => $course_id));
-                if ($dbData == null) {
-                    $this->payhistory_m->insert(array(
-                        'courseware_id' => $course_id,
-                        'user_id' => $user_id,
-                        'sender' => $user_id,
-                        'paid_time' => date('Y-m-d H:i:s'),
-                        'out_trade_no' => $post_data['out_trade_no']
-                    ));
-                }
-                $this->return_success();
-            } else {
-                $updata['order_status'] = 'ok';
-                if (M('home_order', 'xxf_witkey_')->where($where)->save($updata)) {
-                    $this->return_success();
-                }
+            $user_id = $_GET['uId'];
+            $course_id = $_GET['cId'];
+            $dbData = $this->payhistory_m->get_where(array('user_id' => $user_id, 'courseware_id' => $course_id));
+            if ($dbData == null) {
+                $this->payhistory_m->insert(array(
+                    'courseware_id' => $course_id,
+                    'user_id' => $user_id,
+                    'sender' => $user_id,
+                    'paid_time' => date('Y-m-d H:i:s'),
+                    'out_trade_no' => $post_data['out_trade_no']
+                ));
             }
+            $this->return_success();
         } else {
             echo '微信支付失败';
         }
