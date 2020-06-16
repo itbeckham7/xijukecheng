@@ -20,11 +20,11 @@ if ($user_type != '1') {
 </div>
 <!--  page main menu part -->
 <?php if ($this->session->userdata("loggedin") != FALSE) { ?>
-    <a class="btn-main mywork" href="<?= base_url($myworkURL); ?>"
+    <a class="btn-main mywork" href="<?= base_url($myworkURL); ?>" data-type="<?= $user_type?>"
     ><span><?= ($user_type != '1') ? '我的' : '学生'; ?>作品</span></a>
-    <a class="btn-main community" href="<?= base_url('middle/') . 'community/index'; ?>"
+    <a class="btn-main community" href="<?= base_url('middle/') . 'community/index'; ?>" data-type="<?= $user_type?>"
     ><span>戏剧社区</span></a>
-    <a class="btn-main profile"
+    <a class="btn-main profile" data-type="<?= $user_type?>"
        href="<?= base_url('middle/') . 'users/profile/' . $loged_In_user_id; ?>"
     ><span>个人中心</span></a>
 <?php } else if ($this->session->userdata("loggedin") == FALSE) { ?>

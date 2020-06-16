@@ -1,3 +1,9 @@
+$(function () {
+    if (_uType == '3') {
+        $('.btn-main.community').remove();
+    }
+});
+
 function makeId() {
     var idLength = 5;
     var text = "";
@@ -169,6 +175,7 @@ function setBackStatus(param) {
     sessionStorage.setItem(key, param);
     return param;
 }
+
 function getUserInfo(token) {
     jQuery.ajax({
         url: baseURL + "/signin/signin_weixin",
@@ -226,7 +233,7 @@ function removeExtFromFilename(str) {
 
 function executeCMD(command, data) {
     if (osStatus === 'Android' || osStatus === 'iOS') {
-        if(window.ReactNativeWebView) {
+        if (window.ReactNativeWebView) {
             switch (command) {
                 case 'waiting_indicator':
                     window.ReactNativeWebView.postMessage(JSON.stringify({
@@ -247,6 +254,7 @@ function executeCMD(command, data) {
                             partnerid: data.partnerid,
                             timestamp: data.timestamp,
                             noncestr: data.noncestr,
+							package: data.package,
                             prepayid: data.prepayid,
                             type: 'MD5',
                             sign: data.sign,

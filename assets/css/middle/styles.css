@@ -158,6 +158,13 @@ a.btn-main span {
     height: 73px;
     background-image: url(../../images/middle/coursewares/menu-profile.png);
 }
+.btn-main.mywork[data-type="3"] {
+    left: 140px;
+}
+
+.btn-main.profile[data-type="3"] {
+    left: 248px;
+}
 
 .exit-btn,
 .register-btn {

@@ -40,7 +40,6 @@
     <script type="text/javascript">
         var base_url = "<?= base_url() ?>";
         var baseURL = "<?= base_url() ?>";
-
     </script>
 
     <script>
@@ -95,6 +94,7 @@
     <script>
         var isShowingPDF = true;
         var initailHeight = $(window).height();
+        var _uType = '<?= $user_type; ?>';
         $(window).resize(function () {
             $(window).height(initailHeight);
         });

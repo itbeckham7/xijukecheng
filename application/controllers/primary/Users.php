@@ -38,7 +38,7 @@ class Users extends CI_Controller
 
                     $this->data["subview"] = "primary/users/teacher";
                     $this->load->view('primary/_layout_main', $this->data);
-                } else if ($user_type == 2){///********************************************current user is student
+                } else if ($user_type == 2) {///********************************************current user is student
                     $studentInfo = $this->users_m->get_single_user($user_id);
                     $this->data['student'] = $studentInfo;
                     $this->data['sharedLists'] = $this->contents_m->get_where(array('content_user_id' => $user_id, 'publish' => '1'));
@@ -46,7 +46,7 @@ class Users extends CI_Controller
                     $this->data['paidLists'] = $this->payhistory_m->getItemsFromUser($user_id);
                     $this->data["subview"] = "primary/users/student";
                     $this->load->view('primary/_layout_main', $this->data);
-		} else {
+                } else {
                     $studentInfo = $this->users_m->get_single_user($user_id);
                     $this->data['student'] = $studentInfo;
                     $this->data['paidLists'] = $this->payhistory_m->getItemsFromUser($user_id);

@@ -13,6 +13,7 @@ class Users extends CI_Controller
         $this->load->model('contents_m');
         $this->load->model('comments_m');
         $this->load->model('schools_m');
+        $this->load->model('payhistory_m');
         $this->load->model('users_m');
         $this->load->model('signin_m');
         $this->load->library("pagination");
@@ -36,7 +37,7 @@ class Users extends CI_Controller
 
                     $this->data["subview"] = "middle/users/teacher";
                     $this->load->view('middle/_layout_main', $this->data);
-                } else if(true){///********************************************current user is student
+                } else if($user_type == 2){///********************************************current user is student
                     $studentInfo = $this->users_m->get_single_user($user_id);
                     if(!$studentInfo->class_arr) $studentInfo->class_arr = '[]';
                     $this->data['student'] = $studentInfo;
@@ -49,7 +50,7 @@ class Users extends CI_Controller
                     $this->data['student'] = $studentInfo;
                     $this->data['paidLists'] = $this->payhistory_m->getItemsFromUser($user_id);
                     $this->data["subview"] = "middle/users/weixin";
-                    $this->load->view('_layout_main', $this->data);
+                    $this->load->view('middle/_layout_main', $this->data);
                 }
             } else {//////*********************************************current user is logged in, but other user
                 return;

@@ -1,62 +1,22 @@
 <?php $loged_In_user_id = $this->session->userdata("loginuserID");
-      $student_id = $student->user_id;
+$student_id = $student->user_id;
 ?>
-<link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/frontend/menu_manage.css')?>"
+<link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/middle/menu_manage.css') ?>"
       xmlns="http://www.w3.org/1999/html">
-<link rel = "stylesheet" type="text/css" href="<?= base_url('assets/css/frontend/profile_student.css')?>">
+<link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/middle/profile_teacher.css') ?>">
 <style>
-    .share_item_title
-    {
-        background:url(<?= base_url('assets/images/frontend/profile/item_bg.png')?>) no-repeat;
-        background-size: 100% 100%;
-    }
-    .profile-pay-item
-    {
-        background:url(<?= base_url('assets/images/frontend/profile/item_bg.png')?>) no-repeat;
-        background-size: 100% 100%;
-    }
-    .share_item_delete_btn
-    {
-        background:url(<?= base_url('assets/images/frontend/profile/delete.png')?>) no-repeat;
-        background-size: 100% 100%;
-    }
-    .comment_item_title
-    {
-        background:url(<?= base_url('assets/images/frontend/profile/item_bg.png')?>) no-repeat;
-        background-size: 100% 100%;
-    }
-    .comment_item_delete_btn
-    {
-        background:url(<?= base_url('assets/images/frontend/profile/delete.png')?>) no-repeat;
-        background-size: 100% 100%;
-    }
-    .student_nianji_edit {position: absolute;display: table;width: 10%;height: 4%;left: 36%;top: 27.5%;}
-    .student_banji_edit{position: absolute;display: table;width: 10%;height: 4%;left: 36%;top: 35.2%;}
-    .student_gender_edit {position: absolute;display: table;width: 10%;height: 4%;left: 60%;top: 35.1%;}
-    .student_fullname_edit{position: absolute;display: table;width: 10%;height: 4%;left: 60.2%;top: 21.2%;}
-    .student_nickname_edit{position: absolute;display: table;width: 10%;height: 4%;left: 36%;top: 35.1%;}
-    .student_serialnum_edit {position: absolute;display: table;width: 10%;height:4%;left: 60.2%;top: 41.6%;}
+
 </style>
-<div class="bg">
-    <img src="<?= base_url('assets/images/frontend/profile/empty_bg.png')?>" class="background_image">
+<div class="bg" style="background-color: #e8f9ff;">
+    <img src="<?= base_url('assets/images/middle/profile/bg-weixin.png') ?>" class="background_image">
 </div>
-<a onclick="history.back()"
-    class="return_btn"
-    style="background:url(<?= base_url('assets/images/frontend/studentwork/back.png')?>) no-repeat;background-size: 100% 100%;">
-</a>
+<a href="javascript:;" onclick="history.back();" class="btn-main back-btn"></a>
 
 <div class="profile_bg">
-    <!--<img src="<?= base_url('assets/images/frontend/profile/profile_bg.png')?>" class="profile_image">-->
-    <img src="<?= $student->avatar?>" class="profile_image">
+    <img src="<?= base_url('assets/images/middle/profile/profile_bg.png') ?>" class="profile_image">
 </div>
 
-<a  href="#" class="change_password_btn"
-    style="display:none;background:url(<?= base_url('assets/images/frontend/profile/pass_change.png')?>) no-repeat;background-size: 100% 100%;">
-</a>
-
-<a  href="#" class="edit_personal_info"
-    style="background:url(<?= base_url('assets/images/frontend/profile/info_edit.png')?>) no-repeat;background-size: 100% 100%;">
-</a>
+<a href="javascript:;" class="btn-profile edit_personal_info">编辑资料</a>
 <!-----------------------------------Student personal Info Field--------------------------------------------------------------->
 <div class="static_info_fields" >
     <div class="student_username_lbl">
@@ -124,16 +84,16 @@
 <!-----------------------------------Student personal Info Field--------------------------------------------------------------->
 <!-----------------------------------Pagination Buttons-------------------------------------------------------------------------------->
 <!--<a  href="#" class="share_prev_btn"
-    style="background:url(<?= base_url('assets/images/frontend/profile/prev.png')?>) no-repeat;background-size: 100% 100%;">
+    style="background:url(<?= base_url('assets/images/middle/profile/prev.png')?>) no-repeat;background-size: 100% 100%;">
 </a>
 <a  href="#" class="share_next_btn"
-    style="background:url(<?= base_url('assets/images/frontend/profile/next.png')?>) no-repeat;background-size: 100% 100%;">
+    style="background:url(<?= base_url('assets/images/middle/profile/next.png')?>) no-repeat;background-size: 100% 100%;">
 </a>
 <a  href="#" class="comment_prev_btn"
-    style="background:url(<?= base_url('assets/images/frontend/profile/prev.png')?>) no-repeat;background-size: 100% 100%;">
+    style="background:url(<?= base_url('assets/images/middle/profile/prev.png')?>) no-repeat;background-size: 100% 100%;">
 </a>
 <a  href="#" class="comment_next_btn"
-    style="background:url(<?= base_url('assets/images/frontend/profile/next.png')?>) no-repeat;background-size: 100% 100%;">
+    style="background:url(<?= base_url('assets/images/middle/profile/next.png')?>) no-repeat;background-size: 100% 100%;">
 </a>-->
 <!-----------------------------------Pagination Buttons---------------------------------------------------------------------------------->
 <div class="share_list_wrapper" id="shared_list_area">
@@ -240,7 +200,7 @@
     var classArr = '<?php echo $student->class_arr;?>';
     var paidList = $('._paidList').val();
     var student_id = '<?php echo $student_id;?>';
-    var imageDir = baseURL + "assets/images/frontend/profile/";
+    var imageDir = baseURL + "assets/images/middle/profile/";
     var passEditBtn = $('.change_password_btn');
     var infoEditBtn = $('.edit_personal_info');
     var sharePrevBtn = $('.share_prev_btn');
@@ -537,5 +497,5 @@
     })
 
 </script>
-<script src="<?= base_url('assets/js/frontend/menu_manage.js') ?>" type="text/javascript"></script>
-<script src="<?= base_url('assets/js/frontend/profile_weixin.js') ?>" type="text/javascript"></script>
+<script src="<?= base_url('assets/js/custom/middle/menu_manage.js') ?>" type="text/javascript"></script>
+<script src="<?= base_url('assets/js/custom/middle/profile_weixin.js') ?>" type="text/javascript"></script>
