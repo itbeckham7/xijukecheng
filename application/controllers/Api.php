@@ -494,14 +494,14 @@ class Api extends CI_Controller
             if ($order_status['order_status'] == 'ok') {
                 $user_id = $_GET['uId'];
                 $course_id = $_GET['cId'];
-                $dbData = $this->payhistory_m->get_where(array('user_id'=>$user_id, 'courseware_id'=>$course_id));
-                if($dbData == null){
+                $dbData = $this->payhistory_m->get_where(array('user_id' => $user_id, 'courseware_id' => $course_id));
+                if ($dbData == null) {
                     $this->payhistory_m->insert(array(
-                        'courseware_id'=>$course_id,
-                        'user_id'=>$user_id,
-                        'sender'=>$user_id,
-                        'paid_time'=>date('Y-m-d H:i:s'),
-                        'out_trade_no'=>$post_data['out_trade_no']
+                        'courseware_id' => $course_id,
+                        'user_id' => $user_id,
+                        'sender' => $user_id,
+                        'paid_time' => date('Y-m-d H:i:s'),
+                        'out_trade_no' => $post_data['out_trade_no']
                     ));
                 }
                 $this->return_success();
