@@ -296,7 +296,7 @@ class Contents extends CI_Controller {
                 $file_name_rename = $_POST['new_filename'] . '-' . $i;
                 ///
                 $fileExt = isset($_POST['ext']) ? $_POST['ext'] : 'wav';
-                log_message('info', '-- dubbing_read_upload 5.1' . $_POST['ext']);
+                log_message('info', '-- dubbing_read_upload 5.1' . $fileExt);
                 $uploadFileName = 'uploads/work/dubbing/'.$file_name_rename.'.'.$fileExt;
                 if (!move_uploaded_file($_FILES["read-blob"]["tmp_name"][$i], $uploadFileName)) {
                     log_message('info', '-- dubbing_read_upload 6');
