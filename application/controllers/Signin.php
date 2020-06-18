@@ -80,7 +80,7 @@ class Signin extends CI_Controller
             $arr['buycourse_arr'] = '{}';
             $arr['class'] = '';
             $arr['sex'] = '男';
-            $arr['user_type_id'] = 2;
+            $arr['user_type_id'] = 3;
             $arr['publish'] = 1;
             $pass = $arr['password'];
             $arr['password'] = $this->users_m->hash($arr['password']);
