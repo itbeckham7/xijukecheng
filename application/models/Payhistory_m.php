@@ -17,7 +17,7 @@ class Payhistory_m extends MY_Model
     {
         $users_data = array();
         $SQL = "SELECT  coursewares.courseware_id,coursewares.courseware_name,users.username,users.fullname,user_types.user_type_name,
-                        coursewares.price, paid_time, payhistory.user_id                        
+                        coursewares.price, paid_time, payhistory.user_id, payhistory.sender                        
                 FROM payhistory
                 LEFT JOIN coursewares ON payhistory.courseware_id = coursewares.courseware_id
                 LEFT JOIN users ON users.user_id = payhistory.user_id 
@@ -35,7 +35,8 @@ class Payhistory_m extends MY_Model
     {
         if ($user_id == '') return array();
 
-        $SQL = 'SELECT  payhistory.courseware_id, coursewares.courseware_name
+        $SQL = 'SELECT  payhistory.courseware_id, coursewares.courseware_name, 
+                        payhistory.user_id, payhistory.sender
                 FROM payhistory
                 LEFT JOIN coursewares ON payhistory.courseware_id = coursewares.courseware_id
                 WHERE payhistory.user_id = ' . $user_id . ' 

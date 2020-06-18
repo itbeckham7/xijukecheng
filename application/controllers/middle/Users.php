@@ -202,6 +202,25 @@ class Users extends CI_Controller
         echo json_encode($ret);
     }
 
+    public function update_weixin_person()
+    {
+        $ret = array(
+            'data' => '',
+            'status' => 'fail'
+        );
+        if ($_POST) {
+
+            $arr = array(
+                'fullname' => $_POST['fullname'],
+                'serial_no' => $_POST['serialno']
+            );
+            $this->users_m->update_user($arr, $_POST['user_id']);
+            $ret['data'] = $this->users_m->get_single_user($_POST['user_id']);
+            $ret['status'] = 'success';
+        }
+        echo json_encode($ret);
+    }
+
     ///this function is used in teachers profile page
     public function convertClassArrToHtml($class_jsonStr)
     {

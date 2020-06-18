@@ -23,8 +23,8 @@ $student_id = $student->user_id;
         <p id="username_p"><?php echo $student->username;?></p>
     </div>
 
-    <div class="student_nianji_lbl" style="display: none">
-        <p id="nianji_p"><?php echo substr($student->class,0,9)?></p>
+    <div class="student_nianji_lbl">
+        <p id="nianji_p"><?php echo $student->serial_no; ?></p>
     </div>
     <div class="student_banji_lbl" style="display: none">
         <p id="banji_p"><?php echo substr($student->class,9);?></p>
@@ -47,11 +47,8 @@ $student_id = $student->user_id;
 </div>
 
 <div class="hidden_edit_fields" style="display: none">
-    <div class="student_nianji_edit" style="display: none">
-        <select class="form-control" id="nianji_select" value="">
-            <option value="1">12312</option>
-            <option value="2">12512</option>
-        </select>
+    <div class="student_nianji_edit">
+        <input class="form-control" id="nianji_select" value="<?php echo $student->serial_no; ?>"/>
     </div>
     <div class="student_banji_edit" style="display: none">
         <select class="form-control" id="banji_select">
@@ -83,41 +80,38 @@ $student_id = $student->user_id;
 
 <!-----------------------------------Student personal Info Field--------------------------------------------------------------->
 <!-----------------------------------Pagination Buttons-------------------------------------------------------------------------------->
-<!--<a  href="#" class="share_prev_btn"
-    style="background:url(<?= base_url('assets/images/middle/profile/prev.png')?>) no-repeat;background-size: 100% 100%;">
-</a>
-<a  href="#" class="share_next_btn"
-    style="background:url(<?= base_url('assets/images/middle/profile/next.png')?>) no-repeat;background-size: 100% 100%;">
-</a>
-<a  href="#" class="comment_prev_btn"
-    style="background:url(<?= base_url('assets/images/middle/profile/prev.png')?>) no-repeat;background-size: 100% 100%;">
-</a>
-<a  href="#" class="comment_next_btn"
-    style="background:url(<?= base_url('assets/images/middle/profile/next.png')?>) no-repeat;background-size: 100% 100%;">
-</a>-->
+<a href="javascript:;" class="btn-profile share_prev_btn"></a>
+<a href="javascript:;" class="btn-profile share_next_btn"></a>
+<a href="javascript:;" class="btn-profile comment_prev_btn"></a>
+<a href="javascript:;" class="btn-profile comment_next_btn"></a>
+
 <!-----------------------------------Pagination Buttons---------------------------------------------------------------------------------->
-<div class="share_list_wrapper" id="shared_list_area">
-    <div class="profile-pay-item"></div>
-</div>
-<!--<div class="comment_list_wrapper" id="commented_content_list_area" style="display: none;">-->
-<!--</div>-->
+<div class="share_list_wrapper" id="shared_list_area"></div>
+<div class="comment_list_wrapper" id="commented_content_list_area"></div>
+
 <!---------------------my shared content modal-------------------------------->
 <div class="modal fade" id="my_shared_content_del_modal">
-    <div class="modal-dialog modal-sm" role="document" style="margin-top: 300px">
+    <div class="modal-dialog modal-sm" role="document">
         <form action="" method="post" class="form-horizontal">
             <div class="modal-content">
-                <div class="modal-body" style="text-align: center;padding-left;margin-top:30px;">
-                    <p><?php echo $this->lang->line('DeleteConfirmMsg');?></p>
+                <div class="modal-header"
+                     style="padding-right:20px;padding-top: 3px;padding-bottom: 10px;text-align: center">
+                    <h5 class="modal-title"
+                        style="margin-top: 5px;font-weight: bold"></h5>
+                </div>
+                <div class="modal-body" style="text-align: center">
+                    <h3 class="modal-title"
+                        style="margin: 30px 0;font-weight: bold"><?php echo $this->lang->line('DeleteConfirmMsg'); ?></h3>
                 </div>
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: center">
-                            <button type="button" class="btn btn-primary"
-                                    id="shared_content_delete_btn">
-                                <?php echo $this->lang->line('Yes');?></button>
+                            <button type="button" class="btn btn-red"
+                                    id="shared_content_delete_btn"><?php echo $this->lang->line('Yes'); ?></button>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: center">
-                            <button type="submit" class="btn btn-secondary"  data-dismiss="modal"><?php echo $this->lang->line('No');?></button>
+                            <button type="button" class="btn btn-blue"
+                                    data-dismiss="modal"><?php echo $this->lang->line('No'); ?></button>
                         </div>
                     </div>
                 </div>
@@ -127,21 +121,29 @@ $student_id = $student->user_id;
 </div>
 <!---------------------My Commented content model------------------------------>
 <div class="modal fade" id="my_commented_content_del_modal">
-    <div class="modal-dialog modal-sm" role="document" style="margin-top: 300px">
+    <div class="modal-dialog modal-sm" role="document">
         <form action="" method="post" class="form-horizontal">
             <div class="modal-content">
-                <div class="modal-body" style="text-align: center;padding-left;margin-top:30px;">
-                    <p><?php echo $this->lang->line('DeleteConfirmMsg');?></p>
+                <div class="modal-header"
+                     style="padding-right:20px;padding-top: 3px;padding-bottom: 10px;text-align: center">
+                    <h5 class="modal-title"
+                        style="margin-top: 5px;font-weight: bold"></h5>
+                </div>
+                <div class="modal-body" style="text-align: center">
+                    <h3 class="modal-title"
+                        style="margin: 30px 0;font-weight: bold"><?php echo $this->lang->line('DeleteConfirmMsg'); ?></h3>
                 </div>
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: center">
-                            <button type="button" class="btn btn-primary"
-                                    id="commented_content_delete_btn">
-                                <?php echo $this->lang->line('Yes');?></button>
+                            <button type="button" class="btn btn-red"
+                                    id="commented_content_delete_btn"
+                            ><?php echo $this->lang->line('Yes'); ?></button>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: center">
-                            <button type="submit" class="btn btn-secondary"  data-dismiss="modal"><?php echo $this->lang->line('No');?></button>
+                            <button type="button" class="btn btn-blue"
+                                    data-dismiss="modal"
+                            ><?php echo $this->lang->line('No'); ?></button>
                         </div>
                     </div>
                 </div>
@@ -149,43 +151,57 @@ $student_id = $student->user_id;
         </form>
     </div>
 </div>
+
 <div class="modal fade" id="change_pass_modal">
-    <div class="modal-dialog modal-sm" role="document" style="margin-top: 300px">
+    <div class="modal-dialog modal-sm" role="document">
         <form action="" method="post" class="form-horizontal" id="change_pass_form">
-            <div class="modal-content">
-                <div class="modal-body" style="text-align: center;padding-left;margin-top:15px;">
-                    <div class="form-group" style="height:30px;">
-                        <label class="control-label col-sm-4" for="pwd" style="margin-top: 5px"><?php echo $this->lang->line('OldPassword');?>:</label>
-                        <div class="col-sm-8" style="padding-left: 0;padding-right: 25px;">
-                            <input type="password" class="form-control" id="old_pass" pattern="[a-zA-Z0-9!@#$%^*_|]{6,25}" name="old_pass" onkeyup="checkOldPass();">
+            <div class="modal-content" style="width: 480px;height: auto;">
+                <div class="modal-header"
+                     style="padding-right:20px;padding-top: 3px;padding-bottom: 10px;text-align: center">
+                    <h5 class="modal-title"
+                        style="margin-top: 5px;font-weight: bold"></h5>
+                </div>
+                <div class="modal-body" style="text-align: center;height: auto;padding: 30px 20px 15px;">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <img src="<?= base_url('assets/images/middle/profile/input-password.png') ?>">
+                            <input type="password" class="form-control" id="old_pass"
+                                   pattern="[a-zA-Z0-9!@#$%^*_|]{6,25}" placeholder="请输入旧密码"
+                                   name="old_pass" onkeyup="checkOldPass();">
                         </div>
                     </div>
-                    <p id="pass_warning_msg" style="color: #f00;display:none"><?php echo $this->lang->line('LimitPassword');?></p>
-                    <p id="pass_incorrect_msg" style="color: #f00;display:none"><?php echo $this->lang->line('OldPassIncorrect');?></p>
-                    <div class="form-group" style="height:40px;">
-                        <label class="control-label col-sm-4" for="pwd" style="margin-top:5px;"><?php echo $this->lang->line('NewPassword');?>:</label>
-                        <div class="col-sm-8" style="padding-left: 0;padding-right: 25px;">
-                            <input type="password" class="form-control" id="new_pass"  name="new_pass" onkeyup="check_NewPass()">
+                    <p id="pass_warning_msg"
+                       style="color: #f00;display:none"><?php echo $this->lang->line('LimitPassword'); ?></p>
+                    <p id="pass_incorrect_msg"
+                       style="color: #f00;display:none"><?php echo $this->lang->line('OldPassIncorrect'); ?></p>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <img src="<?= base_url('assets/images/middle/profile/input-password.png') ?>">
+                            <input type="password" class="form-control" id="new_pass"
+                                   name="new_pass" placeholder="请输入新密码"
+                                   onkeyup="check_NewPass()">
                         </div>
                     </div>
-                    <div class="form-group" style="height:30px;">
-                        <label class="control-label col-sm-4" for="pwd"><?php echo $this->lang->line('ConfirmPassword');?>:</label>
-                        <div class="col-sm-8" style="padding-left: 0;padding-right: 25px;">
-                            <input type="password" class="form-control" id="confirm_pass"  name="confirm_pass" onkeyup="check_NewPass()">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <img src="<?= base_url('assets/images/middle/profile/input-password.png') ?>">
+                            <input type="password" class="form-control" id="confirm_pass"
+                                   name="confirm_pass" placeholder="请重新输入新密码"
+                                   onkeyup="check_NewPass()">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: center">
-                            <button type="button" class="btn btn-primary"
-                                    id="content_delete_btn"
-                                    student_id = "<?php echo $student->user_id;?>"
-                                    onclick="updatePassword();"   >
-                                <?php echo $this->lang->line('Save');?></button>
+                            <button type="button" class="btn btn-red"
+                                    teacher_id="<?php echo $student->user_id; ?>"
+                                    onclick="updatePassword();"
+                                    id="content_delete_btn"><?php echo $this->lang->line('Save'); ?></button>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: center">
-                            <button type="submit" class="btn btn-secondary"  data-dismiss="modal"><?php echo $this->lang->line('No');?></button>
+                            <button type="button" class="btn btn-blue"
+                                    data-dismiss="modal"><?php echo $this->lang->line('No'); ?></button>
                         </div>
                     </div>
                 </div>
@@ -225,7 +241,7 @@ $student_id = $student->user_id;
     var nianclass_lbl = $('#banji_p');
     var nickname_lbl = $('#nickname_p');
     var sex_lbl = $('#gender_p');
-    var serial_no_lbl  = $('#serialnum_p');
+    var serial_no_lbl = $('#serialnum_p');
     /*******************Editable Info Fields wrapper***********************/
     var nanjiEditWrap = $('.student_nianji_edit');
     var banjiEditWrap = $('.student_banji_edit');
@@ -250,11 +266,11 @@ $student_id = $student->user_id;
     var fourStr = '<?php echo $this->lang->line('3');?>';
     var fiveStr = '<?php echo $this->lang->line('4');?>';
     var totalNumberList = {
-        1:oneStr,
-        2:twoStr,
-        3:threeStr,
-        4:fourStr,
-        5:fiveStr
+        1: oneStr,
+        2: twoStr,
+        3: threeStr,
+        4: fourStr,
+        5: fiveStr
     };
     var classChineseStr = '<?php echo $this->lang->line('Class');?>';
     var gradeChineseStr = '<?php echo $this->lang->line('NianGrade');?>';
@@ -264,26 +280,27 @@ $student_id = $student->user_id;
 
         var vHeight = window.innerHeight;
         var dlgHeight = $('#my_shared_content_del_modal .modal-dialog').height();
-        $('#my_shared_content_del_modal .modal-dialog').css({'margin-top':(vHeight-dlgHeight-100)/2});
+        $('#my_shared_content_del_modal .modal-dialog').css({'margin-top': (vHeight - dlgHeight - 100) / 2});
 
-        $('#shared_content_delete_btn').attr('content_id',contentId);
-        $('#my_shared_content_del_modal').modal({backdrop: 'static',keyboard: false});
+        $('#shared_content_delete_btn').attr('content_id', contentId);
+        $('#my_shared_content_del_modal').modal({backdrop: 'static', keyboard: false});
     }
-    function del_hover_btn(self) { self.style.backgroundImage   = "url("+imageDir+"delete_hover.png)"; }
-    function del_out_btn(self)  {  self.style.backgroundImage   = "url("+imageDir+"delete.png)"; }
+
+    function del_hover_btn(self) {
+    }
+
+    function del_out_btn(self) {
+    }
+
     function commentItemDelete(self) {
         var contentId = self.getAttribute('content_id');
-        $('#commented_content_delete_btn').attr('content_id',contentId);
+        $('#commented_content_delete_btn').attr('content_id', contentId);
 
-        var vHeight = window.innerHeight;
-        var dlgHeight = $('#my_commented_content_del_modal .modal-dialog').height();
-        $('#my_commented_content_del_modal .modal-dialog').css({'margin-top':(vHeight-dlgHeight-100)/2});
-
-        $('#my_commented_content_del_modal').modal({backdrop: 'static',keyboard: false});
+        $('#my_commented_content_del_modal').modal({backdrop: 'static', keyboard: false});
     }
     function showEditInfoFields()
     {
-//        nanjiLblWrap.hide();
+       nanjiLblWrap.hide();
 //        banjiLblWrap.hide();
 //        serialLblNumWarp.hide();
 //        nicknameLblWrap.hide();
@@ -293,7 +310,7 @@ $student_id = $student->user_id;
     }
     function hideEditInfoFields()
     {
-//        nanjiLblWrap.show();
+       nanjiLblWrap.show();
 //        banjiLblWrap.show();
 //        serialLblNumWarp.show();
 //        nicknameLblWrap.show();
@@ -349,26 +366,24 @@ $student_id = $student->user_id;
 
     function updateStudentProfile(){
 
-        var changedClassStr = grade_select.val()+nianclass_select.val();
-        var sexStr = '',fullname = '', nickname = '',serialNo = '';
+        var changedClassStr = grade_select.val() + nianclass_select.val() ;
+        if(!changedClassStr) changedClassStr = '';
+        var sexStr = '', fullname = '', nickname = '', serialNo = '';
         fullname = fullname_edit.val();
         nickname = nickname_edit.val();
-        serialNo = serial_no_edit.val();
+        serialNo = grade_select.val();
         var changedInfo = {
-            user_id:student_id,
-            fullname:fullname,
-            sex:curSexStr,
-            class:changedClassStr,
-            nickname:nickname,
-            serialno:serialNo
+            user_id: student_id,
+            fullname: fullname,
+            serialno: serialNo
         };
         $.ajax({
             type: "post",
-            url: baseURL+"users/update_student_person",
+            url: baseURL + "middle/users/update_weixin_person",
             dataType: "json",
             data: changedInfo,
-            success: function(res) {
-                if(res.status=='success') {
+            success: function (res) {
+                if (res.status == 'success') {
                     ///res.data is updated information
                     var ret = res.data;
                     grade_lbl.text(grade_select.val());
@@ -377,8 +392,7 @@ $student_id = $student->user_id;
                     fullname_lbl.text(ret['fullname']);
                     nickname_lbl.text(ret['nickname']);
                     serial_no_lbl.text(ret['serial_no']);
-                }
-                else//failed
+                } else//failed
                 {
                     alert("Cannot Save Teacher Profile Information.");
                 }
@@ -386,100 +400,100 @@ $student_id = $student->user_id;
 
         });
     }
-    infoEditBtn.click(function(){
-        if(saveButtonStatus){//current button str is "Save" status
+
+    infoEditBtn.click(function () {
+        if (saveButtonStatus) {//current button str is "Save" status
             ///1. update of profile information in table
             updateStudentProfile();
             hideEditInfoFields();
             saveButtonStatus = false;
-            infoEditBtn.css({"background":"url("+imageDir+"info_edit_hover.png) no-repeat",'background-size' :'100% 100%'});
+            infoEditBtn.html('编辑资料');
             ///2. hide edit fields
-        }else{
+        } else {
             ///set button text into 'Save'
             showEditInfoFields();
             saveButtonStatus = true;
-            infoEditBtn.css({"background":"url("+imageDir+"save_hover.png) no-repeat",'background-size' :'100% 100%'});
+            infoEditBtn.html('保存');
         }
     });
-    function chooseMale(self){
 
-        $('.male_radio_btn').prop('checked',true);
-        $('.female_radio_btn').prop('checked',false);
+    function chooseMale(self) {
+        $('.male_radio_btn').prop('checked', true);
+        $('.female_radio_btn').prop('checked', false);
         curSexStr = maleStr;
 
     }
-    function chooseFemale(self){
 
-        $('.male_radio_btn').prop('checked',false);
-        $('.female_radio_btn').prop('checked',true);
+    function chooseFemale(self) {
+        $('.male_radio_btn').prop('checked', false);
+        $('.female_radio_btn').prop('checked', true);
         curSexStr = femaleStr;
-
     }
-    function alphanumeric(inputtxt){
+
+    function alphanumeric(inputtxt) {
         $('#pass_incorrect_msg').hide();
         var letterNumber = /^[0-9a-zA-Z]+$/;
-        if(inputtxt.match(letterNumber))
-        {
+        if (inputtxt.match(letterNumber)) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
+
     function checkOldPass() {
         var oldPass = $('#old_pass').val();
-        if(!alphanumeric(oldPass)){
+        if (!alphanumeric(oldPass)) {
             $('#pass_warning_msg').show();
-        }else{
+        } else {
             $('#pass_warning_msg').hide();
         }
     }
-    function check_NewPass(){
+
+    function check_NewPass() {
         var newPassBox = $('#new_pass');
         var confirmPassBox = $('#confirm_pass');
         var new_pass = newPassBox.val();
         var confirm_Pass = confirmPassBox.val();
 
-        if(new_pass!=confirm_Pass)
-        {
-            confirmPassBox.css('border-style','solid');
-            confirmPassBox.css('border-color','#f00');
-            confirmPassBox.css('border-width','2px');
-            $('#content_delete_btn').prop('disabled',true);
+        if (new_pass != confirm_Pass) {
+            confirmPassBox.css('border-style', 'solid');
+            confirmPassBox.css('border-color', '#f00');
+            confirmPassBox.css('border-width', '2px');
+            $('#content_delete_btn').prop('disabled', true);
 
-        }else{
+        } else {
 
-            confirmPassBox.css('border-style','solid');
-            confirmPassBox.css('border-color','#ccc');
-            confirmPassBox.css('border-width','1px');
-            $('#content_delete_btn').prop('disabled',false);
+            confirmPassBox.css('border-style', 'solid');
+            confirmPassBox.css('border-color', '#ccc');
+            confirmPassBox.css('border-width', '1px');
+            $('#content_delete_btn').prop('disabled', false);
         }
     }
-    function updatePassword(){
+
+    function updatePassword() {
         var oldPassBox = $('#old_pass');
         var newPassBox = $('#new_pass');
         var studentId = $('#content_delete_btn').attr('student_id');
         var old_pass = oldPassBox.val();
         var new_pass = newPassBox.val();
-        var changedInfo = {user_id:studentId,old_pass:old_pass,new_pass:new_pass};
+        var changedInfo = {user_id: studentId, old_pass: old_pass, new_pass: new_pass};
         $.ajax({
             type: "post",
-            url: baseURL+"users/update_password",
+            url: baseURL + "middle/users/update_password",
             dataType: "json",
             data: changedInfo,
-            success: function(res) {
-                if(res.status=='success') {
+            success: function (res) {
+                if (res.status == 'success') {
                     $('#change_pass_modal').modal('toggle');
-                }
-                else//failed
+                } else//failed
                 {
                     $('#pass_incorrect_msg').show();
                 }
             }
         })
     }
-    passEditBtn.click(function(){
+
+    passEditBtn.click(function () {
 
         $('#old_pass').val('');
         $('#confirm_pass').val('');
@@ -487,12 +501,8 @@ $student_id = $student->user_id;
         $('#pass_warning_msg').hide();
         $('#pass_incorrect_msg').hide();
 
-        var vHeight = window.innerHeight;
-        var dlgHeight = $('#change_pass_modal .modal-dialog').height();
-        $('#change_pass_modal .modal-dialog').css({'margin-top':(vHeight-dlgHeight-130)/2});
-
         $('#change_pass_modal').modal({
-            backdrop: 'static',keyboard: false
+            backdrop: 'static', keyboard: false
         });
     })
 
