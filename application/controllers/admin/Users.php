@@ -83,8 +83,6 @@ class Users extends Admin_Controller
             $user_class = $_POST['add_grade_class'];
             $buycs_list = $_POST['buycourse_arr'];
 
-            $dt = new DateTime();
-            $currentTime = $dt->format('Y-m-d H:i:s');
             $param = array(
                 'fullname' => $fullname,
                 'username' => $username,
@@ -93,7 +91,7 @@ class Users extends Admin_Controller
                 'school_name' => $school_name,
                 'user_type_id' => $user_type_id,
                 'user_class_name' => $user_class,
-                'reg_time' => $currentTime,
+                'reg_time' => date('Y-m-d H:i:s'),
                 'buycourse_arr' => $buycs_list,
                 'publish' => '0'
             );
@@ -171,9 +169,6 @@ class Users extends Admin_Controller
                 $this->coursepermissions_m->insert(array('user_id' => $userId, 'course_type' => '3', 'course_id' => $sdp));
             endforeach;
 
-            $dt = new DateTime();
-            $currentTime = $dt->format('Y-m-d H:i:s');
-
             if ($password_status === '1') {
                 $password = $_POST['edit_usernewpassword'];
             }
@@ -188,7 +183,7 @@ class Users extends Admin_Controller
                 'password_status' => $password_status,
                 'buycourse_arr' => $buycs_list,
                 'password' => $password,
-                'reg_time' => $currentTime
+                'reg_time' => date('Y-m-d H:i:s')
             );
 
             $this->data['users'] = $this->users_m->edit($param);
@@ -271,8 +266,6 @@ class Users extends Admin_Controller
 
     public function bulkAddUsers()
     {
-        $dt = new DateTime();
-        $currentTime = $dt->format('Y-m-d H:i:s');
         $userCounts = $_POST['add_bulk_quantity'];
         $buyCourseSt = array('kebenju' => '0', 'sandapian' => '0', 'grammar' => '0');
         $buyCourseSt['kebenju'] = ($this->input->post('kebenju') == 'on') ? '1' : '0';
@@ -293,7 +286,7 @@ class Users extends Admin_Controller
                 'school_id' => $_POST['add_bulk_school_id'],
                 'user_type_id' => $_POST['add_bulk_user_type'],
                 'buycourse_arr' => json_encode($buyCourseSt),
-                'reg_time' => $currentTime,
+                'reg_time' => date('Y-m-d H:i:s'),
                 'publish' => '1'
             );
 
