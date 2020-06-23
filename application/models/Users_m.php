@@ -222,9 +222,9 @@ class Users_m extends MY_Model
                 if($before_time<$reg_time&&$reg_time<$after_time);
                 {
                     $tempArr['user_id'] = $user->user_id;
-                    $tempArr['username'] = ($queryData['username'] != '') ? $queryData['username'] : $user->username;
-                    $tempArr['fullname'] = ($queryData['fullname'] != '') ? $queryData['fullname'] : $user->fullname;
-                    $tempArr['sex'] = ($queryData['sex'] != '') ? $queryData['sex'] : $user->sex;
+                    $tempArr['username'] = $user->username;
+                    $tempArr['fullname'] = $user->fullname;
+                    $tempArr['sex'] = $user->sex;
                     $tempArr['reg_time'] = $user->reg_time;
                     $tempArr['school_name'] = $this->getSchoolNameFromID($user->school_id);
                     $tempArr['user_type_id'] = $user->user_type_id;
@@ -239,9 +239,9 @@ class Users_m extends MY_Model
             } else {
                 if ($before_time < $reg_time && $reg_time < $after_time) {
                     $tempArr['user_id'] = $user->user_id;
-                    $tempArr['username'] = ($queryData['username'] != '') ? $queryData['username'] : $user->username;
-                    $tempArr['fullname'] = ($queryData['fullname'] != '') ? $queryData['fullname'] : $user->fullname;
-                    $tempArr['sex'] = ($queryData['sex'] != '') ? $queryData['sex'] : $user->sex;
+                    $tempArr['username'] = $user->username;
+                    $tempArr['fullname'] = $user->fullname;
+                    $tempArr['sex'] = $user->sex;
                     $tempArr['reg_time'] = $user->reg_time;
                     $tempArr['school_name'] = $this->getSchoolNameFromID($user->school_id);
                     $tempArr['user_type_id'] = $user->user_type_id;
