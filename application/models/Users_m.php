@@ -20,7 +20,7 @@ class Users_m extends MY_Model
                         user_type_name,class,users.publish,sex,reg_time,buycourse_arr,last_login
                 FROM users
                 LEFT JOIN user_types ON users.user_type_id = user_types.user_type_id
-                LEFT JOIN schools ON users.school_id = schools.school_id ORDER By user_id ASC 
+                LEFT JOIN schools ON users.school_id = schools.school_id ORDER By reg_time DESC 
                 ;";
         $query = $this->db->query($SQL);
         $users_data = $query->result();
