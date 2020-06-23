@@ -366,8 +366,8 @@ class Users extends Admin_Controller
             if ($user->publish == '1') $pub = $this->lang->line('UnPublish');
             else   $pub = $this->lang->line('Publish');
             $buyList = json_decode($user->buycourse_arr);
-            $kebenju = $buyList->kebenju;
-            $sandapian = $buyList->sandapian;
+            $kebenju = isset($buyList->kebenju)?$buyList->kebenju:'0';
+            $sandapian = isset($buyList->sandapian)?$buyList->sandapian:'0';
             $grammar = isset($buyList->grammar)?$buyList->grammar:'0';
 			
 			$buycourseStr = '';
