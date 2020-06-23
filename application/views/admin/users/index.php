@@ -195,7 +195,7 @@
                                 <?php } ?>
                                 <td><?= $user->school_name; ?></td>
                                 <td><?= $user->user_type_name; ?></td>
-                                <td><?= date("Y-m-d H:i:s", strtotime($user->reg_time . ini_get('date.timezone'))); ?></td>
+                                <td><?= date("Y-m-d H:i:s", strtotime($user->reg_time . '+8 hour')); ?></td>
                                 <td><?= $buycourseStr; ?></td>
                                 <td>
                                     <button class="btn btn-sm btn-success" onclick="edit_user(this);"
