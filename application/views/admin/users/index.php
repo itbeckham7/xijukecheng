@@ -195,7 +195,7 @@
                                 <?php } ?>
                                 <td><?= $user->school_name; ?></td>
                                 <td><?= $user->user_type_name; ?></td>
-                                <td><?= $user->reg_time; ?></td>
+                                <td><?= date("Y-m-d H:i:s", strtotime($user->reg_time)); ?></td>
                                 <td><?= $buycourseStr; ?></td>
                                 <td>
                                     <button class="btn btn-sm btn-success" onclick="edit_user(this);"
