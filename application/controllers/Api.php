@@ -475,7 +475,7 @@ class Api extends CI_Controller
         log_message('info', '-- payment-notify $post:'.json_encode($post));
         log_message('info', '-- payment-notify $_GET:'.json_encode($_GET));
         log_message('info', '-- payment-notify $_SERVER'.json_encode($_SERVER));
-        $post_data = $this->xml_to_array($post);   //微信支付成功，返回回调地址url的数据：XML转数组Array
+        $post_data = $this->xmlToArray($post);   //微信支付成功，返回回调地址url的数据：XML转数组Array
         $postSign = $post_data['sign'];
         unset($post_data['sign']);
 
@@ -526,6 +526,65 @@ class Api extends CI_Controller
         echo $xml_post;
         exit;
     }
+
+
+    //数组转换成xml
+    private function arrayToXml($arr) {
+        $xml = "<root>";
+        foreach ($arr as $key => $val) {
+            if (is_array($val)) {
+                $xml .= "<" . $key . ">" . arrayToXml($val) . "</" . $key . ">";
+            } else {
+                $xml .= "<" . $key . ">" . $val . "</" . $key . ">";
+            }
+        }
+        $xml .= "</root>";
+        return $xml;
+    }
+
+
+    //xml转换成数组
+    private function xmlToArray($xml) {
+
+
+        //禁止引用外部xml实体
+
+
+        libxml_disable_entity_loader(true);
+
+
+        $xmlstring = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
+
+
+        $val = json_decode(json_encode($xmlstring), true);
+
+
+        return $val;
+    }
+
+    /**
+     * 格式化参数 拼接字符串，签名过程需要使用
+     * @param [type] $urlParams     [description]
+     * @param [type] $needUrlencode [description]
+     */
+    function ToUrlParams($urlParams, $needUrlencode)
+    {
+        $buff = "";
+        ksort($urlParams);
+
+        foreach ($urlParams as $k => $v) {
+            if ($needUrlencode) $v = urlencode($v);
+            $buff .= $k . '=' . $v . '&';
+        }
+
+        $reqString = '';
+        if (strlen($buff) > 0) {
+            $reqString = substr($buff, 0, strlen($buff) - 1);
+        }
+
+        return $reqString;
+    }
+
 
 
 }
