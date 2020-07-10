@@ -468,17 +468,9 @@ class Api extends CI_Controller
         }
 
         $post = post_data();    //接受POST数据XML个数
-
-        log_message('info', '-- payment-notify file_get_contents():'.json_encode(file_get_contents("php://input")));
-        log_message('info', '-- payment-notify $_REQUEST:'.json_encode($_REQUEST));
-        log_message('info', '-- payment-notify $GLOBALS:'.json_encode($GLOBALS['HTTP_RAW_POST_DATA']));
-        log_message('info', '-- payment-notify $post:'.json_encode($post));
-        log_message('info', '-- payment-notify $_GET:'.json_encode($_GET));
-        log_message('info', '-- payment-notify $_SERVER'.json_encode($_SERVER));
         $post_data = $this->xmlToArray($post);   //微信支付成功，返回回调地址url的数据：XML转数组Array
         $postSign = $post_data['sign'];
         unset($post_data['sign']);
-
         /* 微信官方提醒：
         *  商户系统对于支付结果通知的内容一定要做【签名验证】,
         *  并校验返回的【订单金额是否与商户侧的订单金额】一致，
@@ -487,6 +479,11 @@ class Api extends CI_Controller
         ksort($post_data);// 对数据进行排序
         $str = $this->ToUrlParams($post_data);//对数组数据拼接成key=value字符串
         $user_sign = strtoupper(md5($post_data));   //再次生成签名，与$postSign比较
+
+        log_message('info', '-- payment-notify $post_data:'.json_encode($post_data));
+        log_message('info', '-- payment-notify $_GET:'.json_encode($_GET));
+        log_message('info', '-- payment-notify $_SERVER'.json_encode($_SERVER));
+        log_message('info', '-- payment-notify $str'.json_encode($str));
 
         if ($post_data['return_code'] == 'SUCCESS' && $postSign) {
             /*
