@@ -469,6 +469,11 @@ class Api extends CI_Controller
 
         $post = post_data();    //接受POST数据XML个数
 
+        log_message('info', '-- payment-notify file_get_contents():'.json_encode(file_get_contents("php://input")));
+        log_message('info', '-- payment-notify $_REQUEST:'.json_encode($_REQUEST));
+        log_message('info', '-- payment-notify $GLOBALS:'.json_encode($GLOBALS['HTTP_RAW_POST_DATA']));
+        log_message('info', '-- payment-notify $post:'.json_encode($post));
+        log_message('info', '-- payment-notify $_GET:'.json_encode($_GET));
         $post_data = $this->xml_to_array($post);   //微信支付成功，返回回调地址url的数据：XML转数组Array
         $postSign = $post_data['sign'];
         unset($post_data['sign']);
