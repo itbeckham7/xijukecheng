@@ -482,7 +482,7 @@ class Api extends CI_Controller
         */
         ksort($post_data);// 对数据进行排序
         $str = $this->ToUrlParams($post_data);//对数组数据拼接成key=value字符串
-        $user_sign = strtoupper(md5($post_data));   //再次生成签名，与$postSign比较
+        $user_sign = strtoupper(md5($str));   //再次生成签名，与$postSign比较
 
         log_message('info', '-- payment-notify $post_data:' . json_encode($post_data));
         log_message('info', '-- payment-notify $_GET:' . json_encode($_GET));
