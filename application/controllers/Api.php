@@ -497,8 +497,8 @@ class Api extends CI_Controller
             * 其次，订单已经为ok的，直接返回SUCCESS
             * 最后，订单没有为ok的，更新状态为ok，返回SUCCESS
             */
-            $user_id = $_GET['uId'];
-            $course_id = $_GET['cId'];
+            $user_id = $uId;
+            $course_id = $cId;
             $dbData = $this->payhistory_m->get_where(array('user_id' => $user_id, 'courseware_id' => $course_id));
             if ($dbData == null) {
                 $this->payhistory_m->insert(array(
