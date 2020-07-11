@@ -384,12 +384,12 @@ class Api extends CI_Controller
             $total_fee = floatval($total_fee * 100);
         }
 
-        log_message('info', '-- payment-request $notify_url:'.'http://xijvkecheng.hulalaedu.com/api/notify'
-            . '?uId=' . $user_id . '&cId=' . $courseware_id);
+        log_message('info', '-- payment-request $notify_url:' . 'http://xijvkecheng.hulalaedu.com/api/notify'
+            . '/' . $user_id . '/' . $courseware_id);
 
         $weixinpay = new WeixinPay($appid, $openid, $mch_id, $key, $out_trade_no, $body, $total_fee,
-            'http://xijvkecheng.hulalaedu.com/api/notify'
-            . '?uId=' . $user_id . '&cId=' . $courseware_id
+            base_url() . 'api/notify'
+            . '/' . $user_id . '/' . $courseware_id
         );
         $return = $weixinpay->pay();
         echo json_encode($return);
@@ -457,7 +457,7 @@ class Api extends CI_Controller
         echo json_encode($return);
     }
 
-    public function notify()
+    public function notify($uId = 0, $cId = 0)
     {
         function post_data()
         {
@@ -484,10 +484,10 @@ class Api extends CI_Controller
         $str = $this->ToUrlParams($post_data);//对数组数据拼接成key=value字符串
         $user_sign = strtoupper(md5($post_data));   //再次生成签名，与$postSign比较
 
-        log_message('info', '-- payment-notify $post_data:'.json_encode($post_data));
-        log_message('info', '-- payment-notify $_GET:'.json_encode($_GET));
-        log_message('info', '-- payment-notify $_SERVER'.json_encode($_SERVER));
-        log_message('info', '-- payment-notify $str'.json_encode($str));
+        log_message('info', '-- payment-notify $post_data:' . json_encode($post_data));
+        log_message('info', '-- payment-notify $_GET:' . json_encode($_GET));
+        log_message('info', '-- payment-notify $_SERVER:' . json_encode($_SERVER));
+        log_message('info', '-- payment-notify $str:' . json_encode($str));
 
         if ($post_data['return_code'] == 'SUCCESS' && $postSign) {
             /*
@@ -530,7 +530,8 @@ class Api extends CI_Controller
 
 
     //数组转换成xml
-    private function arrayToXml($arr) {
+    private function arrayToXml($arr)
+    {
         $xml = "<root>";
         foreach ($arr as $key => $val) {
             if (is_array($val)) {
@@ -545,7 +546,8 @@ class Api extends CI_Controller
 
 
     //xml转换成数组
-    private function xmlToArray($xml) {
+    private function xmlToArray($xml)
+    {
 
 
         //禁止引用外部xml实体
@@ -585,7 +587,6 @@ class Api extends CI_Controller
 
         return $reqString;
     }
-
 
 
 }
