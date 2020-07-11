@@ -488,6 +488,8 @@ class Api extends CI_Controller
         log_message('info', '-- payment-notify $_GET:' . json_encode($_GET));
         log_message('info', '-- payment-notify $_SERVER:' . json_encode($_SERVER));
         log_message('info', '-- payment-notify $str:' . json_encode($str));
+        log_message('info', '-- payment-notify $uId:' . json_encode($uId));
+        log_message('info', '-- payment-notify $cId:' . json_encode($cId));
 
         if ($post_data['return_code'] == 'SUCCESS' && $postSign) {
             /*
