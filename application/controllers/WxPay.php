@@ -6,7 +6,8 @@
  */
 
 
-class WeixinPay {
+class WeixinPay
+{
 
 
     public $appid;
@@ -17,7 +18,9 @@ class WeixinPay {
     public $body;
     public $total_fee;
     public $notify_url;
-    function __construct($appid, $openid, $mch_id, $key,$out_trade_no,$body,$total_fee,$notify_url) {
+
+    function __construct($appid, $openid, $mch_id, $key, $out_trade_no, $body, $total_fee, $notify_url)
+    {
         $this->appid = $appid;
         $this->openid = $openid;
         $this->mch_id = $mch_id;
@@ -29,7 +32,8 @@ class WeixinPay {
     }
 
 
-    public function pay() {
+    public function pay()
+    {
         //统一下单接口
         $return = $this->weixinapp();
         return $return;
@@ -37,7 +41,8 @@ class WeixinPay {
 
 
     //统一下单接口
-    private function unifiedorder() {
+    private function unifiedorder()
+    {
         $url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
         $parameters = array(
             'appid' => $this->appid, //小程序ID
@@ -46,7 +51,7 @@ class WeixinPay {
 //            'body' => 'test', //商品描述
             'body' => $this->body,
 //            'out_trade_no' => '2015450806125348', //商户订单号
-            'out_trade_no'=> $this->out_trade_no,
+            'out_trade_no' => $this->out_trade_no,
 //            'total_fee' => floatval(0.01 * 100), //总金额 单位 分
             'total_fee' => $this->total_fee,
 //            'spbill_create_ip' => $_SERVER['REMOTE_ADDR'], //终端IP
@@ -100,9 +105,9 @@ class WeixinPay {
     }
 
 
-
-    //数组转换成xml  
-    private function arrayToXml($arr) {
+    //数组转换成xml
+    private function arrayToXml($arr)
+    {
         $xml = "<root>";
         foreach ($arr as $key => $val) {
             if (is_array($val)) {
@@ -117,7 +122,8 @@ class WeixinPay {
 
 
     //xml转换成数组  
-    private function xmlToArray($xml) {
+    private function xmlToArray($xml)
+    {
 
 
         //禁止引用外部xml实体   
@@ -137,7 +143,8 @@ class WeixinPay {
 
 
     //微信小程序接口  
-    private function weixinapp() {
+    private function weixinapp()
+    {
         //统一下单接口  
         $unifiedorder = $this->unifiedorder();
 //        var_dump($this->key);
@@ -145,10 +152,10 @@ class WeixinPay {
         $parameters = array(
             'appid' => $this->appid, //小程序ID  
             'noncestr' => $this->createNoncestr(), //随机串  
-            'package'=>"Sign=WXPay",
+            'package' => "Sign=WXPay",
 //            'package' => 'prepay_id=' . $unifiedorder->prepay_id, //数据包
-            'partnerid'=>$this->mch_id,
-            'prepayid'=>$unifiedorder['prepay_id'],
+            'partnerid' => $this->mch_id,
+            'prepayid' => (isset($unifiedorder['prepay_id']) ? $unifiedorder['prepay_id'] : ''),
             'timestamp' => '' . time() . '' //时间戳  
         );
         //签名  
@@ -158,7 +165,8 @@ class WeixinPay {
 
 
     //作用：产生随机字符串，不长于32位  
-    private function createNoncestr($length = 32) {
+    private function createNoncestr($length = 32)
+    {
         $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
         $str = "";
         for ($i = 0; $i < $length; $i++) {
@@ -169,7 +177,8 @@ class WeixinPay {
 
 
     //作用：生成签名  
-    private function getSign($Obj) {
+    private function getSign($Obj)
+    {
         foreach ($Obj as $k => $v) {
             $Parameters[$k] = $v;
         }
@@ -187,7 +196,8 @@ class WeixinPay {
 
 
     ///作用：格式化参数，签名过程需要使用  
-    private function formatBizQueryParaMap($paraMap, $urlencode) {
+    private function formatBizQueryParaMap($paraMap, $urlencode)
+    {
         $buff = "";
         ksort($paraMap);
         foreach ($paraMap as $k => $v) {
