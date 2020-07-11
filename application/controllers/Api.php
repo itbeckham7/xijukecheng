@@ -568,7 +568,7 @@ class Api extends CI_Controller
      * @param [type] $urlParams     [description]
      * @param [type] $needUrlencode [description]
      */
-    function ToUrlParams($urlParams, $needUrlencode)
+    function ToUrlParams($urlParams, $needUrlencode = false)
     {
         $buff = "";
         ksort($urlParams);
