@@ -383,6 +383,10 @@ class Api extends CI_Controller
             $body = "戏剧课程-充值余额";
             $total_fee = floatval($total_fee * 100);
         }
+
+        log_message('info', '-- payment-request $notify_url:'.'http://xijvkecheng.hulalaedu.com/api/notify'
+            . '?uId=' . $user_id . '&cId=' . $courseware_id);
+
         $weixinpay = new WeixinPay($appid, $openid, $mch_id, $key, $out_trade_no, $body, $total_fee,
             'http://xijvkecheng.hulalaedu.com/api/notify'
             . '?uId=' . $user_id . '&cId=' . $courseware_id
