@@ -34,11 +34,11 @@ if ($this->session->userdata('loggedin')) {
 
 <!--<div class="page-main-menu">-->
 <?php if ($this->session->userdata("loggedin") != FALSE) { ?>
-    <a class="btn-main mywork" href="<?= base_url($myworkURL); ?>" data-type="<?= $user_type?>"
+    <a class="btn-main mywork" href="<?= base_url($myworkURL); ?>" data-type="<?= $user_type ?>"
     ><span><?= ($user_type != '1') ? '我的' : '学生'; ?>作品</span></a>
-    <a class="btn-main community" href="<?= base_url('middle/') . 'community/index'; ?>" data-type="<?= $user_type?>"
+    <a class="btn-main community" href="<?= base_url('middle/') . 'community/index'; ?>" data-type="<?= $user_type ?>"
     ><span>戏剧社区</span></a>
-    <a class="btn-main profile" data-type="<?= $user_type?>"
+    <a class="btn-main profile" data-type="<?= $user_type ?>"
        href="<?= base_url('middle/') . 'users/profile/' . $loged_In_user_id; ?>"
     ><span>个人中心</span></a>
 <?php } else if ($this->session->userdata("loggedin") == FALSE) { ?>
@@ -123,7 +123,7 @@ if ($this->session->userdata('loggedin')) {
 <?php endif; ?>
 
 <div class="script-content">
-    <iframe src="" id="courseware_iframe"
+    <iframe src="" id="courseware_iframe" width="1920px" height="1080px"
             allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"
             style="border:none"></iframe>
 </div>
@@ -158,6 +158,9 @@ if ($this->session->userdata('loggedin')) {
         if (isEntering) {
             $('.script-content').css({
                 left: 0, top: 0, width: 1920, height: 1080
+            });
+            $('.script-content iframe').attr({
+                width: '1024px', height: '800px'
             });
             $('.subware-nav').hide();
             $('.btn-main').hide();
