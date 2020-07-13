@@ -20,7 +20,7 @@ if ($user_type != '1') {
 ?>
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/middle/work.css') ?>">
 <div class="bg" style="background-color: #f4f4f4;">
-    <img src="<?= $imageAbsDir . 'mywork/bg-index.png' ?>">
+    <img src="<?= $imageAbsDir . 'mywork/bg-index'.($user_type!='1'?'-student':'').'.png' ?>">
 </div>
 
 <a href="<?php
