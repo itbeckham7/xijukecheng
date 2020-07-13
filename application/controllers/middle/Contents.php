@@ -316,7 +316,7 @@ class Contents extends CI_Controller {
             }
             log_message('info', '-- dubbing_read_upload 8');
             $data = array(
-                'content_title' => trim($file_name_rename),
+                'content_title' => trim($_POST['new_filename']),
                 'content_type_id' => '2',
                 'courseware_id'=>$coursewareId,
                 'content_user_id' => $user_id,
