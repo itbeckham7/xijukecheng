@@ -67,7 +67,9 @@ foreach ($subwares as $subware): ?>
     $fileCheck = $subware->subware_file . '/index.html';
     if ($subware->subware_type_id >= 6 && $subware->subware_type_id <= 8) {
         $fileCheck = $subware->subware_file;
+        $poster = str_replace('.mp4','.png', $fileCheck);
         if (!file_exists($fileCheck)) $subware->subware_file = $subwarePath;
+        if (file_exists($poster)) $subware->subware_poster = $poster;
         array_push($mainList, $subware);
         continue;
     }

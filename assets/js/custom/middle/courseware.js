@@ -35,13 +35,15 @@ function updateSubwareAccessTime(swTypeId) {
         }
     });
 }
-if(login_status == '0'){
-    $('.subware-nav').each(function(idx, elem){
+
+if (login_status == '0') {
+    $('.subware-nav').each(function (idx, elem) {
         var that = $(elem);
         that.attr('data-disabled', '1');
     });
     $('#script').parent().removeAttr('data-disabled');
 }
+
 function receiveMessage(event) {
     var iframe = document.getElementById('courseware_iframe').contentWindow;
     var message = event.data; //this is the message
@@ -249,10 +251,11 @@ function makeSubwareList(list) {
                 '<div class="sItem" data-id="' + item.subware_id + '">';
             switch (fileType) {
                 case 'mp4':
+                    var poster = 'assets/images/middle/coursewares/preview-video.png';
+                    if (item.subware_poster) poster = item.subware_poster;
                     content_html += '<div class="sItem-preview ' +
                         item.subware_type_slug + '" ' +
-                        'style="background-image: url(' + baseURL +
-                        'assets/images/middle/coursewares/preview-video.png' +
+                        'style="background-image: url(' + baseURL + poster +
                         ')" ' + ' onclick="playContent(this);"' +
                         '><div></div></div>';
                     content_html += '<div class="sItem-title">' + item.title + '</div>';
