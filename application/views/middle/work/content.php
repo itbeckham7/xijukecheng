@@ -23,16 +23,20 @@ if ($user_type != '1') {
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/middle/menu_manage.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/middle/work_view.css') ?>">
 <div class="bg" style="background-color: #f4f4f4;">
-    <img src="<?= base_url('assets/images/middle/mywork/bg-script.png') ?>" class="background_image">
+    <?php if ($content_type_id == '1') { ?>
+        <img src="<?= base_url('assets/images/middle/mywork/bg-script.png') ?>" class="background_image">
+    <?php } else { ?>
+        <img src="<?= base_url('assets/images/middle/mywork/bg-shooting.png') ?>" class="background_image">
+    <?php } ?>
 </div>
 
 <!--<div class="page-main-menu">-->
 <?php if ($this->session->userdata("loggedin") != FALSE) { ?>
-    <a class="btn-main mywork" href="<?= base_url($myworkURL); ?>" data-type="<?= $user_type?>"
+    <a class="btn-main mywork" href="<?= base_url($myworkURL); ?>" data-type="<?= $user_type ?>"
     ><span><?= ($user_type != '1') ? '我的' : '学生'; ?>作品</span></a>
-    <a class="btn-main community" href="<?= base_url('middle/') . 'community/index'; ?>" data-type="<?= $user_type?>"
+    <a class="btn-main community" href="<?= base_url('middle/') . 'community/index'; ?>" data-type="<?= $user_type ?>"
     ><span>戏剧社区</span></a>
-    <a class="btn-main profile" data-type="<?= $user_type?>"
+    <a class="btn-main profile" data-type="<?= $user_type ?>"
        href="<?= base_url('middle/') . 'users/profile/' . $logged_In_user_id; ?>"
     ><span>个人中心</span></a>
 <?php } else if ($this->session->userdata("loggedin") == FALSE) { ?>
@@ -49,7 +53,7 @@ if ($user_type != '1') {
 <?php if ($content_type_id == '1') { ?>
     <a href="#" class="scriptPrint_Icon">打印</a>
 <?php } else { ?>
-    <a href="#" class="headImgPrint_Icon">打印</a>
+    <!--    <a href="#" class="headImgPrint_Icon">打印</a>-->
 <?php } ?>
 
 <div class="work_view_area">
@@ -64,7 +68,7 @@ if ($user_type != '1') {
         <?php
     } else if ($content_type_id == '5') { ?>
         <div id="headImage_wrapper">
-            <img id="headImage" style="width:100%" src="<?= base_url() . $headImagePath; ?>">
+            <img id="headImage" style="width:93%" src="<?= base_url() . $headImagePath; ?>">
         </div>
     <?php } ?>
 </div>

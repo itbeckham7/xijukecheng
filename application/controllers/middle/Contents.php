@@ -176,6 +176,12 @@ class Contents extends CI_Controller {
         );
 
         $this->contents_m->insert_contents( $data );
+
+        $output = array(
+            'status' => 'success',
+            'filename' => $uploadDirectory
+        );
+        echo json_encode($output);
     }
 
     private function shooting_upload( $user_id, $coursewareId, $new_filename ){

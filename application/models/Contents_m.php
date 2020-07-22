@@ -72,7 +72,9 @@ class Contents_m extends MY_Model
 
         if ($content_type_id == 2) {
             $arr .= ' content_types.content_type_id = 2 OR content_types.content_type_id = 3 OR content_types.content_type_id = 4';
-        } else {
+        } else if($content_type_id == 6){
+            $arr .= ' content_types.content_type_id = 5';
+        }else {
             $arr .= ' content_types.content_type_id = ' . $content_type_id;
         }
         $selList = 'content_id,content_title,content_user_id,view_num,contents.content_type_id,fullname,local,contents.public,contents.publish';
