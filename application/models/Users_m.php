@@ -51,9 +51,9 @@ class Users_m extends MY_Model
             'school_id' => $school_id,
             'user_type_id' => $param['user_type_id'],
             'reg_time' => $param['reg_time'],
-            'class' => $param['class'],
             'buycourse_arr' => $param['buycourse_arr']
         );
+        if(isset($param['class'])) $arr['class'] = $param['class'];
         if ($param['password_status'] == '1') {
             $arr['password'] = $this->hash($param['password']);
         }

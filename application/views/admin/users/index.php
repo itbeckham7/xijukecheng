@@ -1116,6 +1116,7 @@
                         $('#cw_' + res.data[i].course_type + "_" + res.data[i].course_id).prop('checked', true);
                     }
                     $('#edit_user_modal').modal({backdrop: 'static', keyboard: false})
+                    $('#edit_user_save_btn').removeAttr('disabled');
                 } else {
                     alert(res.data);
                 }

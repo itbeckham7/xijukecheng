@@ -14,6 +14,7 @@ class Users extends Admin_Controller
         $this->load->model("nchildcourses_m");
         $this->load->model("backendcourses_m");
         $this->load->model("coursepermissions_m");
+        $this->load->model("payhistory_m");
         $this->lang->load('accounts', $language);
         $this->lang->load('courses', $language);
         $this->load->library("pagination");
@@ -157,10 +158,19 @@ class Users extends Admin_Controller
             $buycs_gr_list = json_decode($_POST['buycourse_gr']);
 
             //Delete All Previous Permissions
+
             $this->coursepermissions_m->delete_where(array('user_id' => $userId));
-            foreach ($buycs_kb_list as $kbp):
+            $this->payhistory_m->delete_where(array('user_id' => $userId));
+            foreach ($buycs_kb_list as $kbp) {
                 $this->coursepermissions_m->insert(array('user_id' => $userId, 'course_type' => '1', 'course_id' => $kbp));
-            endforeach;
+                $this->payhistory_m->insert(array(
+                    'user_id' => $userId,
+                    'courseware_id' => $kbp,
+                    'sender' => $userId,
+                    'paid_time' => date('Y-m-d H:i:s'),
+                    'out_trade_no' => 'backend'
+                ));
+            }
 
             foreach ($buycs_sd_list as $sdp):
                 $this->coursepermissions_m->insert(array('user_id' => $userId, 'course_type' => '2', 'course_id' => $sdp));
@@ -179,13 +189,12 @@ class Users extends Admin_Controller
                 'sex' => $sex,
                 'school_name' => $school_name,
                 'user_type_id' => $user_type_id,
-                'class' => $user_class,
                 'password_status' => $password_status,
                 'buycourse_arr' => $buycs_list,
                 'password' => $password,
                 'reg_time' => date('Y-m-d H:i:s')
             );
-
+            if ($user_type_id != '1') $param['class'] = $user_class;
             $this->data['users'] = $this->users_m->edit($param);
             $ret['data'] = $this->output_content($this->data['users']);
             $ret['status'] = 'success';
@@ -291,24 +300,24 @@ class Users extends Admin_Controller
             );
 
             $insertID = $this->users_m->insert($eachUser);
-			if($kb_buy !=null)
-            foreach ($kb_buy as $key => $value):
-                $csKey = intval($key);
-                $csKey = $csKey + 1;
-                $this->coursepermissions_m->insert(array('user_id' => $insertID, 'course_type' => '1', 'course_id' => $csKey));
-            endforeach;
-			if($sd_buy!=null)
-            foreach ($sd_buy as $key => $value):
-                $csKey = intval($key);
-                $csKey = $csKey + 1;
-                $this->coursepermissions_m->insert(array('user_id' => $insertID, 'course_type' => '2', 'course_id' => $csKey));
-            endforeach;
-			if($gr_buy!=null)
-            foreach ($gr_buy as $key => $value):
-                $csKey = intval($key);
-                $csKey = $csKey + 1;
-                $this->coursepermissions_m->insert(array('user_id' => $insertID, 'course_type' => '3', 'course_id' => $csKey));
-            endforeach;
+            if ($kb_buy != null)
+                foreach ($kb_buy as $key => $value):
+                    $csKey = intval($key);
+                    $csKey = $csKey + 1;
+                    $this->coursepermissions_m->insert(array('user_id' => $insertID, 'course_type' => '1', 'course_id' => $csKey));
+                endforeach;
+            if ($sd_buy != null)
+                foreach ($sd_buy as $key => $value):
+                    $csKey = intval($key);
+                    $csKey = $csKey + 1;
+                    $this->coursepermissions_m->insert(array('user_id' => $insertID, 'course_type' => '2', 'course_id' => $csKey));
+                endforeach;
+            if ($gr_buy != null)
+                foreach ($gr_buy as $key => $value):
+                    $csKey = intval($key);
+                    $csKey = $csKey + 1;
+                    $this->coursepermissions_m->insert(array('user_id' => $insertID, 'course_type' => '3', 'course_id' => $csKey));
+                endforeach;
 
             array_push($bulkUsers, $eachUser);
         }
@@ -366,22 +375,22 @@ class Users extends Admin_Controller
             if ($user->publish == '1') $pub = $this->lang->line('UnPublish');
             else   $pub = $this->lang->line('Publish');
             $buyList = json_decode($user->buycourse_arr);
-            $kebenju = isset($buyList->kebenju)?$buyList->kebenju:'0';
-            $sandapian = isset($buyList->sandapian)?$buyList->sandapian:'0';
-            $grammar = isset($buyList->grammar)?$buyList->grammar:'0';
-			
-			$buycourseStr = '';
-			if ($kebenju == '1') {
-				$buycourseStr .= $this->lang->line('kebenju');
-			}
-			if ($sandapian == '1') {
-				if ($buycourseStr != '') $buycourseStr .= '<br/>';
-				$buycourseStr .= $this->lang->line('sandapian');
-			}
-			if ($grammar == '1') {
-				if ($buycourseStr != '') $buycourseStr .= '<br/>';
-				$buycourseStr .= $this->lang->line('grammar');
-			}
+            $kebenju = isset($buyList->kebenju) ? $buyList->kebenju : '0';
+            $sandapian = isset($buyList->sandapian) ? $buyList->sandapian : '0';
+            $grammar = isset($buyList->grammar) ? $buyList->grammar : '0';
+
+            $buycourseStr = '';
+            if ($kebenju == '1') {
+                $buycourseStr .= $this->lang->line('kebenju');
+            }
+            if ($sandapian == '1') {
+                if ($buycourseStr != '') $buycourseStr .= '<br/>';
+                $buycourseStr .= $this->lang->line('sandapian');
+            }
+            if ($grammar == '1') {
+                if ($buycourseStr != '') $buycourseStr .= '<br/>';
+                $buycourseStr .= $this->lang->line('grammar');
+            }
 
             $output .= '<tr>';
             $output .= '<td colspan="2">';
