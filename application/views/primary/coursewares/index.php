@@ -179,7 +179,7 @@ if ($user_type != '1') {
     <?php endif; ?>
 <?php } ?>
 <div class="back-btn">
-    <a onmouseover="hover_back()" onmouseout="out_back()" href="javascript:;"  onclick="location.replace('<?= base_url(); ?>')">
+    <a onmouseover="hover_back()" onmouseout="out_back()" href="javascript:;"  onclick="location.replace('<?= base_url("primary"); ?>')">
         <img id="back_btn_image" src="<?= $imageAbsDir.'community/script/back.png';?>">
     </a>
 </div>

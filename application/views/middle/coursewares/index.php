@@ -140,7 +140,7 @@ if ($user_type != '1') {
 <?php } else if ($this->session->userdata("loggedin") == FALSE) { ?>
     <a class="btn-main register-btn" href="<?= base_url('signin/index') ?>"><span>登录</span></a>
 <?php } ?>
-<a href="javascript:;" onclick="location.replace('<?= base_url('/') ?>');" class="btn-main back-btn"></a>
+<a href="javascript:;" onclick="location.replace('<?= base_url('/primary/') ?>');" class="btn-main back-btn"></a>
 
 <!--</div>-->
 <div class="coursewarelist-wrapper">

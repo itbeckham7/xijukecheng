@@ -72,7 +72,7 @@ $user_type = $this->session->userdata("user_type");
     <img src="<?= $imageAbsDir . 'new_course/title.png'; ?>" class="ncourse_title_image">
 </div>
 
-<a href="<?= base_url('primary/home/index'); ?>"
+<a href="<?= base_url('home/index'); ?>"
    class="btn" id="sh_backhome_btn"
    style="background:url(<?= $imageAbsDir . 'base/backhome.png'; ?>) no-repeat;background-size: 100% 100%">
 </a>

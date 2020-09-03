@@ -37,6 +37,7 @@
     <script type="text/javascript">
         var base_url = "<?= base_url() ?>";
         var baseURL = "<?= base_url() ?>";
+        var _uType = "<?= $this->session->userdata('user_type');?>"
 
     </script>
 

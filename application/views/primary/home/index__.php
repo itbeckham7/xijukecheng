@@ -21,7 +21,7 @@
     <img src="<?= base_url('assets/images/sandapian/home/home.png') ?>" class="background_image">
 </div>
 
-<a href="<?= base_url('primary/home'); ?>"
+<a href="<?= base_url('primary/coursewares/index'); ?>"
    class="btn" id="sh_kebenju_btn"
    style="background:url(<?= base_url('assets/images/sandapian/home/kebenju.png'); ?>) no-repeat;
            background-size: 100% 100%">
@@ -57,4 +57,9 @@ if (count($grammar_permissions) > 0) {
                background-size: 100% 100%">
     </a>
 <?php } ?>
+<div class="back-btn">
+    <a onmouseover="hover_back()" onmouseout="out_back()" href="<?= base_url() ?>">
+        <img id="back_btn_image" src="<?= base_url('assets/images/frontend/studentwork/back.png'); ?>">
+    </a>
+</div>
 <script src="<?= base_url('assets/js/custom/home.js') ?>"></script>

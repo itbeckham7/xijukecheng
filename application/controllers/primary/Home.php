@@ -30,7 +30,7 @@ class Home extends CI_Controller {
         }
         $this->data["subview"] = "primary/home/index";
         $this->session->set_userdata(array('target' => $this->data["subview"]));
-        $this->load->view('primary/_layout_main', $this->data);
+        $this->load->view('middle/_layout_main', $this->data);
 	}
 
 	public function grammar(){

@@ -54,7 +54,7 @@ $('a').each(function (idx, elem) {
 function showPlatform(elem) {
     var that = $(elem);
     // var urls = {primary: 'xiaoxueapp', middle : 'middle'};
-    var urls = {primary: 'primary', middle : 'middle'};
+    var urls = {primary: 'primary/coursewares', middle : 'middle'};
     if(executeCMD()) urls = { primary: 'xiaoxueapp', middle: 'middle'};
     var type = that.attr('data-type');
     window.open(baseURL + urls[type], '_self');
