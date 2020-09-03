@@ -1,6 +1,9 @@
 /**
  * Created by Administrator on 6/12/2017.
  */
+if(!executeCMD()){
+    $('a.btn[data-type="register"]').remove();
+}
 var registerBtn = $('#sh_register_btn');
 var exitBtn = $('#sh_exit_btn');
 var imageDir = baseURL + "assets/images/sandapian/";
