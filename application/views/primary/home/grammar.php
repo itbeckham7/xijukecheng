@@ -32,7 +32,7 @@
         </div>		
     </div>
 </div>
-<script src="<?= base_url('assets/js/frontend/grammar_course.js') ?>"></script>
+<script src="<?= base_url('assets/js/custom/primary/grammar_course.js') ?>"></script>
 <script>
     allCourses = JSON.parse('<?= json_encode($bcwSets);?>');
 </script>
