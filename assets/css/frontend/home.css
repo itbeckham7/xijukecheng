@@ -40,21 +40,90 @@ body, html {
 }
 
 /***********Sandapian code***************/
-#sh_kebenju_btn {
-    width: 29.02%;
-    height: 69.44%;
+#sh_kebenju_btn
+{
+    /*width:29.02%;
+    height:69.44%;
     position: absolute;
     left: 11.7%;
     top: 20.78%;
+    background-size: 100% 100%;*/
+    width:26.3%;
+    height:57.4%;
+    position: absolute;
+    left: 20.3%;
+    top: 22.9%;
     background-size: 100% 100%;
 }
-
-#sh_sandapian_btn {
-    width: 29.2%;
-    height: 69.51%;
+#sh_kebenju_btn:hover
+{
+    /*width:29.02%;
+    height:69.44%;
+    position: absolute;
+    left: 11.7%;
+    top: 20.78%;
+    background-size: 100% 100%;*/
+    width:28.3%;
+    height:59.4%;
+    position: absolute;
+    left: 19.3%;
+    top: 21.9%;
+    background-size: 100% 100%;
+}
+#sh_sandapian_btn{
+    /*width:29.2%;
+    height:69.51%;
     position: absolute;
     left: 57.88%;
     top: 20.87%;
+    background-size: 100% 100%;*/
+    width:26.3%;
+    height:62.9%;
+    position: absolute;
+    left: 53.2%;
+    top: 22.6%;
+    background-size: 100% 100%;
+}
+#sh_sandapian_btn:hover{
+    /*width:29.2%;
+    height:69.51%;
+    position: absolute;
+    left: 57.88%;
+    top: 20.87%;
+    background-size: 100% 100%;*/
+    width:28.3%;
+    height:64.9%;
+    position: absolute;
+    left: 52.2%;
+    top: 21.6%;
+    background-size: 100% 100%;
+}
+#sh_xiaochu_btn{
+    /*width:29.2%;
+    height:69.51%;
+    position: absolute;
+    left: 57.88%;
+    top: 20.87%;
+    background-size: 100% 100%;*/
+    width:9.2%;
+    height:23.1%;
+    position: absolute;
+    left: 87.0%;
+    top: 57.4%;
+    background-size: 100% 100%;
+}
+#sh_xiaochu_btn:hover{
+    /*width:29.2%;
+    height:69.51%;
+    position: absolute;
+    left: 57.88%;
+    top: 20.87%;
+    background-size: 100% 100%;*/
+    width:11.2%;
+    height:25.1%;
+    position: absolute;
+    left: 86.0%;
+    top: 56.4%;
     background-size: 100% 100%;
 }
 
