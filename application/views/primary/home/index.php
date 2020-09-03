@@ -3,7 +3,7 @@
     .back-btn {
         position: absolute;
         left: 3.84%;
-        top: 1.37%;
+        top: 2.37%;
         width: 4.31%;
         height: 7.8%;
         background-image: none;
