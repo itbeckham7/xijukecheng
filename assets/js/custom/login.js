@@ -3,6 +3,9 @@
  */
 
 $(window).load(function () {
+    if (osStatus != 'Android' && osStatus != 'iOS'){
+        $('a.btn-weixin').remove();
+    }
     if (setUserInfo() != '') {
         getUserInfo(setUserInfo());
         return;

@@ -3,7 +3,11 @@
     <img src="<?= base_url('assets/images/frontend/login/back_image.jpg')?>" class="background_image">
 </div>
 <style>
-
+    .btn-weixin {
+        position: absolute;
+        left: 1265px;
+        top: 760px;
+    }
 </style>
 <form method="post" class="custom_login_form"
       action="<?= base_url('signin/index') ?>">
@@ -19,6 +23,10 @@
                src="<?= base_url('assets/images/frontend/login/login.png') ?>"
                border="0" alt="Submit">
     </div>
+    <a href="<?= base_url('signin/signin_weixin'); ?>" class="btn-weixin"
+             style="display:<?= ($wxStatus == '1') ? 'block' : 'none'; ?>">
+        <img src="<?= base_url('assets/images/frontend/login/weixin_btn.png') ?>">
+    </a>
     <a href="<?= base_url();?>" class="back_home_btn" style="">
             <img src="<?= base_url('assets/images/frontend/login/back_home.png')?>" id="back_image">
     </a>
